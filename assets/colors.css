@@ -31,6 +31,42 @@
   --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
   --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, monospace;
+
+  /* --- Motion — Easing (Material Design 3 adapted) --- */
+  /* Emphasized: brand-forward transitions — hero, modals, primary CTAs */
+  --ease-emphasized:            cubic-bezier(0.2, 0, 0, 1.0);
+  --ease-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1.0); /* enter */
+  --ease-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);   /* exit  */
+  /* Standard: UI state changes — tabs, hovers, dropdowns, toggles */
+  --ease-standard:              cubic-bezier(0.2, 0, 0, 1);
+  --ease-standard-decelerate:   cubic-bezier(0, 0, 0, 1);           /* enter */
+  --ease-standard-accelerate:   cubic-bezier(0.3, 0, 1, 1);         /* exit  */
+  /* Linear: color/opacity crossfades and progress bars ONLY */
+  --ease-linear:                cubic-bezier(0, 0, 1, 1);
+
+  /* --- Motion — Duration tokens --- */
+  /* Short: micro-interactions, hover states, icon changes */
+  --dur-short-1: 50ms;   --dur-short-2: 100ms;
+  --dur-short-3: 150ms;  --dur-short-4: 200ms;
+  /* Medium: dropdowns, tooltips, component state changes */
+  --dur-medium-1: 250ms; --dur-medium-2: 300ms;
+  --dur-medium-3: 350ms; --dur-medium-4: 400ms;
+  /* Long: modals, panels, page section reveals */
+  --dur-long-1: 450ms;   --dur-long-2: 500ms;
+  --dur-long-3: 550ms;   --dur-long-4: 600ms;
+  /* Extra Long: hero entrances, full-page transitions */
+  --dur-xlong-1: 700ms;  --dur-xlong-2: 800ms;
+  --dur-xlong-3: 900ms;  --dur-xlong-4: 1000ms;
+}
+
+/* --- Reduced Motion — always include in every project --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ==========================================================

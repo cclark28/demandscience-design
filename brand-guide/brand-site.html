@@ -66,7 +66,7 @@ button{font-family:inherit;cursor:pointer}
   display:flex;align-items:center;gap:4px;
   padding:7px 13px;border-radius:6px;
   font-size:13.5px;font-weight:500;color:rgba(255,255,255,.75);
-  transition:color .2s,background .2s;cursor:pointer;
+  transition:color 150ms cubic-bezier(0.2,0,0,1),background 150ms cubic-bezier(0.2,0,0,1);cursor:pointer;
 }
 .nav-link:hover,.nav-link.active{color:#fff;background:rgba(255,255,255,.08)}
 .nav-chevron{font-family:'Material Symbols Rounded';font-size:17px;transition:transform .25s}
@@ -410,9 +410,18 @@ button{font-family:inherit;cursor:pointer}
 .sz-item .sz-l{font-size:11px;color:var(--mid)}
 
 /* ── MOTION ──────────────────────────────────── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes scaleIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
-@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+/* M3-adapted keyframes */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+/* Easing CSS vars */
+:root{
+  --ease-emph-dec:cubic-bezier(0.05,0.7,0.1,1.0);
+  --ease-emph-acc:cubic-bezier(0.3,0,0.8,0.15);
+  --ease-std:cubic-bezier(0.2,0,0,1);
+  --ease-std-dec:cubic-bezier(0,0,0,1);
+  --ease-std-acc:cubic-bezier(0.3,0,1,1);
+}
 .motion-demo{display:flex;flex-direction:column;gap:14px}
 .motion-row{
   display:flex;align-items:center;gap:16px;
@@ -541,7 +550,7 @@ button{font-family:inherit;cursor:pointer}
 .band-btns{display:flex;gap:10px;flex-wrap:wrap}
 
 /* ── SCROLL REVEAL ───────────────────────────── */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 450ms cubic-bezier(0.05,0.7,0.1,1.0),transform 450ms cubic-bezier(0.05,0.7,0.1,1.0)}
 .reveal.vis{opacity:1;transform:none}
 
 /* ── TOAST ───────────────────────────────────── */
@@ -981,40 +990,152 @@ button{font-family:inherit;cursor:pointer}
 <section class="section section-alt" id="motion">
   <div class="container">
     <div class="sec-tag"><span>animation</span>05 · Motion</div>
-    <h2 class="sec-title">Motion Principles</h2>
-    <p class="sec-body">Motion is purposeful, not decorative. Every animation has a reason — reveal content, guide attention, or confirm an action. Nothing spins, bounces, or flashes.</p>
+    <h2 class="sec-title">Motion System</h2>
+    <p class="sec-body">Motion is a communication tool, not decoration. Sourced from Material Design 3 and adapted for DemandScience. Every animation must earn its place.</p>
 
+    <!-- Principles -->
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:36px">
+      <div style="padding:16px;border-radius:var(--r);background:#fff;border-top:3px solid var(--blue);text-align:left">
+        <div style="font-family:'Material Symbols Rounded';font-size:20px;color:var(--blue);margin-bottom:8px">lightbulb</div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px">Meaningful</div>
+        <div style="font-size:11.5px;color:var(--mid)">Every animation communicates something. If it can be removed without confusion — remove it.</div>
+      </div>
+      <div style="padding:16px;border-radius:var(--r);background:#fff;border-top:3px solid var(--blue);text-align:left">
+        <div style="font-family:'Material Symbols Rounded';font-size:20px;color:var(--blue);margin-bottom:8px">bolt</div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px">Responsive</div>
+        <div style="font-size:11.5px;color:var(--mid)">Feedback starts within 100ms. Never make users wait for an animation to finish.</div>
+      </div>
+      <div style="padding:16px;border-radius:var(--r);background:#fff;border-top:3px solid var(--blue);text-align:left">
+        <div style="font-family:'Material Symbols Rounded';font-size:20px;color:var(--blue);margin-bottom:8px">nature</div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px">Natural</div>
+        <div style="font-size:11.5px;color:var(--mid)">Elements decelerate on arrival, accelerate on exit. Follows the physics of the real world.</div>
+      </div>
+      <div style="padding:16px;border-radius:var(--r);background:#fff;border-top:3px solid var(--blue);text-align:left">
+        <div style="font-family:'Material Symbols Rounded';font-size:20px;color:var(--blue);margin-bottom:8px">center_focus_strong</div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px">Focused</div>
+        <div style="font-size:11.5px;color:var(--mid)">One thing moves at a time. Choreograph so the eye always knows where to look.</div>
+      </div>
+      <div style="padding:16px;border-radius:var(--r);background:#fff;border-top:3px solid var(--pink);text-align:left">
+        <div style="font-family:'Material Symbols Rounded';font-size:20px;color:var(--pink);margin-bottom:8px">accessibility</div>
+        <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px">Respectful</div>
+        <div style="font-size:11.5px;color:var(--mid)">prefers-reduced-motion always honoured. Non-essential animation disabled.</div>
+      </div>
+    </div>
+
+    <!-- Easing -->
+    <div class="comp-label" style="margin-bottom:14px">Easing Curves — Material Design 3 Adapted</div>
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:32px">
+      <!-- Emphasized -->
+      <div style="border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)">
+        <div style="background:var(--navy);padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.5);margin-bottom:4px">Emphasized</div>
+          <div style="font-size:13px;font-weight:700;color:#fff">Brand transitions</div>
+        </div>
+        <div style="background:#fff;padding:14px 16px">
+          <div id="ease-demo-emph" style="width:100%;height:6px;border-radius:3px;background:var(--blue-lt);margin-bottom:12px;position:relative">
+            <div class="ease-ball" style="width:14px;height:14px;border-radius:50%;background:var(--blue);position:absolute;top:-4px;left:0;transform:translateX(0)"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between;font-size:11px"><span style="color:var(--mid)">Enter</span><code style="font-size:10px;color:var(--dark);background:var(--lt);padding:2px 6px;border-radius:4px">cubic-bezier(0.05, 0.7, 0.1, 1.0)</code></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px"><span style="color:var(--mid)">Exit</span><code style="font-size:10px;color:var(--dark);background:var(--lt);padding:2px 6px;border-radius:4px">cubic-bezier(0.3, 0, 0.8, 0.15)</code></div>
+          </div>
+          <button class="play-btn" style="width:100%;margin-top:10px;justify-content:center" onclick="demoEase('ease-demo-emph','cubic-bezier(0.05,0.7,0.1,1.0)')"><span>play_arrow</span>Demo</button>
+        </div>
+      </div>
+      <!-- Standard -->
+      <div style="border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)">
+        <div style="background:var(--blue);padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.5);margin-bottom:4px">Standard</div>
+          <div style="font-size:13px;font-weight:700;color:#fff">UI state changes</div>
+        </div>
+        <div style="background:#fff;padding:14px 16px">
+          <div id="ease-demo-std" style="width:100%;height:6px;border-radius:3px;background:var(--blue-lt);margin-bottom:12px;position:relative">
+            <div class="ease-ball" style="width:14px;height:14px;border-radius:50%;background:var(--blue);position:absolute;top:-4px;left:0"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between;font-size:11px"><span style="color:var(--mid)">Enter</span><code style="font-size:10px;color:var(--dark);background:var(--lt);padding:2px 6px;border-radius:4px">cubic-bezier(0, 0, 0, 1)</code></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px"><span style="color:var(--mid)">Exit</span><code style="font-size:10px;color:var(--dark);background:var(--lt);padding:2px 6px;border-radius:4px">cubic-bezier(0.3, 0, 1, 1)</code></div>
+          </div>
+          <button class="play-btn" style="width:100%;margin-top:10px;justify-content:center" onclick="demoEase('ease-demo-std','cubic-bezier(0,0,0,1)')"><span>play_arrow</span>Demo</button>
+        </div>
+      </div>
+      <!-- Linear -->
+      <div style="border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)">
+        <div style="background:var(--mid);padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.5);margin-bottom:4px">Linear</div>
+          <div style="font-size:13px;font-weight:700;color:#fff">Color fades only</div>
+        </div>
+        <div style="background:#fff;padding:14px 16px">
+          <div id="ease-demo-lin" style="width:100%;height:6px;border-radius:3px;background:var(--blue-lt);margin-bottom:12px;position:relative">
+            <div class="ease-ball" style="width:14px;height:14px;border-radius:50%;background:var(--mid);position:absolute;top:-4px;left:0"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between;font-size:11px"><span style="color:var(--mid)">Only for</span><code style="font-size:10px;color:var(--dark);background:var(--lt);padding:2px 6px;border-radius:4px">cubic-bezier(0, 0, 1, 1)</code></div>
+            <div style="font-size:11px;color:#B91C1C;background:#FEF2F2;padding:5px 8px;border-radius:5px">⚠ Never use for positional or scale animations</div>
+          </div>
+          <button class="play-btn" style="width:100%;margin-top:10px;justify-content:center" onclick="demoEase('ease-demo-lin','linear')"><span>play_arrow</span>Demo</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Duration -->
+    <div class="comp-label" style="margin-bottom:14px">Duration Tokens</div>
+    <div class="reveal" style="border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);margin-bottom:32px">
+      <table class="ds-table" style="box-shadow:none">
+        <thead><tr><th>Category</th><th>Token range</th><th>Duration</th><th>Use case</th></tr></thead>
+        <tbody>
+          <tr><td><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--blue-lt);border:2px solid var(--blue);display:inline-block"></span>Short</span></td><td style="font-family:monospace;font-size:12px">--dur-short-1 → 4</td><td>50–200ms</td><td>Hover states, icon changes, focus rings, badge flash</td></tr>
+          <tr><td><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--blue);display:inline-block"></span>Medium</span></td><td style="font-family:monospace;font-size:12px">--dur-medium-1 → 4</td><td>250–400ms</td><td>Dropdowns, tooltips, card lifts, tab switches</td></tr>
+          <tr><td><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--navy);display:inline-block"></span>Long</span></td><td style="font-family:monospace;font-size:12px">--dur-long-1 → 4</td><td>450–600ms</td><td>Modals, panels, page section reveals, slide transitions</td></tr>
+          <tr><td><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--pink);display:inline-block"></span>Extra Long</span></td><td style="font-family:monospace;font-size:12px">--dur-xlong-1 → 4</td><td>700–1000ms</td><td>Hero entrances, onboarding sequences, full-page transitions</td></tr>
+        </tbody>
+      </table>
+      <div style="padding:12px 16px;background:var(--lt);font-size:12px;color:var(--mid)">
+        <strong style="color:var(--dark)">Scale rule:</strong> Larger elements move slower. Button hover = 150ms. Full hero reveal = 700ms. Always match duration to visual weight.
+      </div>
+    </div>
+
+    <!-- Patterns + Rules -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="reveal">
       <div>
         <div class="comp-label">Approved Patterns</div>
         <div class="motion-demo">
           <div class="motion-row">
             <div class="motion-swatch" id="m1"></div>
-            <div class="motion-info"><div class="mn">Fade Up</div><div class="ms">opacity 0→1 + translateY(20px→0) · 500ms ease</div></div>
-            <button class="play-btn" onclick="replay('m1','fadeUp .5s ease both')"><span>play_arrow</span>Play</button>
+            <div class="motion-info">
+              <div class="mn">Fade Up — Scroll Reveal</div>
+              <div class="ms">450ms · --ease-emphasized-decelerate</div>
+            </div>
+            <button class="play-btn" onclick="replay('m1','fadeUp 450ms cubic-bezier(0.05,0.7,0.1,1.0) both')"><span>play_arrow</span>Play</button>
           </div>
           <div class="motion-row">
             <div class="motion-swatch" id="m2" style="background:var(--blue)"></div>
-            <div class="motion-info"><div class="mn">Scale In</div><div class="ms">scale(.88→1) + opacity · 400ms ease</div></div>
-            <button class="play-btn" onclick="replay('m2','scaleIn .4s ease both')"><span>play_arrow</span>Play</button>
+            <div class="motion-info">
+              <div class="mn">Scale In — Modal Enter</div>
+              <div class="ms">300ms · --ease-emphasized-decelerate</div>
+            </div>
+            <button class="play-btn" onclick="replay('m2','scaleIn 300ms cubic-bezier(0.05,0.7,0.1,1.0) both')"><span>play_arrow</span>Play</button>
           </div>
           <div class="motion-row">
             <div class="motion-swatch" id="m3" style="background:var(--pink)"></div>
-            <div class="motion-info"><div class="mn">Slide In</div><div class="ms">translateX(-20px→0) + opacity · 450ms ease</div></div>
-            <button class="play-btn" onclick="replay('m3','slideIn .45s ease both')"><span>play_arrow</span>Play</button>
+            <div class="motion-info">
+              <div class="mn">Slide In — Panel Enter</div>
+              <div class="ms">350ms · --ease-emphasized-decelerate</div>
+            </div>
+            <button class="play-btn" onclick="replay('m3','slideIn 350ms cubic-bezier(0.05,0.7,0.1,1.0) both')"><span>play_arrow</span>Play</button>
           </div>
         </div>
       </div>
       <div>
-        <div class="comp-label">Rules</div>
-        <div class="comp-canvas" style="height:100%">
+        <div class="comp-label">Hard Rules</div>
+        <div class="comp-canvas">
           <table style="width:100%;font-size:13px;border-collapse:collapse">
-            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 0;font-weight:600;width:100px">Duration</td><td style="padding:10px 0;color:var(--mid)">100–600ms. Fast for micro, 400–600ms for reveals.</td></tr>
-            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 0;font-weight:600">Easing</td><td style="padding:10px 0;color:var(--mid)">ease or cubic-bezier(.4,0,.2,1). Never linear for UI.</td></tr>
-            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 0;font-weight:600">Hover</td><td style="padding:10px 0;color:var(--mid)">translateY(−2 to −4px) + shadow. 200ms ease.</td></tr>
-            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 0;font-weight:600">Scroll</td><td style="padding:10px 0;color:var(--mid)">Fade-up on enter only. No continuous loops.</td></tr>
-            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 0;font-weight:600;color:#B91C1C">Never</td><td style="padding:10px 0;color:#B91C1C">Spin, bounce, flash, rotate, infinite decorative loops.</td></tr>
-            <tr><td style="padding:10px 0;font-weight:600">A11y</td><td style="padding:10px 0;color:var(--mid)">Disable non-essential animation on prefers-reduced-motion.</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 0;font-weight:600;width:90px">Enter</td><td style="padding:9px 0;color:var(--mid)">Decelerate easing — elements settle in naturally</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 0;font-weight:600">Exit</td><td style="padding:9px 0;color:var(--mid)">Accelerate easing — elements leave with purpose</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 0;font-weight:600">Hover</td><td style="padding:9px 0;color:var(--mid)">translateY(−3px) + shadow · 200ms standard</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 0;font-weight:600">Stagger</td><td style="padding:9px 0;color:var(--mid)">40–60ms per item · max 6 items</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:9px 0;font-weight:600;color:#166534">Always</td><td style="padding:9px 0;color:#166534">Animate transform + opacity only (no width/height/top)</td></tr>
+            <tr><td style="padding:9px 0;font-weight:600;color:#B91C1C">Never</td><td style="padding:9px 0;color:#B91C1C">Spin · bounce · flash · infinite decorative loops</td></tr>
           </table>
         </div>
       </div>
@@ -1332,6 +1453,26 @@ function replay(id,anim){
   el.style.animation='none';
   el.offsetHeight;
   el.style.animation=anim;
+}
+
+// Easing ball demo
+function demoEase(containerId, easingCurve){
+  const container=document.getElementById(containerId);
+  const ball=container.querySelector('.ease-ball');
+  // Reset
+  ball.style.transition='none';
+  ball.style.transform='translateX(0)';
+  ball.offsetHeight;
+  // Get track width
+  const trackW=container.offsetWidth-14;
+  // Animate to end
+  ball.style.transition=`transform 600ms ${easingCurve}`;
+  ball.style.transform=`translateX(${trackW}px)`;
+  // Return to start after
+  setTimeout(()=>{
+    ball.style.transition=`transform 300ms cubic-bezier(0.3,0,1,1)`;
+    ball.style.transform='translateX(0)';
+  },900);
 }
 
 // Scroll reveal

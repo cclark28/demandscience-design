@@ -368,15 +368,61 @@ This applies to: decks, docs, web, infographics, dashboards, internal tools, and
 
 ## 8. Motion (Web / Decks)
 
-**Animate with purpose:**
-- Fade/slide entrances on key elements
-- Subtle hover transforms on buttons/cards
+Full specification: `assets/motion-guide.md`
 
-**Avoid:**
-- Busy looping animations
-- Layout jank — animate `transform`/`opacity`, not `width`/`height`/`top`/`left`
+### Core Principles
+1. **Motion has meaning** — every animation communicates something. If it can be removed without confusing the user, remove it.
+2. **Motion is responsive** — feedback starts within 100ms of the trigger. Never make users wait for an animation.
+3. **Motion is natural** — elements decelerate on arrival, accelerate on exit. No snapping, no floating.
+4. **Motion is focused** — one thing moves at a time. Choreograph sequences so attention is guided, not split.
+5. **Motion respects users** — `prefers-reduced-motion` is always honoured.
 
-**Accessibility:** Respect `prefers-reduced-motion` on web; keep deck transitions simple (fade or none).
+### Easing System (Material Design 3 adapted)
+
+| Token | Curve | Use |
+|-------|-------|-----|
+| `--ease-emphasized`            | `cubic-bezier(0.2, 0, 0, 1.0)` | Brand-forward transitions |
+| `--ease-emphasized-decelerate` | `cubic-bezier(0.05, 0.7, 0.1, 1.0)` | Entering elements |
+| `--ease-emphasized-accelerate` | `cubic-bezier(0.3, 0, 0.8, 0.15)` | Exiting elements |
+| `--ease-standard`              | `cubic-bezier(0.2, 0, 0, 1)` | UI state changes |
+| `--ease-standard-decelerate`   | `cubic-bezier(0, 0, 0, 1)` | UI element entering |
+| `--ease-standard-accelerate`   | `cubic-bezier(0.3, 0, 1, 1)` | UI element leaving |
+| `--ease-linear`                | `cubic-bezier(0, 0, 1, 1)` | Color/opacity fades ONLY |
+
+### Duration Scale
+
+| Category | Range | Use |
+|----------|-------|-----|
+| Short `--dur-short-*` | 50–200ms | Hover states, icon changes, focus rings |
+| Medium `--dur-medium-*` | 250–400ms | Dropdowns, badges, card hovers |
+| Long `--dur-long-*` | 450–600ms | Modals, panels, section reveals |
+| Extra Long `--dur-xlong-*` | 700–1000ms | Hero entrances, page transitions |
+
+**Rule:** Scale duration with visual weight. Button hover = 150ms. Full hero reveal = 600–700ms.
+
+### Approved Patterns
+- **Fade Up** — scroll reveals: `opacity 0→1 + translateY(24px→0)`, 450ms, `--ease-emphasized-decelerate`
+- **Scale In** — modal/overlay enter: `opacity 0→1 + scale(0.92→1)`, 300ms, `--ease-emphasized-decelerate`
+- **Slide In** — panel/drawer: `opacity 0→1 + translateX(20px→0)`, 350ms, `--ease-emphasized-decelerate`
+- **Hover Lift** — cards/buttons: `translateY(-3px) + shadow`, 200ms, `--ease-standard`
+- **Fade Through** — content swap: exit (100ms accelerate) then enter (300ms decelerate)
+
+### Stagger
+Multiple elements animate in sequence at 40–60ms intervals. Maximum 6 items staggered.
+
+### Spatial Rules
+- Forward/deeper navigation → slide left
+- Back navigation → slide right
+- Modal/overlay open → scale in from center
+- Expand (accordion) → slide down
+- Collapse → slide up
+
+### Never
+- Infinite decorative loops (loaders excepted)
+- Simultaneous competing animations
+- Linear easing on positional/scale transitions
+- Animating `width`, `height`, `top`, `left` (causes layout jank — use `transform` instead)
+- Skipping `prefers-reduced-motion`
 
 ---
 
