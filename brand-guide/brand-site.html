@@ -1,1525 +1,1338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DemandScience Brand Standards — Living Design System</title>
-  <meta name="description" content="The official DemandScience brand standards guide. Colors, typography, components, icons, motion, and governance rules for all teams.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-  <style>
-    /* ── RESET & BASE ──────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --navy:       #061947;
-      --navy-light: #0A2A8F;
-      --blue:       #0266F7;
-      --blue-light: #CDEDFD;
-      --pink:       #D42F5B;
-      --pink-light: #FDF2F4;
-      --red-orange: #F40356;
-      --dark:       #1E293B;
-      --mid:        #64748B;
-      --light:      #F8F9FB;
-      --white:      #FFFFFF;
-      --gradient:   linear-gradient(to right, #061947, #0266F7);
-      --shadow:     0 2px 40px rgba(0,0,0,.10);
-      --radius:     10px;
-      --space-1: 8px; --space-2: 16px; --space-3: 24px;
-      --space-4: 32px; --space-5: 40px; --space-6: 48px;
-      --space-7: 56px; --space-8: 64px; --space-9: 80px;
-      --space-10: 96px;
-    }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--dark);
-      background: var(--white);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    h1,h2,h3,h4,h5 { font-family: 'Poppins', sans-serif; line-height: 1.2; }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DemandScience Brand — Design System</title>
+<meta name="description" content="The official DemandScience brand design system. Colors, typography, components, voice, and governance for every team.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#061947;--navy2:#0A2A8F;--blue:#0266F7;--blue-lt:#CDEDFD;
+  --pink:#D42F5B;--pink-lt:#FDF2F4;--redorg:#F40356;
+  --dark:#1E293B;--mid:#64748B;--lt:#F8F9FB;--white:#FFFFFF;
+  --border:#E5E7EB;
+  --grad:linear-gradient(135deg,#061947 0%,#0266F7 100%);
+  --shadow:0 2px 40px rgba(0,0,0,.10);
+  --r:10px;
+  --nav-h:68px;
+  --sidebar-w:240px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;color:var(--dark);background:var(--white);line-height:1.65;overflow-x:hidden}
+h1,h2,h3,h4,h5,h6{font-family:'Poppins',sans-serif;line-height:1.2;color:var(--navy)}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer}
 
-    /* ── NAV ───────────────────────────────────────────── */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: var(--navy);
-      height: 72px;
-      display: flex; align-items: center;
-      padding: 0 var(--space-8);
-      transition: box-shadow .3s;
-    }
-    .nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,.25); }
-    .nav-inner {
-      max-width: 1200px; margin: 0 auto; width: 100%;
-      display: flex; align-items: center; gap: var(--space-8);
-    }
-    .nav-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-    .nav-logo svg { width: 140px; height: auto; }
-    .nav-links { display: flex; align-items: center; gap: 4px; flex: 1; }
-    .nav-item { position: relative; }
-    .nav-link {
-      display: flex; align-items: center; gap: 4px;
-      padding: 8px 14px; border-radius: 6px;
-      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
-      color: rgba(255,255,255,.85);
-      transition: color .2s, background .2s;
-      cursor: pointer;
-    }
-    .nav-link:hover { color: #fff; background: rgba(255,255,255,.08); }
-    .nav-link .chevron {
-      font-size: 18px; transition: transform .25s;
-      font-family: 'Material Symbols Rounded'; font-style: normal;
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
-    }
-    .nav-item:hover .chevron { transform: rotate(180deg); }
-    .dropdown {
-      position: absolute; top: calc(100% + 8px); left: 0;
-      background: var(--white); border-radius: var(--radius);
-      box-shadow: 0 8px 48px rgba(0,0,0,.18);
-      min-width: 240px; padding: 8px;
-      opacity: 0; visibility: hidden; transform: translateY(-8px);
-      transition: opacity .2s, transform .2s, visibility .2s;
-    }
-    .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
-    .dropdown-item {
-      display: block; padding: 10px 14px; border-radius: 6px;
-      color: var(--dark); font-size: 14px;
-      transition: background .15s;
-    }
-    .dropdown-item:hover { background: var(--light); }
-    .dropdown-item .label { font-weight: 600; font-size: 13px; color: var(--navy); margin-bottom: 2px; }
-    .dropdown-item .desc { font-size: 12px; color: var(--mid); }
-    .nav-cta {
-      margin-left: auto;
-      background: var(--pink); color: var(--white);
-      padding: 10px 24px; border-radius: 100px;
-      font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600;
-      transition: background .2s, transform .2s, box-shadow .2s;
-      white-space: nowrap;
-    }
-    .nav-cta:hover {
-      background: #be2950; transform: translateY(-1px);
-      box-shadow: 0 4px 16px rgba(212,47,91,.4);
-    }
-    .nav-mobile-toggle {
-      display: none; background: none; border: none;
-      color: #fff; cursor: pointer; padding: 8px;
-      font-family: 'Material Symbols Rounded'; font-size: 28px;
-    }
+/* ── TOP NAV ─────────────────────────────────── */
+.topnav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:var(--nav-h);
+  background:var(--navy);
+  display:flex;align-items:center;
+  padding:0 40px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  transition:box-shadow .3s;
+}
+.topnav.scrolled{box-shadow:0 4px 32px rgba(0,0,0,.3)}
+.nav-inner{max-width:1400px;margin:0 auto;width:100%;display:flex;align-items:center;gap:32px}
+/* Logo */
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-mark{
+  width:34px;height:34px;border-radius:8px;
+  background:var(--grad);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Poppins',sans-serif;font-size:14px;font-weight:800;
+  color:#fff;letter-spacing:-1px;
+}
+.logo-text{font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:#fff}
+.logo-text span{font-weight:300;opacity:.7}
+.nav-badge{
+  padding:3px 10px;border-radius:100px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
+  font-size:11px;font-weight:600;color:rgba(255,255,255,.7);
+  letter-spacing:.5px;text-transform:uppercase;
+}
+/* Nav links */
+.nav-links{display:flex;align-items:center;gap:2px;flex:1}
+.nav-item{position:relative}
+.nav-link{
+  display:flex;align-items:center;gap:4px;
+  padding:7px 13px;border-radius:6px;
+  font-size:13.5px;font-weight:500;color:rgba(255,255,255,.75);
+  transition:color .2s,background .2s;cursor:pointer;
+}
+.nav-link:hover,.nav-link.active{color:#fff;background:rgba(255,255,255,.08)}
+.nav-chevron{font-family:'Material Symbols Rounded';font-size:17px;transition:transform .25s}
+.nav-item:hover .nav-chevron{transform:rotate(180deg)}
+/* Dropdown */
+.dropdown{
+  position:absolute;top:calc(100% + 6px);left:-8px;
+  background:#fff;border-radius:var(--r);
+  box-shadow:0 12px 48px rgba(0,0,0,.18);
+  min-width:220px;padding:6px;
+  opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:opacity .2s,transform .2s,visibility .2s;
+  pointer-events:none;
+}
+.nav-item:hover .dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:all}
+.dd-item{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 12px;border-radius:7px;
+  transition:background .15s;
+}
+.dd-item:hover{background:var(--lt)}
+.dd-icon{
+  width:32px;height:32px;border-radius:7px;
+  background:var(--blue-lt);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.dd-icon span{font-family:'Material Symbols Rounded';font-size:16px;color:var(--blue)}
+.dd-text .t{font-size:13px;font-weight:600;color:var(--navy)}
+.dd-text .d{font-size:11.5px;color:var(--mid)}
+/* CTA */
+.nav-cta{
+  margin-left:auto;flex-shrink:0;
+  background:var(--pink);color:#fff;
+  padding:9px 22px;border-radius:100px;
+  font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;
+  transition:background .2s,transform .15s,box-shadow .2s;
+}
+.nav-cta:hover{background:#c0284f;transform:translateY(-1px);box-shadow:0 4px 16px rgba(212,47,91,.4)}
 
-    /* ── HERO ──────────────────────────────────────────── */
-    .hero {
-      background: var(--gradient);
-      padding: calc(72px + 96px) var(--space-8) 96px;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-    .hero-grid {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: var(--space-8); align-items: center;
-      position: relative; z-index: 1;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255,255,255,.12); color: rgba(255,255,255,.9);
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 100px; padding: 6px 14px;
-      font-size: 12px; font-weight: 600; letter-spacing: .5px;
-      text-transform: uppercase; margin-bottom: var(--space-3);
-    }
-    .hero h1 {
-      font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700;
-      color: var(--white); margin-bottom: var(--space-3);
-    }
-    .hero p {
-      font-size: 18px; color: rgba(255,255,255,.8);
-      margin-bottom: var(--space-5); max-width: 520px;
-    }
-    .hero-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; }
-    .btn-primary {
-      background: var(--pink); color: var(--white);
-      padding: 14px 32px; border-radius: 100px;
-      font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600;
-      transition: background .2s, transform .2s, box-shadow .2s;
-      display: inline-flex; align-items: center; gap: 8px;
-    }
-    .btn-primary:hover {
-      background: #be2950; transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(212,47,91,.5);
-    }
-    .btn-outline {
-      background: transparent; color: var(--white);
-      padding: 14px 32px; border-radius: 100px;
-      border: 2px solid rgba(255,255,255,.4);
-      font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600;
-      transition: border-color .2s, background .2s, transform .2s;
-      display: inline-flex; align-items: center; gap: 8px;
-    }
-    .btn-outline:hover {
-      border-color: rgba(255,255,255,.8); background: rgba(255,255,255,.1);
-      transform: translateY(-2px);
-    }
-    .hero-visual {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-    }
-    .color-block {
-      border-radius: var(--radius); padding: var(--space-3);
-      display: flex; flex-direction: column; gap: 4px;
-      min-height: 80px; justify-content: flex-end;
-      transition: transform .2s;
-    }
-    .color-block:hover { transform: scale(1.03); }
-    .color-block .name { font-size: 11px; font-weight: 600; opacity: .9; }
-    .color-block .hex { font-size: 11px; opacity: .7; font-family: monospace; }
+/* ── LAYOUT ──────────────────────────────────── */
+.layout{display:flex;margin-top:var(--nav-h)}
+/* Sidebar */
+.sidebar{
+  width:var(--sidebar-w);flex-shrink:0;
+  position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));
+  overflow-y:auto;
+  background:var(--lt);
+  border-right:1px solid var(--border);
+  padding:24px 0;
+  scrollbar-width:thin;scrollbar-color:var(--border) transparent;
+}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.sb-group{margin-bottom:24px}
+.sb-label{
+  padding:4px 20px;
+  font-size:10px;font-weight:700;letter-spacing:1.2px;
+  text-transform:uppercase;color:var(--mid);
+}
+.sb-link{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 20px;
+  font-size:13px;font-weight:500;color:var(--mid);
+  transition:color .15s,background .15s;
+  border-left:2px solid transparent;
+}
+.sb-link span.icon{font-family:'Material Symbols Rounded';font-size:16px}
+.sb-link:hover{color:var(--navy);background:rgba(6,25,71,.04)}
+.sb-link.active{color:var(--blue);font-weight:600;border-left-color:var(--blue);background:rgba(2,102,247,.04)}
+/* Main */
+.main{flex:1;min-width:0}
 
-    /* ── SECTIONS ──────────────────────────────────────── */
-    .section { padding: var(--space-10) var(--space-8); }
-    .section-alt { background: var(--light); }
-    .container { max-width: 1200px; margin: 0 auto; }
-    .section-label {
-      font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
-      text-transform: uppercase; color: var(--blue);
-      margin-bottom: var(--space-2);
-    }
-    .section-title {
-      font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700;
-      color: var(--navy); margin-bottom: var(--space-2);
-    }
-    .section-body {
-      font-size: 17px; color: var(--mid); max-width: 600px;
-      margin-bottom: var(--space-7);
-    }
+/* ── SECTIONS ────────────────────────────────── */
+.section{padding:80px 64px;border-bottom:1px solid var(--border)}
+.section:last-child{border-bottom:none}
+.section-alt{background:var(--lt)}
+.container{max-width:960px}
+.sec-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 12px;border-radius:100px;
+  background:var(--blue-lt);
+  font-size:11px;font-weight:700;letter-spacing:.8px;
+  text-transform:uppercase;color:var(--blue);
+  margin-bottom:16px;
+}
+.sec-tag span{font-family:'Material Symbols Rounded';font-size:14px}
+.sec-title{font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:700;margin-bottom:12px}
+.sec-body{font-size:16px;color:var(--mid);max-width:600px;margin-bottom:40px}
 
-    /* ── JUMP NAV ──────────────────────────────────────── */
-    .jump-nav {
-      position: sticky; top: 72px; z-index: 900;
-      background: var(--white); border-bottom: 1px solid #E5E7EB;
-      padding: 0 var(--space-8);
-    }
-    .jump-nav-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; gap: 4px; overflow-x: auto;
-      padding: 12px 0; scrollbar-width: none;
-    }
-    .jump-nav-inner::-webkit-scrollbar { display: none; }
-    .jump-link {
-      white-space: nowrap; padding: 6px 16px; border-radius: 100px;
-      font-size: 13px; font-weight: 500; color: var(--mid);
-      transition: background .15s, color .15s;
-    }
-    .jump-link:hover, .jump-link.active {
-      background: var(--navy); color: var(--white);
-    }
+/* ── HERO ──────────────────────────────────── */
+.hero{
+  background:var(--grad);
+  padding:80px 64px 96px;
+  position:relative;overflow:hidden;
+}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='white' fill-opacity='0.04'/%3E%3C/svg%3E");
+}
+.hero-inner{max-width:960px;position:relative;z-index:1}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);
+  border-radius:100px;padding:5px 14px;
+  font-size:12px;font-weight:600;color:rgba(255,255,255,.9);
+  letter-spacing:.5px;margin-bottom:24px;
+}
+.hero-badge span{font-family:'Material Symbols Rounded';font-size:14px;color:var(--blue-lt)}
+.hero h1{
+  font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;
+  color:#fff;line-height:1.1;margin-bottom:20px;
+}
+.hero h1 em{
+  font-style:normal;
+  background:linear-gradient(90deg,var(--blue-lt),#fff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero p{font-size:18px;color:rgba(255,255,255,.8);max-width:560px;margin-bottom:36px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-hero-primary{
+  background:#fff;color:var(--navy);
+  padding:13px 28px;border-radius:100px;
+  font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:transform .2s,box-shadow .2s;
+}
+.btn-hero-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn-hero-outline{
+  background:rgba(255,255,255,.12);color:#fff;
+  padding:13px 28px;border-radius:100px;
+  border:1.5px solid rgba(255,255,255,.3);
+  font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:background .2s,border-color .2s,transform .2s;
+}
+.btn-hero-outline:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.6);transform:translateY(-2px)}
+/* Stats row */
+.hero-stats{
+  display:flex;gap:0;margin-top:56px;
+  border:1px solid rgba(255,255,255,.15);border-radius:var(--r);
+  overflow:hidden;background:rgba(255,255,255,.07);
+  backdrop-filter:blur(8px);
+}
+.hero-stat{
+  flex:1;padding:20px 24px;
+  border-right:1px solid rgba(255,255,255,.1);
+}
+.hero-stat:last-child{border-right:none}
+.hero-stat .num{font-family:'Poppins',sans-serif;font-size:26px;font-weight:800;color:#fff}
+.hero-stat .num sup{font-size:16px;vertical-align:super}
+.hero-stat .lbl{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
 
-    /* ── GRID ──────────────────────────────────────────── */
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); }
-    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-3); }
+/* ── SYSTEM SECTION ──────────────────────────── */
+.system-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sys-card{
+  padding:28px;border-radius:var(--r);
+  border:1px solid var(--border);
+  background:var(--white);
+  transition:border-color .2s,transform .2s,box-shadow .2s;
+  position:relative;overflow:hidden;
+}
+.sys-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--grad);
+}
+.sys-card:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:var(--shadow)}
+.sys-num{
+  width:36px;height:36px;border-radius:8px;
+  background:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Poppins',sans-serif;font-size:14px;font-weight:800;color:#fff;
+  margin-bottom:14px;
+}
+.sys-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.sys-card p{font-size:14px;color:var(--mid);line-height:1.6;margin-bottom:14px}
+.sys-tags{display:flex;flex-wrap:wrap;gap:6px}
+.sys-tag{
+  padding:3px 10px;border-radius:100px;
+  background:var(--blue-lt);
+  font-size:11px;font-weight:600;color:var(--blue);
+}
 
-    /* ── COLOR SWATCHES ────────────────────────────────── */
-    .swatch-card {
-      border-radius: var(--radius); overflow: hidden;
-      box-shadow: var(--shadow); cursor: pointer;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .swatch-card:hover { transform: translateY(-4px); box-shadow: 0 8px 40px rgba(0,0,0,.15); }
-    .swatch-top { height: 120px; }
-    .swatch-bottom {
-      padding: var(--space-2) var(--space-2);
-      background: var(--white); border-top: 1px solid #E5E7EB;
-    }
-    .swatch-name { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
-    .swatch-hex {
-      font-size: 12px; color: var(--mid); font-family: 'Courier New', monospace;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .swatch-hex .copy-icon {
-      font-family: 'Material Symbols Rounded'; font-size: 14px;
-      color: var(--blue); opacity: 0; transition: opacity .2s;
-    }
-    .swatch-card:hover .copy-icon { opacity: 1; }
-    .swatch-desc { font-size: 11px; color: var(--mid); margin-top: 4px; }
-    .swatch-gradient {
-      background: var(--gradient);
-    }
-    .color-rule {
-      display: flex; align-items: flex-start; gap: var(--space-2);
-      padding: var(--space-2); background: var(--light);
-      border-radius: var(--radius); margin-top: var(--space-2);
-    }
-    .color-rule .icon {
-      font-family: 'Material Symbols Rounded'; font-size: 20px; color: var(--blue);
-      flex-shrink: 0;
-    }
-    .color-rule p { font-size: 13px; color: var(--dark); }
+/* ── COLORS ──────────────────────────────────── */
+.color-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
+.swatch{border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s,box-shadow .2s}
+.swatch:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.14)}
+.sw-color{height:100px}
+.sw-meta{padding:12px 14px;background:#fff;border-top:1px solid var(--border)}
+.sw-name{font-size:12px;font-weight:700;color:var(--dark)}
+.sw-hex{font-size:11px;color:var(--mid);font-family:'Courier New',monospace;margin-top:2px;display:flex;align-items:center;gap:4px}
+.sw-hex .ci{font-family:'Material Symbols Rounded';font-size:12px;color:var(--blue);opacity:0;transition:opacity .15s}
+.swatch:hover .ci{opacity:1}
+.sw-desc{font-size:10.5px;color:var(--mid);margin-top:4px}
+/* Color rules */
+.color-rules{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.color-rule{
+  display:flex;gap:12px;padding:16px;
+  background:var(--lt);border-radius:var(--r);
+  border-left:3px solid var(--blue);
+}
+.color-rule .icon{font-family:'Material Symbols Rounded';font-size:20px;color:var(--blue);flex-shrink:0;margin-top:1px}
+.color-rule p{font-size:13px;color:var(--dark)}
+.color-rule strong{color:var(--navy)}
 
-    /* ── TYPOGRAPHY ────────────────────────────────────── */
-    .type-row {
-      padding: var(--space-4) 0; border-bottom: 1px solid #E5E7EB;
-      display: flex; align-items: baseline; gap: var(--space-5);
-    }
-    .type-meta { width: 140px; flex-shrink: 0; }
-    .type-meta .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--blue); }
-    .type-meta .spec { font-size: 12px; color: var(--mid); margin-top: 2px; }
-    .t-h1 { font-family: 'Poppins'; font-size: 48px; font-weight: 700; color: var(--navy); }
-    .t-h2 { font-family: 'Poppins'; font-size: 36px; font-weight: 700; color: var(--navy); }
-    .t-h3 { font-family: 'Poppins'; font-size: 28px; font-weight: 600; color: var(--navy); }
-    .t-h4 { font-family: 'Poppins'; font-size: 22px; font-weight: 600; color: var(--navy); }
-    .t-h5 { font-family: 'Poppins'; font-size: 18px; font-weight: 600; color: var(--navy); }
-    .t-body-lg { font-family: 'Inter'; font-size: 18px; color: var(--dark); }
-    .t-body { font-family: 'Inter'; font-size: 16px; color: var(--dark); }
-    .t-small { font-family: 'Inter'; font-size: 14px; color: var(--mid); }
-    .t-caption { font-family: 'Inter'; font-size: 12px; color: var(--mid); }
-    .font-pair {
-      padding: var(--space-4); background: var(--white); border-radius: var(--radius);
-      box-shadow: var(--shadow); border-left: 4px solid var(--blue);
-    }
-    .font-pair .font-name { font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 4px; }
-    .font-pair .font-use { font-size: 12px; color: var(--mid); margin-bottom: var(--space-2); }
-    .font-pair .font-sample { font-size: 28px; font-weight: 700; color: var(--navy); }
-    .font-pair .font-sample-inter { font-size: 16px; color: var(--dark); }
-    .font-pair .abcs { font-size: 13px; color: var(--mid); margin-top: var(--space-1); }
+/* ── TYPOGRAPHY ──────────────────────────────── */
+.font-specimens{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:36px}
+.font-spec{
+  padding:24px;border-radius:var(--r);border:1px solid var(--border);background:#fff;
+  border-left:4px solid var(--blue);
+}
+.font-spec.inter{border-left-color:var(--navy)}
+.fs-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--blue);margin-bottom:4px}
+.fs-label.navy{color:var(--navy)}
+.fs-use{font-size:12px;color:var(--mid);margin-bottom:16px}
+.fs-display{font-family:'Poppins',sans-serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1.1}
+.fs-display.inter{font-family:'Inter',sans-serif;font-size:18px;font-weight:400;color:var(--dark)}
+.fs-abc{font-size:12px;color:var(--mid);margin-top:10px;line-height:1.8}
+/* Type scale */
+.type-scale{border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:32px}
+.ts-row{
+  display:grid;grid-template-columns:120px 1fr;
+  align-items:center;border-bottom:1px solid var(--border);
+  padding:16px 20px;gap:24px;
+}
+.ts-row:last-child{border-bottom:none}
+.ts-row:nth-child(even){background:var(--lt)}
+.ts-meta .tl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--blue)}
+.ts-meta .ts{font-size:11px;color:var(--mid);margin-top:2px}
 
-    /* ── COMPONENTS ────────────────────────────────────── */
-    .component-label {
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .8px; color: var(--mid); margin-bottom: var(--space-2);
-    }
-    .comp-group { margin-bottom: var(--space-6); }
-    /* Buttons */
-    .btn-row { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; padding: var(--space-4); background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); }
-    .ds-btn-primary {
-      background: var(--pink); color: var(--white);
-      padding: 12px 28px; border-radius: 100px;
-      font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600;
-      border: none; cursor: pointer;
-      transition: background .2s, transform .2s, box-shadow .2s;
-      display: inline-flex; align-items: center; gap: 8px;
-    }
-    .ds-btn-primary:hover {
-      background: #be2950; transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(212,47,91,.45);
-    }
-    .ds-btn-secondary {
-      background: transparent; color: var(--pink);
-      padding: 10px 26px; border-radius: 100px;
-      border: 2px solid var(--pink);
-      font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600;
-      cursor: pointer;
-      transition: background .2s, transform .2s;
-    }
-    .ds-btn-secondary:hover { background: var(--pink-light); transform: translateY(-2px); }
-    .ds-btn-ghost {
-      background: transparent; color: var(--navy);
-      padding: 10px 26px; border-radius: 100px;
-      border: 2px solid var(--navy);
-      font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600;
-      cursor: pointer;
-      transition: background .2s, transform .2s;
-    }
-    .ds-btn-ghost:hover { background: var(--light); transform: translateY(-2px); }
-    .ds-btn-ui {
-      background: var(--light); color: var(--dark);
-      padding: 8px 16px; border-radius: 8px;
-      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
-      border: 1px solid #E5E7EB; cursor: pointer;
-      transition: background .15s;
-    }
-    .ds-btn-ui:hover { background: #E5E7EB; }
-    /* Cards */
-    .ds-card {
-      background: var(--white); border-radius: var(--radius);
-      padding: var(--space-3); box-shadow: var(--shadow);
-      transition: transform .2s, box-shadow .2s;
-    }
-    .ds-card:hover { transform: translateY(-4px); box-shadow: 0 8px 40px rgba(0,0,0,.14); }
-    .ds-card .card-icon {
-      width: 48px; height: 48px; background: var(--blue-light);
-      border-radius: var(--radius); display: flex; align-items: center; justify-content: center;
-      margin-bottom: var(--space-2);
-    }
-    .ds-card .card-icon span {
-      font-family: 'Material Symbols Rounded'; font-size: 24px; color: var(--blue);
-    }
-    .ds-card h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
-    .ds-card p { font-size: 14px; color: var(--mid); }
-    /* Stat */
-    .ds-stat { text-align: left; padding: var(--space-3); background: var(--navy); border-radius: var(--radius); }
-    .ds-stat .num { font-family: 'Poppins'; font-size: 40px; font-weight: 700; color: var(--white); }
-    .ds-stat .num span { color: var(--blue-light); }
-    .ds-stat .stat-label { font-size: 14px; color: rgba(255,255,255,.7); margin-top: 4px; }
-    /* Table */
-    .ds-table { width: 100%; border-collapse: collapse; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
-    .ds-table th { background: var(--navy); color: var(--white); font-family: 'Poppins'; font-size: 13px; font-weight: 600; padding: 14px 16px; text-align: left; }
-    .ds-table td { padding: 12px 16px; font-size: 14px; color: var(--dark); border-bottom: 1px solid #E5E7EB; }
-    .ds-table tr:nth-child(even) td { background: var(--blue-light); }
-    /* Form */
-    .ds-input {
-      width: 100%; padding: 12px 16px; border-radius: 8px;
-      border: 1.5px solid #E5E7EB; font-family: 'Inter'; font-size: 14px;
-      color: var(--dark); outline: none; transition: border-color .2s, box-shadow .2s;
-    }
-    .ds-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(2,102,247,.15); }
-    .ds-label { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 6px; display: block; }
-    .ds-badge {
-      display: inline-flex; align-items: center; gap: 4px;
-      padding: 4px 10px; border-radius: 100px;
-      font-size: 12px; font-weight: 600;
-    }
-    .badge-blue { background: var(--blue-light); color: var(--blue); }
-    .badge-pink { background: var(--pink-light); color: var(--pink); }
-    .badge-navy { background: var(--navy); color: var(--white); }
-    .badge-green { background: #DCFCE7; color: #166534; }
+/* ── COMPONENTS ──────────────────────────────── */
+.comp-section{margin-bottom:40px}
+.comp-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--mid);margin-bottom:14px}
+.comp-canvas{
+  padding:28px;border-radius:var(--r);
+  border:1px solid var(--border);background:#fff;
+}
+.comp-canvas.dark{background:var(--navy)}
+/* Buttons */
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn-p{
+  background:var(--pink);color:#fff;padding:11px 24px;border-radius:100px;
+  font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;border:none;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:background .2s,transform .2s,box-shadow .2s;
+}
+.btn-p:hover{background:#c0284f;transform:translateY(-2px);box-shadow:0 6px 16px rgba(212,47,91,.4)}
+.btn-s{
+  background:transparent;color:var(--pink);padding:9px 22px;border-radius:100px;
+  border:2px solid var(--pink);font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;
+  transition:background .2s,transform .2s;
+}
+.btn-s:hover{background:var(--pink-lt);transform:translateY(-2px)}
+.btn-g{
+  background:transparent;color:var(--navy);padding:9px 22px;border-radius:100px;
+  border:2px solid var(--navy);font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;
+  transition:background .2s,transform .2s;
+}
+.btn-g:hover{background:var(--lt);transform:translateY(-2px)}
+.btn-ui{
+  background:var(--lt);color:var(--dark);padding:7px 14px;border-radius:8px;
+  border:1px solid var(--border);font-size:12.5px;font-weight:500;
+  transition:background .15s;
+}
+.btn-ui:hover{background:var(--border)}
+.btn-dis{opacity:.38;cursor:not-allowed}
+/* Cards */
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ds-card{
+  padding:22px;border-radius:var(--r);background:#fff;
+  box-shadow:var(--shadow);border:1px solid var(--border);
+  transition:transform .2s,box-shadow .2s;
+}
+.ds-card:hover{transform:translateY(-4px);box-shadow:0 8px 40px rgba(0,0,0,.13)}
+.card-ico{
+  width:44px;height:44px;border-radius:8px;
+  background:var(--blue-lt);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;
+}
+.card-ico span{font-family:'Material Symbols Rounded';font-size:22px;color:var(--blue)}
+.ds-card h4{font-size:14px;font-weight:700;margin-bottom:6px}
+.ds-card p{font-size:13px;color:var(--mid)}
+/* Stats */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stat-block{padding:20px;border-radius:var(--r);background:var(--navy);text-align:left}
+.stat-block.blue{background:var(--blue)}
+.stat-num{font-family:'Poppins',sans-serif;font-size:32px;font-weight:800;color:#fff}
+.stat-num sup{font-size:18px;vertical-align:super}
+.stat-lbl{font-size:12px;color:rgba(255,255,255,.65);margin-top:4px}
+/* Badges */
+.badge-row{display:flex;flex-wrap:wrap;gap:8px}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:100px;font-size:11.5px;font-weight:600}
+.b-blue{background:var(--blue-lt);color:var(--blue)}
+.b-navy{background:var(--navy);color:#fff}
+.b-pink{background:var(--pink-lt);color:var(--pink)}
+.b-green{background:#DCFCE7;color:#166534}
+.b-red{background:#FEF2F2;color:#B91C1C}
+.b-amber{background:#FFFBEB;color:#92400E}
+/* Table */
+.ds-table{width:100%;border-collapse:collapse;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.ds-table th{background:var(--navy);color:#fff;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;padding:13px 16px;text-align:left}
+.ds-table td{padding:11px 16px;font-size:13px;color:var(--dark);border-bottom:1px solid var(--border)}
+.ds-table tr:nth-child(even) td{background:var(--blue-lt)}
+/* Input */
+.ds-input-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field label{font-size:12px;font-weight:600;color:var(--dark);display:block;margin-bottom:5px}
+.ds-input{
+  width:100%;padding:10px 14px;border-radius:8px;
+  border:1.5px solid var(--border);font-family:'Inter',sans-serif;font-size:13.5px;
+  color:var(--dark);outline:none;transition:border-color .2s,box-shadow .2s;
+}
+.ds-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(2,102,247,.12)}
 
-    /* ── ICONS ─────────────────────────────────────────── */
-    .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--space-2); }
-    .icon-item {
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      padding: var(--space-2); border-radius: var(--radius);
-      background: var(--white); box-shadow: var(--shadow);
-      cursor: pointer; transition: background .15s, transform .2s;
-    }
-    .icon-item:hover { background: var(--blue-light); transform: translateY(-2px); }
-    .icon-item span.icon {
-      font-family: 'Material Symbols Rounded'; font-size: 28px; color: var(--navy);
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    }
-    .icon-item:hover span.icon { color: var(--blue); }
-    .icon-item .icon-name { font-size: 10px; color: var(--mid); text-align: center; line-height: 1.3; }
-    .icon-sizes { display: flex; align-items: flex-end; gap: var(--space-3); flex-wrap: wrap; }
-    .icon-sizes .sz { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-    .icon-sizes .sz span.icon {
-      font-family: 'Material Symbols Rounded'; color: var(--navy);
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    }
-    .icon-sizes .sz label { font-size: 11px; color: var(--mid); }
+/* ── ICONS ───────────────────────────────────── */
+.icon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.icon-cell{
+  padding:14px 8px;border-radius:var(--r);
+  background:#fff;border:1px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  cursor:pointer;transition:background .15s,border-color .15s,transform .2s;
+}
+.icon-cell:hover{background:var(--blue-lt);border-color:var(--blue);transform:translateY(-2px)}
+.icon-cell span.i{font-family:'Material Symbols Rounded';font-size:26px;color:var(--navy)}
+.icon-cell:hover span.i{color:var(--blue)}
+.icon-cell .in{font-size:9.5px;color:var(--mid);text-align:center;line-height:1.3}
+/* Sizes */
+.icon-sizes{display:flex;align-items:flex-end;gap:28px;padding:24px;background:var(--lt);border-radius:var(--r)}
+.sz-item{display:flex;flex-direction:column;align-items:center;gap:8px}
+.sz-item span.i{font-family:'Material Symbols Rounded';color:var(--navy)}
+.sz-item .sz-l{font-size:11px;color:var(--mid)}
 
-    /* ── MOTION ────────────────────────────────────────── */
-    .motion-demo {
-      padding: var(--space-4); background: var(--white); border-radius: var(--radius);
-      box-shadow: var(--shadow); display: flex; flex-direction: column; gap: var(--space-3);
-    }
-    .motion-item { display: flex; align-items: center; gap: var(--space-3); }
-    .motion-swatch {
-      width: 56px; height: 56px; border-radius: 10px;
-      background: var(--gradient); flex-shrink: 0;
-    }
-    @keyframes ds-fade-up {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes ds-scale-in {
-      from { opacity: 0; transform: scale(.9); }
-      to   { opacity: 1; transform: scale(1); }
-    }
-    @keyframes ds-slide-in {
-      from { opacity: 0; transform: translateX(-20px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes ds-pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(2,102,247,.4); }
-      50%       { box-shadow: 0 0 0 12px rgba(2,102,247,0); }
-    }
-    .anim-fade-up { animation: ds-fade-up .5s ease both; }
-    .anim-scale-in { animation: ds-scale-in .4s ease both; }
-    .anim-slide-in { animation: ds-slide-in .45s ease both; }
-    .anim-pulse { animation: ds-pulse 2s ease infinite; }
-    .motion-trigger { animation-play-state: paused; }
-    .motion-trigger.playing { animation-play-state: running; }
-    .motion-label { flex: 1; }
-    .motion-label .name { font-weight: 600; font-size: 14px; color: var(--dark); }
-    .motion-label .spec { font-size: 12px; color: var(--mid); font-family: monospace; }
-    .play-btn {
-      background: var(--light); border: 1px solid #E5E7EB;
-      border-radius: 8px; padding: 8px 16px;
-      font-size: 13px; font-weight: 600; color: var(--blue);
-      cursor: pointer; transition: background .15s;
-      display: inline-flex; align-items: center; gap: 6px;
-    }
-    .play-btn span { font-family: 'Material Symbols Rounded'; font-size: 18px; }
-    .play-btn:hover { background: var(--blue-light); }
+/* ── MOTION ──────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.motion-demo{display:flex;flex-direction:column;gap:14px}
+.motion-row{
+  display:flex;align-items:center;gap:16px;
+  padding:16px;border-radius:var(--r);background:var(--lt);
+}
+.motion-swatch{width:48px;height:48px;border-radius:8px;background:var(--grad);flex-shrink:0}
+.motion-info{flex:1}
+.motion-info .mn{font-weight:600;font-size:14px}
+.motion-info .ms{font-size:12px;color:var(--mid);font-family:monospace}
+.play-btn{
+  background:#fff;border:1px solid var(--border);
+  border-radius:7px;padding:7px 14px;
+  font-size:12px;font-weight:600;color:var(--blue);
+  display:inline-flex;align-items:center;gap:5px;
+  transition:background .15s;
+}
+.play-btn span{font-family:'Material Symbols Rounded';font-size:16px}
+.play-btn:hover{background:var(--blue-lt)}
 
-    /* ── GRID SYSTEM ───────────────────────────────────── */
-    .grid-demo { padding: var(--space-4); background: var(--navy); border-radius: var(--radius); }
-    .grid-demo-cols { display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; }
-    .grid-col { height: 32px; background: rgba(255,255,255,.12); border-radius: 4px; border: 1px solid rgba(255,255,255,.2); }
-    .grid-col.span-3 { grid-column: span 3; background: rgba(2,102,247,.4); }
-    .grid-col.span-4 { grid-column: span 4; background: rgba(2,102,247,.4); }
-    .grid-col.span-6 { grid-column: span 6; background: rgba(2,102,247,.4); }
-    .grid-col.span-12 { grid-column: span 12; background: rgba(2,102,247,.4); }
-    .grid-col.accent { background: rgba(212,47,91,.4); }
-    .spacing-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E5E7EB; }
-    .spacing-swatch { background: var(--blue-light); border-radius: 4px; height: 24px; }
-    .spacing-meta { font-size: 13px; }
-    .spacing-meta .var { font-family: monospace; color: var(--blue); font-size: 12px; }
-    .spacing-meta .val { color: var(--mid); font-size: 12px; }
+/* ── GRID DEMO ───────────────────────────────── */
+.grid-visual{background:var(--navy);border-radius:var(--r);padding:24px;margin-bottom:24px}
+.grid-cols{display:grid;gap:6px}
+.cols-12{grid-template-columns:repeat(12,1fr)}
+.gc{height:28px;border-radius:3px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
+.gc.hi{background:rgba(2,102,247,.5);border-color:rgba(2,102,247,.7)}
+.gc.ac{background:rgba(212,47,91,.4);border-color:rgba(212,47,91,.6)}
+.gc.s3{grid-column:span 3}
+.gc.s4{grid-column:span 4}
+.gc.s6{grid-column:span 6}
+.gc.s8{grid-column:span 8}
+.gc.s12{grid-column:span 12}
+.gv-label{font-size:11px;color:rgba(255,255,255,.4);margin-top:8px;letter-spacing:.5px}
+/* Spacing tokens */
+.space-tokens{display:flex;flex-direction:column;gap:8px}
+.sp-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border)}
+.sp-row:last-child{border-bottom:none}
+.sp-bar{background:var(--blue-lt);border-radius:3px;height:20px}
+.sp-info .sv{font-family:monospace;font-size:12px;color:var(--blue)}
+.sp-info .sd{font-size:11.5px;color:var(--mid)}
 
-    /* ── VOICE & TONE ──────────────────────────────────── */
-    .quote-block {
-      padding: var(--space-5) var(--space-6);
-      background: var(--gradient); border-radius: var(--radius);
-      position: relative; overflow: hidden;
-    }
-    .quote-block::before {
-      content: '"'; position: absolute; top: -20px; left: 20px;
-      font-family: 'Poppins'; font-size: 160px; color: rgba(255,255,255,.08);
-      line-height: 1;
-    }
-    .quote-block p {
-      font-family: 'Poppins'; font-size: clamp(1.1rem, 2vw, 1.5rem);
-      font-weight: 600; color: var(--white); position: relative; z-index: 1;
-    }
-    .we-table { width: 100%; border-collapse: collapse; }
-    .we-table th { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; padding: 10px 16px; }
-    .we-table th:first-child { background: var(--navy); color: var(--white); border-radius: var(--radius) 0 0 0; }
-    .we-table th:last-child { background: var(--light); color: var(--mid); border-radius: 0 var(--radius) 0 0; }
-    .we-table td { padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #E5E7EB; }
-    .we-table td:first-child { color: var(--dark); font-weight: 500; }
-    .we-table td:last-child { color: var(--mid); text-decoration: line-through; }
+/* ── VOICE ───────────────────────────────────── */
+.mission-block{
+  background:var(--grad);border-radius:var(--r);
+  padding:40px 48px;margin-bottom:32px;
+  position:relative;overflow:hidden;
+}
+.mission-block::before{
+  content:'\201C';
+  position:absolute;top:-24px;left:32px;
+  font-family:'Poppins',sans-serif;font-size:160px;
+  color:rgba(255,255,255,.07);line-height:1;
+}
+.mission-block p{
+  font-family:'Poppins',sans-serif;
+  font-size:clamp(1.1rem,2.5vw,1.6rem);
+  font-weight:700;color:#fff;
+  position:relative;z-index:1;
+}
+.voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.voice-card{padding:22px;border-radius:var(--r);background:#fff;border:1px solid var(--border)}
+.voice-card h4{font-size:14px;font-weight:700;margin-bottom:12px;color:var(--navy)}
+.voice-card li{font-size:13px;color:var(--dark);padding:6px 0;border-bottom:1px solid var(--border)}
+.voice-card li:last-child{border-bottom:none}
+/* We are / not */
+.we-grid{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.we-col h4{padding:14px 20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px}
+.we-col.yes h4{background:var(--navy);color:#fff}
+.we-col.no h4{background:var(--lt);color:var(--mid)}
+.we-col li{padding:11px 20px;font-size:13px;border-bottom:1px solid var(--border)}
+.we-col.yes li{color:var(--dark);font-weight:500}
+.we-col.no li{color:var(--mid);text-decoration:line-through}
 
-    /* ── GOVERNANCE ────────────────────────────────────── */
-    .stop-box {
-      background: #0F1724; border-radius: var(--radius);
-      padding: var(--space-5); font-family: 'Courier New', monospace;
-      font-size: 13px; color: #E8F2FF; line-height: 1.8;
-      box-shadow: 0 4px 40px rgba(0,0,0,.4);
-    }
-    .stop-box .stop-title { color: #F87171; font-weight: 700; }
-    .stop-box .stop-label { color: #93C5FD; }
-    .stop-box .stop-value { color: #FDE68A; }
-    .stop-box .stop-action { color: #86EFAC; }
-    .stop-box .stop-border { color: #3B4968; }
-    .tier-card {
-      padding: var(--space-4); border-radius: var(--radius);
-      border-left: 5px solid;
-    }
-    .tier-stop { background: #FEF2F2; border-color: #EF4444; }
-    .tier-warn { background: #FFFBEB; border-color: #F59E0B; }
-    .tier-ok   { background: #F0FDF4; border-color: #22C55E; }
-    .tier-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-    .tier-stop h4 { color: #B91C1C; }
-    .tier-warn h4 { color: #92400E; }
-    .tier-ok   h4 { color: #166534; }
-    .tier-card ul { list-style: disc; padding-left: 18px; }
-    .tier-card li { font-size: 13px; color: var(--dark); margin-bottom: 4px; }
+/* ── DO/DON'T ────────────────────────────────── */
+.dodont-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.do-card{padding:24px;border-radius:var(--r);background:#F0FDF4;border:2px solid #22C55E}
+.dont-card{padding:24px;border-radius:var(--r);background:#FEF2F2;border:2px solid #EF4444}
+.do-card h4{color:#166534;font-size:14px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.dont-card h4{color:#B91C1C;font-size:14px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.do-card h4 span,.dont-card h4 span{font-family:'Material Symbols Rounded';font-size:18px}
+.do-card li,.dont-card li{font-size:13px;color:var(--dark);padding:6px 0 6px 18px;border-bottom:1px solid rgba(0,0,0,.06);position:relative}
+.do-card li:last-child,.dont-card li:last-child{border-bottom:none}
+.do-card li::before{content:'✓';position:absolute;left:0;color:#22C55E;font-weight:700}
+.dont-card li::before{content:'✗';position:absolute;left:0;color:#EF4444;font-weight:700}
 
-    /* ── DO & DON'T ────────────────────────────────────── */
-    .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
-    .do-card { background: #F0FDF4; border: 2px solid #22C55E; border-radius: var(--radius); padding: var(--space-3); }
-    .dont-card { background: #FEF2F2; border: 2px solid #EF4444; border-radius: var(--radius); padding: var(--space-3); }
-    .do-card h4 { color: #166534; font-size: 14px; font-weight: 700; margin-bottom: var(--space-2); display: flex; align-items: center; gap: 6px; }
-    .dont-card h4 { color: #B91C1C; font-size: 14px; font-weight: 700; margin-bottom: var(--space-2); display: flex; align-items: center; gap: 6px; }
-    .do-card h4 span, .dont-card h4 span { font-family: 'Material Symbols Rounded'; font-size: 18px; }
-    .do-card li, .dont-card li { font-size: 13px; color: var(--dark); margin-bottom: 6px; padding-left: 14px; position: relative; }
-    .do-card li::before { content: '✓'; position: absolute; left: 0; color: #22C55E; font-weight: 700; }
-    .dont-card li::before { content: '✗'; position: absolute; left: 0; color: #EF4444; font-weight: 700; }
+/* ── GOVERNANCE ──────────────────────────────── */
+.gov-tiers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:32px}
+.tier{padding:22px;border-radius:var(--r);border-left:5px solid}
+.tier-stop{background:#FEF2F2;border-color:#EF4444}
+.tier-warn{background:#FFFBEB;border-color:#F59E0B}
+.tier-ok{background:#F0FDF4;border-color:#22C55E}
+.tier h4{font-size:14px;font-weight:700;margin-bottom:10px}
+.tier-stop h4{color:#B91C1C}.tier-warn h4{color:#92400E}.tier-ok h4{color:#166534}
+.tier li{font-size:12.5px;color:var(--dark);padding:4px 0;padding-left:12px;position:relative}
+.tier li::before{content:'·';position:absolute;left:0;font-weight:700}
+.stop-terminal{
+  background:#0A0F1E;border-radius:var(--r);padding:28px 32px;
+  font-family:'Courier New',monospace;font-size:13px;line-height:2;
+  color:#C8D8F0;margin-bottom:32px;
+  box-shadow:0 4px 40px rgba(0,0,0,.4);
+}
+.st-title{color:#F87171;font-weight:700}
+.st-key{color:#93C5FD}
+.st-val{color:#FDE68A}
+.st-act{color:#86EFAC}
+.st-bdr{color:#2A3A5C}
+.contact-strip{
+  display:flex;gap:16px;flex-wrap:wrap;
+  padding:24px;background:var(--lt);border-radius:var(--r);
+}
+.contact-pill{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 20px;border-radius:var(--r);
+  background:#fff;box-shadow:var(--shadow);flex:1;min-width:200px;
+}
+.contact-pill span.icon{font-family:'Material Symbols Rounded';font-size:24px;color:var(--navy)}
+.contact-pill .ct{font-size:12px;font-weight:700;color:var(--dark);margin-bottom:2px}
+.contact-pill .cv{font-size:13px;color:var(--blue)}
 
-    /* ── DIVIDER ───────────────────────────────────────── */
-    .divider-band {
-      background: var(--gradient); padding: var(--space-9) var(--space-8);
-      text-align: left;
-    }
-    .divider-band .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); }
-    .divider-band h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; color: var(--white); }
-    .divider-band p { color: rgba(255,255,255,.75); max-width: 500px; margin-top: 6px; }
+/* ── DIVIDER BAND ────────────────────────────── */
+.band{
+  background:var(--grad);padding:64px;
+}
+.band-inner{max-width:960px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.band h2{font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:#fff}
+.band p{color:rgba(255,255,255,.75);max-width:460px;margin-top:8px;font-size:15px}
+.band-btns{display:flex;gap:10px;flex-wrap:wrap}
 
-    /* ── FOOTER ────────────────────────────────────────── */
-    .site-footer {
-      background: var(--navy); color: rgba(255,255,255,.6);
-      padding: var(--space-6) var(--space-8);
-      font-size: 13px;
-    }
-    .footer-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: var(--space-3);
-    }
-    .footer-brand { font-family: 'Poppins'; font-size: 14px; font-weight: 600; color: rgba(255,255,255,.9); }
-    .footer-links { display: flex; gap: var(--space-4); }
-    .footer-links a { color: rgba(255,255,255,.5); transition: color .15s; }
-    .footer-links a:hover { color: rgba(255,255,255,.9); }
+/* ── SCROLL REVEAL ───────────────────────────── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:none}
 
-    /* ── TOAST ─────────────────────────────────────────── */
-    #toast {
-      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
-      background: var(--navy); color: var(--white);
-      padding: 12px 20px; border-radius: var(--radius);
-      font-size: 14px; font-weight: 500;
-      transform: translateY(60px); opacity: 0;
-      transition: transform .3s, opacity .3s;
-      display: flex; align-items: center; gap: 8px;
-      pointer-events: none;
-    }
-    #toast.show { transform: translateY(0); opacity: 1; }
-    #toast span { font-family: 'Material Symbols Rounded'; font-size: 18px; color: #86EFAC; }
+/* ── TOAST ───────────────────────────────────── */
+#toast{
+  position:fixed;bottom:24px;right:24px;z-index:9999;
+  background:var(--navy);color:#fff;
+  padding:11px 18px;border-radius:var(--r);
+  font-size:13.5px;font-weight:500;
+  display:flex;align-items:center;gap:8px;
+  transform:translateY(60px);opacity:0;
+  transition:transform .3s,opacity .3s;
+  pointer-events:none;
+}
+#toast.show{transform:none;opacity:1}
+#toast span{font-family:'Material Symbols Rounded';font-size:18px;color:#86EFAC}
 
-    /* ── SCROLL ANIMATIONS ─────────────────────────────── */
-    .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity .6s ease, transform .6s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+/* ── FOOTER ──────────────────────────────────── */
+.footer{
+  background:var(--navy);padding:40px 64px;
+  margin-left:var(--sidebar-w);
+}
+.footer-inner{max-width:960px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-brand{font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;color:#fff}
+.footer-meta{font-size:12px;color:rgba(255,255,255,.4);margin-top:3px}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.5);transition:color .15s}
+.footer-links a:hover{color:#fff}
 
-    /* ── RESPONSIVE ────────────────────────────────────── */
-    @media (max-width: 900px) {
-      .nav-links, .nav-cta { display: none; }
-      .nav-mobile-toggle { display: block; margin-left: auto; }
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-visual { display: none; }
-      .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
-      .do-dont { grid-template-columns: 1fr; }
-      .section { padding: 60px var(--space-4); }
-      .nav { padding: 0 var(--space-4); }
-      .jump-nav { padding: 0 var(--space-4); }
-    }
-  </style>
+@media(max-width:900px){
+  :root{--sidebar-w:0px}
+  .sidebar{display:none}
+  .section{padding:56px 28px}
+  .hero{padding:56px 28px 72px}
+  .color-grid,.system-grid,.card-grid,.stats-row,.comp-canvas .btn-row,
+  .font-specimens,.voice-grid,.dodont-grid,.gov-tiers,.we-grid{grid-template-columns:1fr}
+  .footer{margin-left:0;padding:32px 28px}
+  .band{padding:40px 28px}
+  .hero-stats{flex-direction:column}
+  .hero-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
+}
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav" id="main-nav">
-    <div class="nav-inner">
-      <!-- White SVG logo -->
-      <div class="nav-logo">
-        <svg viewBox="0 0 200 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="DemandScience">
-          <rect width="36" height="36" rx="6" fill="white" fill-opacity="0.15"/>
-          <text x="6" y="25" font-family="Poppins,sans-serif" font-size="18" font-weight="700" fill="white">DS</text>
-          <text x="46" y="24" font-family="Poppins,sans-serif" font-size="15" font-weight="700" fill="white">Demand</text><text x="118" y="24" font-family="Poppins,sans-serif" font-size="15" font-weight="400" fill="rgba(255,255,255,0.8)">Science</text>
-        </svg>
-      </div>
-
-      <nav class="nav-links" aria-label="Primary">
-        <div class="nav-item">
-          <div class="nav-link">Solutions <span class="chevron">expand_more</span></div>
-          <div class="dropdown">
-            <a href="#colors" class="dropdown-item">
-              <div class="label">Color System</div>
-              <div class="desc">Official brand palette & usage rules</div>
-            </a>
-            <a href="#typography" class="dropdown-item">
-              <div class="label">Typography</div>
-              <div class="desc">Poppins &amp; Inter scale</div>
-            </a>
-            <a href="#components" class="dropdown-item">
-              <div class="label">Components</div>
-              <div class="desc">Buttons, cards, tables &amp; more</div>
-            </a>
-          </div>
-        </div>
-        <div class="nav-item">
-          <div class="nav-link">What We Enable <span class="chevron">expand_more</span></div>
-          <div class="dropdown">
-            <a href="#icons" class="dropdown-item">
-              <div class="label">Icon Library</div>
-              <div class="desc">Material Symbols Rounded</div>
-            </a>
-            <a href="#motion" class="dropdown-item">
-              <div class="label">Motion &amp; Animation</div>
-              <div class="desc">Timing, easing, micro-interactions</div>
-            </a>
-            <a href="#grid" class="dropdown-item">
-              <div class="label">Grid System</div>
-              <div class="desc">8px base unit, spacing tokens</div>
-            </a>
-          </div>
-        </div>
-        <div class="nav-item">
-          <div class="nav-link">Why DemandScience <span class="chevron">expand_more</span></div>
-          <div class="dropdown">
-            <a href="#voice" class="dropdown-item">
-              <div class="label">Voice &amp; Tone</div>
-              <div class="desc">Mission, messaging &amp; copy rules</div>
-            </a>
-            <a href="#governance" class="dropdown-item">
-              <div class="label">Brand Governance</div>
-              <div class="desc">STOP rules &amp; enforcement</div>
-            </a>
-          </div>
-        </div>
-        <div class="nav-item"><a href="#governance" class="nav-link">Governance</a></div>
-      </nav>
-
-      <a href="mailto:Marketing@demandscience.com" class="nav-cta">Get Approval</a>
-      <button class="nav-mobile-toggle" aria-label="Menu">menu</button>
+<!-- TOP NAV -->
+<nav class="topnav" id="topnav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="logo-mark">DS</div>
+      <span class="logo-text">Demand<span>Science</span></span>
     </div>
-  </nav>
+    <span class="nav-badge">Brand System v2.3</span>
 
-  <!-- JUMP NAV -->
-  <div class="jump-nav">
-    <div class="jump-nav-inner">
-      <a href="#colors"      class="jump-link">Colors</a>
-      <a href="#typography"  class="jump-link">Typography</a>
-      <a href="#components"  class="jump-link">Components</a>
-      <a href="#icons"       class="jump-link">Icons</a>
-      <a href="#motion"      class="jump-link">Motion</a>
-      <a href="#grid"        class="jump-link">Grid</a>
-      <a href="#voice"       class="jump-link">Voice &amp; Tone</a>
-      <a href="#dodont"      class="jump-link">Do &amp; Don't</a>
-      <a href="#governance"  class="jump-link">Governance</a>
+    <nav class="nav-links">
+      <div class="nav-item">
+        <div class="nav-link">Brand <span class="nav-chevron">expand_more</span></div>
+        <div class="dropdown">
+          <a href="#colors" class="dd-item"><div class="dd-icon"><span>palette</span></div><div class="dd-text"><div class="t">Colors</div><div class="d">Official palette & usage</div></div></a>
+          <a href="#typography" class="dd-item"><div class="dd-icon"><span>text_fields</span></div><div class="dd-text"><div class="t">Typography</div><div class="d">Poppins & Inter system</div></div></a>
+          <a href="#voice" class="dd-item"><div class="dd-icon"><span>record_voice_over</span></div><div class="dd-text"><div class="t">Voice & Tone</div><div class="d">Mission & copy rules</div></div></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <div class="nav-link">Design <span class="nav-chevron">expand_more</span></div>
+        <div class="dropdown">
+          <a href="#components" class="dd-item"><div class="dd-icon"><span>widgets</span></div><div class="dd-text"><div class="t">Components</div><div class="d">Buttons, cards, tables</div></div></a>
+          <a href="#icons" class="dd-item"><div class="dd-icon"><span>interests</span></div><div class="dd-text"><div class="t">Icons</div><div class="d">Material Symbols Rounded</div></div></a>
+          <a href="#motion" class="dd-item"><div class="dd-icon"><span>animation</span></div><div class="dd-text"><div class="t">Motion</div><div class="d">Timing & animation</div></div></a>
+          <a href="#grid" class="dd-item"><div class="dd-icon"><span>grid_on</span></div><div class="dd-text"><div class="t">Grid System</div><div class="d">8px base unit</div></div></a>
+        </div>
+      </div>
+      <a href="#system" class="nav-link">The System</a>
+      <a href="#governance" class="nav-link">Governance</a>
+    </nav>
+    <a href="mailto:Marketing@demandscience.com" class="nav-cta">Design Review</a>
+  </div>
+</nav>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-group">
+    <div class="sb-label">Overview</div>
+    <a href="#system" class="sb-link"><span class="icon">hub</span>The DS System</a>
+  </div>
+  <div class="sb-group">
+    <div class="sb-label">Visual Identity</div>
+    <a href="#colors" class="sb-link"><span class="icon">palette</span>Colors</a>
+    <a href="#typography" class="sb-link"><span class="icon">text_fields</span>Typography</a>
+    <a href="#components" class="sb-link"><span class="icon">widgets</span>Components</a>
+    <a href="#icons" class="sb-link"><span class="icon">interests</span>Icons</a>
+    <a href="#motion" class="sb-link"><span class="icon">animation</span>Motion</a>
+    <a href="#grid" class="sb-link"><span class="icon">grid_on</span>Grid System</a>
+  </div>
+  <div class="sb-group">
+    <div class="sb-label">Brand Voice</div>
+    <a href="#voice" class="sb-link"><span class="icon">record_voice_over</span>Voice & Tone</a>
+    <a href="#dodont" class="sb-link"><span class="icon">rule</span>Do & Don't</a>
+  </div>
+  <div class="sb-group">
+    <div class="sb-label">Governance</div>
+    <a href="#governance" class="sb-link"><span class="icon">gavel</span>Enforcement</a>
+    <a href="#contact" class="sb-link"><span class="icon">mail</span>Design Contact</a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-badge"><span>verified</span> Living Brand System · Updated 2026-03-25</div>
+    <h1>The <em>DemandScience</em><br>Brand System</h1>
+    <p>One source of truth for every visual and written decision. Colors, type, components, voice, governance — built for every team, enforced everywhere.</p>
+    <div class="hero-btns">
+      <a href="#colors" class="btn-hero-primary">
+        <span style="font-family:'Material Symbols Rounded';font-size:18px">explore</span>
+        Explore Brand
+      </a>
+      <a href="mailto:Marketing@demandscience.com" class="btn-hero-outline">
+        <span style="font-family:'Material Symbols Rounded';font-size:18px">mail</span>
+        Design Review
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">207K<sup>+</sup></div><div class="lbl">Intent topics tracked</div></div>
+      <div class="hero-stat"><div class="num">247M<sup>+</sup></div><div class="lbl">Global business contacts</div></div>
+      <div class="hero-stat"><div class="num">51B<sup>+</sup></div><div class="lbl">Online behavior signals</div></div>
+      <div class="hero-stat"><div class="num">&lt;3<sup>%</sup></div><div class="lbl">Ad fraud rate (vs 20% avg)</div></div>
     </div>
   </div>
+</section>
 
-  <!-- HERO -->
-  <section class="hero" id="top">
-    <div class="hero-grid container">
-      <div>
-        <div class="hero-badge">
-          <span style="font-family:'Material Symbols Rounded';font-size:14px;color:var(--blue-light)">verified</span>
-          Living Brand System · v2.3
-        </div>
-        <h1>DemandScience<br>Brand Standards</h1>
-        <p>The single source of truth for every visual and written decision across DemandScience. Colors, type, components, icons, motion, and governance — all in one place.</p>
-        <div class="hero-actions">
-          <a href="#colors" class="btn-primary">
-            <span style="font-family:'Material Symbols Rounded';font-size:18px">palette</span>
-            Explore the System
-          </a>
-          <a href="mailto:Marketing@demandscience.com" class="btn-outline">
-            <span style="font-family:'Material Symbols Rounded';font-size:18px">mail</span>
-            Design Review
-          </a>
+<!-- THE DS SYSTEM -->
+<section class="section" id="system">
+  <div class="container">
+    <div class="sec-tag"><span>hub</span>Product System</div>
+    <h2 class="sec-title">From Mirage to Measurable</h2>
+    <p class="sec-body">DemandScience is the only one-partner integrated system built to eliminate the Data Mirage — giving marketers verified buyer signals, invisible multi-channel execution, and continuous AI + human optimization.</p>
+
+    <div class="system-grid reveal">
+      <div class="sys-card">
+        <div class="sys-num">01</div>
+        <h3>Gather</h3>
+        <p>Verified, trusted buyer signals with full transparency. The DS Identity Graph unifies companies, contacts, intent signals, and key insights — driving higher ROI by filtering out noise.</p>
+        <div class="sys-tags">
+          <span class="sys-tag">760M+ Technographics</span>
+          <span class="sys-tag">207K+ Intent Topics</span>
+          <span class="sys-tag">51B+ Behaviors</span>
+          <span class="sys-tag">Identity Graph</span>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="color-block" style="background:#061947; color:rgba(255,255,255,0.9);grid-column:span 2">
-          <span class="name">Navy Blue</span><span class="hex">#061947</span>
-        </div>
-        <div class="color-block" style="background:#0266F7; color:rgba(255,255,255,0.9)">
-          <span class="name">Electric Blue</span><span class="hex">#0266F7</span>
-        </div>
-        <div class="color-block" style="background:#D42F5B; color:rgba(255,255,255,0.9)">
-          <span class="name">CTA Red</span><span class="hex">#D42F5B</span>
-        </div>
-        <div class="color-block" style="background:#CDEDFD; color:#061947">
-          <span class="name">Baby Blue</span><span class="hex">#CDEDFD</span>
-        </div>
-        <div class="color-block" style="background:#F8F9FB; color:#64748B">
-          <span class="name">Light Grey</span><span class="hex">#F8F9FB</span>
+      <div class="sys-card">
+        <div class="sys-num">02</div>
+        <h3>Resonate</h3>
+        <p>AI-driven content intelligence that ensures the right persona, the right context, the right message, and the right channel. Content resonance powered by Labs and Content Intelligence.</p>
+        <div class="sys-tags">
+          <span class="sys-tag">AI Persona Matching</span>
+          <span class="sys-tag">Content Intelligence</span>
+          <span class="sys-tag">Email · Display · Social</span>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- COLORS -->
-  <section class="section" id="colors">
-    <div class="container">
-      <div class="section-label">01 — Color System</div>
-      <h2 class="section-title">The Official Palette</h2>
-      <p class="section-body">Every color below is sourced directly from <em>25-DS-BrandGuide-General.pdf</em>. Do not approximate. Click any swatch to copy the hex value.</p>
-
-      <div class="grid-4 reveal">
-        <div class="swatch-card" onclick="copyHex('#061947','Navy Blue')">
-          <div class="swatch-top" style="background:#061947"></div>
-          <div class="swatch-bottom">
-            <div class="swatch-name">Navy Blue</div>
-            <div class="swatch-hex">#061947 <span class="copy-icon">content_copy</span></div>
-            <div class="swatch-desc">Primary brand color. Headlines, footers, backgrounds.</div>
-          </div>
-        </div>
-        <div class="swatch-card" onclick="copyHex('#0A2A8F','Navy Light')">
-          <div class="swatch-top" style="background:#0A2A8F"></div>
-          <div class="swatch-bottom">
-            <div class="swatch-name">Navy Light</div>
-            <div class="swatch-hex">#0A2A8F <span class="copy-icon">content_copy</span></div>
-            <div class="swatch-desc">Hover states, accent backgrounds on navy.</div>
-          </div>
-        </div>
-        <div class="swatch-card" onclick="copyHex('#0266F7','Electric Blue')">
-          <div class="swatch-top" style="background:#0266F7"></div>
-          <div class="swatch-bottom">
-            <div class="swatch-name">Electric Blue</div>
-            <div class="swatch-hex">#0266F7 <span class="copy-icon">content_copy</span></div>
-            <div class="swatch-desc">Links, icons, active states, data color 2.</div>
-          </div>
-        </div>
-        <div class="swatch-card" onclick="copyHex('#CDEDFD','Baby Blue')">
-          <div class="swatch-top" style="background:#CDEDFD"></div>
-          <div class="swatch-bottom">
-            <div class="swatch-name">Baby Blue</div>
-            <div class="swatch-hex">#CDEDFD <span class="copy-icon">content_copy</span></div>
-            <div class="swatch-desc">Card backgrounds, table alternating rows, badges.</div>
-          </div>
-        </div>
-        <div class="swatch-card" onclick="copyHex('#D42F5B','CTA Red')">
-          <div class="swatch-top" style="background:#D42F5B"></div>
-          <div class="swatch-bottom">
-            <div class="swatch-name">CTA Red</div>
-            <div class="swatch-hex">#D42F5B <span class="copy-icon">content_copy</span></div>
-            <div class="swatch-desc">Buttons &amp; CTAs <em>only</em>. Never decorative.</div>
-          </div>
-        </div>
-        <div class="swatch-card" onclick="copyHex('#FDF2F4','Pink Light')">
-          <div class="swatch-top" style="background:#FDF2F4"></div>
-          <div class="swatch-bottom">
-            <div class="swatch-name">Pink Light</div>
-            <div class="swatch-hex">#FDF2F4 <span class="copy-icon">content_copy</span></div>
-            <div class="swatch-desc">Hover state for secondary buttons. Subtle tint.</div>
-          </div>
-        </div>
-        <div class="swatch-card" onclick="copyHex('#F40356','Red Orange')">
-          <div class="swatch-top" style="background:#F40356"></div>
-          <div class="swatch-bottom">
-            <div class="swatch-name">Red Orange</div>
-            <div class="swatch-hex">#F40356 <span class="copy-icon">content_copy</span></div>
-            <div class="swatch-desc">High-energy accent. Use sparingly.</div>
-          </div>
-        </div>
-        <div class="swatch-card" onclick="copyHex('linear-gradient(to right, #061947, #0266F7)','Gradient')">
-          <div class="swatch-top swatch-gradient"></div>
-          <div class="swatch-bottom">
-            <div class="swatch-name">Brand Gradient</div>
-            <div class="swatch-hex">Navy → Blue <span class="copy-icon">content_copy</span></div>
-            <div class="swatch-desc">Hero, dividers, closing sections only.</div>
-          </div>
-        </div>
-        <div class="swatch-card" onclick="copyHex('#1E293B','Dark Grey')">
-          <div class="swatch-top" style="background:#1E293B"></div>
-          <div class="swatch-bottom">
-            <div class="swatch-name">Dark Grey</div>
-            <div class="swatch-hex">#1E293B <span class="copy-icon">content_copy</span></div>
-            <div class="swatch-desc">Body copy, paragraph text.</div>
-          </div>
-        </div>
-        <div class="swatch-card" onclick="copyHex('#64748B','Medium Grey')">
-          <div class="swatch-top" style="background:#64748B"></div>
-          <div class="swatch-bottom">
-            <div class="swatch-name">Medium Grey</div>
-            <div class="swatch-hex">#64748B <span class="copy-icon">content_copy</span></div>
-            <div class="swatch-desc">Captions, meta text, helper copy.</div>
-          </div>
-        </div>
-        <div class="swatch-card" onclick="copyHex('#F8F9FB','Light Grey')">
-          <div class="swatch-top" style="background:#F8F9FB; border-bottom: 1px solid #E5E7EB"></div>
-          <div class="swatch-bottom">
-            <div class="swatch-name">Light Grey</div>
-            <div class="swatch-hex">#F8F9FB <span class="copy-icon">content_copy</span></div>
-            <div class="swatch-desc">Section backgrounds, card alternates.</div>
-          </div>
-        </div>
-        <div class="swatch-card" onclick="copyHex('#FFFFFF','White')">
-          <div class="swatch-top" style="background:#FFFFFF; border-bottom: 1px solid #E5E7EB"></div>
-          <div class="swatch-bottom">
-            <div class="swatch-name">White</div>
-            <div class="swatch-hex">#FFFFFF <span class="copy-icon">content_copy</span></div>
-            <div class="swatch-desc">Default background for all slides, pages, cards.</div>
-          </div>
+      <div class="sys-card">
+        <div class="sys-num">03</div>
+        <h3>Orchestrate</h3>
+        <p>Always-on, effortless multi-channel execution without platform burden. Activation across Demand, Data, Advertising, Content, Web, Events, and Outreach — all from one system.</p>
+        <div class="sys-tags">
+          <span class="sys-tag">247M+ Contacts</span>
+          <span class="sys-tag">CTV · Audio · Native</span>
+          <span class="sys-tag">258K+ Ad Networks</span>
+          <span class="sys-tag">GDPR · CCPA · TCPA</span>
         </div>
       </div>
-
-      <div style="margin-top:var(--space-5)">
-        <div class="section-label" style="margin-bottom:var(--space-2)">Color Rules</div>
-        <div class="grid-3 reveal">
-          <div class="color-rule">
-            <span class="icon">block</span>
-            <p><strong>Pink is for CTAs only.</strong> Never use #D42F5B as a background, icon color, or decorative element.</p>
-          </div>
-          <div class="color-rule">
-            <span class="icon">gradient</span>
-            <p><strong>Gradient is structural.</strong> Hero, section dividers, and closing bands only — never on slides or cards.</p>
-          </div>
-          <div class="color-rule">
-            <span class="icon">check_circle</span>
-            <p><strong>White is the default.</strong> All slides, pages, and cards start white. Off-palette backgrounds require Design approval.</p>
-          </div>
+      <div class="sys-card">
+        <div class="sys-num">04</div>
+        <h3>Win</h3>
+        <p>Continuous AI + human optimization delivering pipeline confidence. Labs turns buyer signals into campaigns — demand gen experts embedded as an extension of your team.</p>
+        <div class="sys-tags">
+          <span class="sys-tag">Labs Team</span>
+          <span class="sys-tag">Human + AI Loops</span>
+          <span class="sys-tag">Pipeline Outcomes</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- TYPOGRAPHY -->
-  <section class="section section-alt" id="typography">
-    <div class="container">
-      <div class="section-label">02 — Typography</div>
-      <h2 class="section-title">Type System</h2>
-      <p class="section-body">Two fonts. No exceptions. Poppins for all headings and display text; Inter for all body copy, UI, and captions.</p>
+<!-- COLORS -->
+<section class="section section-alt" id="colors">
+  <div class="container">
+    <div class="sec-tag"><span>palette</span>01 · Colors</div>
+    <h2 class="sec-title">The Official Palette</h2>
+    <p class="sec-body">Every value sourced directly from <em>25-DS-BrandGuide-General.pdf</em>. Click any swatch to copy the hex. Do not approximate — use exact values only.</p>
 
-      <div class="grid-2 reveal" style="margin-bottom:var(--space-6)">
-        <div class="font-pair">
-          <div class="font-name">Poppins</div>
-          <div class="font-use">Headings, Titles, Display, CTAs — Bold 700 / SemiBold 600</div>
-          <div class="font-sample" style="font-family:'Poppins'">Aa Bb Cc Dd Ee</div>
-          <div class="abcs" style="font-family:'Poppins';font-weight:400">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789</div>
-        </div>
-        <div class="font-pair" style="border-left-color:var(--navy)">
-          <div class="font-name" style="color:var(--navy)">Inter</div>
-          <div class="font-use">Body copy, UI labels, captions, tables — Regular 400 / Medium 500</div>
-          <div class="font-sample-inter" style="font-family:'Inter';font-size:22px;font-weight:400;color:var(--dark)">The quick brown fox jumps over the lazy dog.</div>
-          <div class="abcs" style="font-family:'Inter'">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789</div>
-        </div>
+    <div class="color-grid reveal">
+      <div class="swatch" onclick="copyVal('#061947','Navy Blue')">
+        <div class="sw-color" style="background:#061947"></div>
+        <div class="sw-meta"><div class="sw-name">Navy Blue</div><div class="sw-hex">#061947 <span class="ci">content_copy</span></div><div class="sw-desc">Primary brand · headlines · footers · table headers</div></div>
       </div>
-
-      <div class="reveal">
-        <div class="type-row">
-          <div class="type-meta"><div class="label">H1 / Title</div><div class="spec">Poppins 700 · 48px / 3rem</div></div>
-          <div class="t-h1">Headline One</div>
-        </div>
-        <div class="type-row">
-          <div class="type-meta"><div class="label">H2</div><div class="spec">Poppins 700 · 36px / 2.25rem</div></div>
-          <div class="t-h2">Headline Two</div>
-        </div>
-        <div class="type-row">
-          <div class="type-meta"><div class="label">H3</div><div class="spec">Poppins 600 · 28px / 1.75rem</div></div>
-          <div class="t-h3">Headline Three</div>
-        </div>
-        <div class="type-row">
-          <div class="type-meta"><div class="label">H4</div><div class="spec">Poppins 600 · 22px / 1.375rem</div></div>
-          <div class="t-h4">Headline Four</div>
-        </div>
-        <div class="type-row">
-          <div class="type-meta"><div class="label">H5</div><div class="spec">Poppins 600 · 18px / 1.125rem</div></div>
-          <div class="t-h5">Headline Five</div>
-        </div>
-        <div class="type-row">
-          <div class="type-meta"><div class="label">Body Large</div><div class="spec">Inter 400 · 18px / 1.125rem</div></div>
-          <div class="t-body-lg">Empowering B2B marketers to reach the right buyers at scale.</div>
-        </div>
-        <div class="type-row">
-          <div class="type-meta"><div class="label">Body</div><div class="spec">Inter 400 · 16px / 1rem</div></div>
-          <div class="t-body">DemandScience delivers high-quality leads and demand gen solutions to accelerate pipeline growth.</div>
-        </div>
-        <div class="type-row">
-          <div class="type-meta"><div class="label">Small</div><div class="spec">Inter 400 · 14px / 0.875rem</div></div>
-          <div class="t-small">Supporting copy, form labels, table content, UI text, navigation items.</div>
-        </div>
-        <div class="type-row" style="border-bottom:none">
-          <div class="type-meta"><div class="label">Caption</div><div class="spec">Inter 400 · 12px / 0.75rem</div></div>
-          <div class="t-caption">Image captions, footnotes, legal copy, timestamps, metadata.</div>
-        </div>
+      <div class="swatch" onclick="copyVal('#0A2A8F','Navy Light')">
+        <div class="sw-color" style="background:#0A2A8F"></div>
+        <div class="sw-meta"><div class="sw-name">Navy Light</div><div class="sw-hex">#0A2A8F <span class="ci">content_copy</span></div><div class="sw-desc">Hover states on navy backgrounds</div></div>
       </div>
-
-      <div style="margin-top:var(--space-5)" class="reveal">
-        <div class="section-label" style="margin-bottom:var(--space-2)">Slide Type Scale</div>
-        <table class="ds-table">
-          <thead>
-            <tr><th>Element</th><th>Size</th><th>Weight</th><th>Color</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Slide Title / H1</td><td>32pt (43px)</td><td>Poppins Bold 700</td><td>#061947 Navy</td></tr>
-            <tr><td>Slide Heading / H2</td><td>24pt (32px)</td><td>Poppins SemiBold 600</td><td>#061947 Navy</td></tr>
-            <tr><td>Slide Subheading / H3</td><td>18pt (24px)</td><td>Poppins SemiBold 600</td><td>#061947 Navy</td></tr>
-            <tr><td>Body Copy</td><td>12–14pt (16–19px)</td><td>Inter Regular 400</td><td>#1E293B Dark</td></tr>
-            <tr><td>Caption / Footer</td><td>9pt (12px)</td><td>Inter Regular 400</td><td>#64748B Mid</td></tr>
-          </tbody>
-        </table>
+      <div class="swatch" onclick="copyVal('#0266F7','Electric Blue')">
+        <div class="sw-color" style="background:#0266F7"></div>
+        <div class="sw-meta"><div class="sw-name">Electric Blue</div><div class="sw-hex">#0266F7 <span class="ci">content_copy</span></div><div class="sw-desc">Links · icons · active states · chart color 2</div></div>
+      </div>
+      <div class="swatch" onclick="copyVal('#CDEDFD','Baby Blue')">
+        <div class="sw-color" style="background:#CDEDFD"></div>
+        <div class="sw-meta"><div class="sw-name">Baby Blue</div><div class="sw-hex">#CDEDFD <span class="ci">content_copy</span></div><div class="sw-desc">Card backgrounds · table alternates · badges</div></div>
+      </div>
+      <div class="swatch" onclick="copyVal('#D42F5B','CTA Red')">
+        <div class="sw-color" style="background:#D42F5B"></div>
+        <div class="sw-meta"><div class="sw-name">CTA Red</div><div class="sw-hex">#D42F5B <span class="ci">content_copy</span></div><div class="sw-desc">Buttons & CTAs ONLY. Never decorative.</div></div>
+      </div>
+      <div class="swatch" onclick="copyVal('#FDF2F4','Pink Light')">
+        <div class="sw-color" style="background:#FDF2F4;border-bottom:1px solid var(--border)"></div>
+        <div class="sw-meta"><div class="sw-name">Pink Light</div><div class="sw-hex">#FDF2F4 <span class="ci">content_copy</span></div><div class="sw-desc">Secondary button hover · subtle tint</div></div>
+      </div>
+      <div class="swatch" onclick="copyVal('#F40356','Red Orange')">
+        <div class="sw-color" style="background:#F40356"></div>
+        <div class="sw-meta"><div class="sw-name">Red Orange</div><div class="sw-hex">#F40356 <span class="ci">content_copy</span></div><div class="sw-desc">High-energy accent. Use sparingly.</div></div>
+      </div>
+      <div class="swatch" onclick="copyVal('linear-gradient(135deg,#061947,#0266F7)','Gradient')">
+        <div class="sw-color" style="background:linear-gradient(135deg,#061947,#0266F7)"></div>
+        <div class="sw-meta"><div class="sw-name">Brand Gradient</div><div class="sw-hex">Navy → Blue <span class="ci">content_copy</span></div><div class="sw-desc">Hero · section dividers · closing bands only</div></div>
+      </div>
+      <div class="swatch" onclick="copyVal('#1E293B','Dark Grey')">
+        <div class="sw-color" style="background:#1E293B"></div>
+        <div class="sw-meta"><div class="sw-name">Dark Grey</div><div class="sw-hex">#1E293B <span class="ci">content_copy</span></div><div class="sw-desc">Body copy · paragraph text</div></div>
+      </div>
+      <div class="swatch" onclick="copyVal('#64748B','Medium Grey')">
+        <div class="sw-color" style="background:#64748B"></div>
+        <div class="sw-meta"><div class="sw-name">Medium Grey</div><div class="sw-hex">#64748B <span class="ci">content_copy</span></div><div class="sw-desc">Captions · meta text · helper copy</div></div>
+      </div>
+      <div class="swatch" onclick="copyVal('#F8F9FB','Light Grey')">
+        <div class="sw-color" style="background:#F8F9FB;border-bottom:1px solid var(--border)"></div>
+        <div class="sw-meta"><div class="sw-name">Light Grey</div><div class="sw-hex">#F8F9FB <span class="ci">content_copy</span></div><div class="sw-desc">Section backgrounds · card alternates</div></div>
+      </div>
+      <div class="swatch" onclick="copyVal('#FFFFFF','White')">
+        <div class="sw-color" style="background:#fff;border-bottom:1px solid var(--border)"></div>
+        <div class="sw-meta"><div class="sw-name">White</div><div class="sw-hex">#FFFFFF <span class="ci">content_copy</span></div><div class="sw-desc">Default background — all slides, pages, cards</div></div>
       </div>
     </div>
-  </section>
 
-  <!-- COMPONENTS -->
-  <section class="section" id="components">
-    <div class="container">
-      <div class="section-label">03 — Components</div>
-      <h2 class="section-title">Component Library</h2>
-      <p class="section-body">Every component follows the brand token system. Never modify border radii, colors, or font weights outside these standards.</p>
+    <div class="color-rules reveal">
+      <div class="color-rule"><span class="icon">block</span><p><strong>Pink CTAs only.</strong> #D42F5B on buttons exclusively. Never backgrounds, icons, or decoration.</p></div>
+      <div class="color-rule"><span class="icon">gradient</span><p><strong>Gradient is structural.</strong> Hero, dividers, closing bands only. Never on slides or data cards.</p></div>
+      <div class="color-rule"><span class="icon">check_circle</span><p><strong>White is the default.</strong> All slides and pages start white. Off-palette backgrounds need Design approval.</p></div>
+    </div>
+  </div>
+</section>
 
-      <!-- Buttons -->
-      <div class="comp-group reveal">
-        <div class="component-label">Buttons</div>
+<!-- TYPOGRAPHY -->
+<section class="section" id="typography">
+  <div class="container">
+    <div class="sec-tag"><span>text_fields</span>02 · Typography</div>
+    <h2 class="sec-title">Two Fonts. No Exceptions.</h2>
+    <p class="sec-body">Poppins for all headings, display, and CTAs. Inter for all body copy, UI text, and captions. No other fonts are approved — not Montserrat, not Lato, not Open Sans.</p>
+
+    <div class="font-specimens reveal">
+      <div class="font-spec">
+        <div class="fs-label">Poppins</div>
+        <div class="fs-use">Headings · Titles · Display · CTAs — Bold 700 / SemiBold 600</div>
+        <div class="fs-display">Aa Bb Cc Dd Ee Ff</div>
+        <div class="fs-abc">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789 !@#$%</div>
+      </div>
+      <div class="font-spec inter">
+        <div class="fs-label navy">Inter</div>
+        <div class="fs-use">Body copy · UI labels · Captions · Tables — Regular 400 / Medium 500</div>
+        <div class="fs-display inter" style="font-family:'Inter',sans-serif;font-size:22px;font-weight:400">The quick brown fox jumps over the lazy dog.</div>
+        <div class="fs-abc" style="font-family:'Inter',sans-serif">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789 !@#$%</div>
+      </div>
+    </div>
+
+    <div class="type-scale reveal">
+      <div class="ts-row"><div class="ts-meta"><div class="tl">H1 / Title</div><div class="ts">Poppins 700 · 48px</div></div><h1 style="font-size:48px;font-weight:700;color:var(--navy)">Headline One</h1></div>
+      <div class="ts-row"><div class="ts-meta"><div class="tl">H2</div><div class="ts">Poppins 700 · 36px</div></div><h2 style="font-size:36px;font-weight:700;color:var(--navy)">Headline Two</h2></div>
+      <div class="ts-row"><div class="ts-meta"><div class="tl">H3</div><div class="ts">Poppins 600 · 28px</div></div><h3 style="font-size:28px;font-weight:600;color:var(--navy)">Headline Three</h3></div>
+      <div class="ts-row"><div class="ts-meta"><div class="tl">H4</div><div class="ts">Poppins 600 · 22px</div></div><h4 style="font-size:22px;font-weight:600;color:var(--navy)">Headline Four</h4></div>
+      <div class="ts-row"><div class="ts-meta"><div class="tl">H5</div><div class="ts">Poppins 600 · 18px</div></div><h5 style="font-size:18px;font-weight:600;color:var(--navy)">Headline Five</h5></div>
+      <div class="ts-row"><div class="ts-meta"><div class="tl">Body Large</div><div class="ts">Inter 400 · 18px</div></div><p style="font-size:18px">Empowering B2B marketers to reach the right buyers at scale.</p></div>
+      <div class="ts-row"><div class="ts-meta"><div class="tl">Body</div><div class="ts">Inter 400 · 16px</div></div><p style="font-size:16px">DemandScience delivers high-quality leads and demand gen solutions to accelerate pipeline.</p></div>
+      <div class="ts-row"><div class="ts-meta"><div class="tl">Small</div><div class="ts">Inter 400 · 14px</div></div><p style="font-size:14px;color:var(--mid)">Supporting copy, form labels, table content, navigation items, UI text.</p></div>
+      <div class="ts-row"><div class="ts-meta"><div class="tl">Caption</div><div class="ts">Inter 400 · 12px</div></div><p style="font-size:12px;color:var(--mid)">Image captions, footnotes, legal copy, timestamps, metadata.</p></div>
+    </div>
+
+    <div class="reveal" style="margin-top:24px">
+      <div class="comp-label">Slide Type Scale</div>
+      <table class="ds-table">
+        <thead><tr><th>Element</th><th>Size</th><th>Weight</th><th>Color</th><th>Rule</th></tr></thead>
+        <tbody>
+          <tr><td>Slide Title / H1</td><td>32pt · 43px</td><td>Poppins Bold 700</td><td>#061947</td><td>Left-aligned. Always.</td></tr>
+          <tr><td>Slide Heading / H2</td><td>24pt · 32px</td><td>Poppins SemiBold 600</td><td>#061947</td><td>Left-aligned. Always.</td></tr>
+          <tr><td>Subheading / H3</td><td>18pt · 24px</td><td>Poppins SemiBold 600</td><td>#061947</td><td>Left-aligned. Always.</td></tr>
+          <tr><td>Body Copy</td><td>12–14pt · 16–19px</td><td>Inter Regular 400</td><td>#1E293B</td><td>Left-aligned. Always.</td></tr>
+          <tr><td>Caption / Footer</td><td>9pt · 12px</td><td>Inter Regular 400</td><td>#64748B</td><td>Left only.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section class="section section-alt" id="components">
+  <div class="container">
+    <div class="sec-tag"><span>widgets</span>03 · Components</div>
+    <h2 class="sec-title">Component Library</h2>
+    <p class="sec-body">Every component is governed by brand tokens. Never modify border radii, colors, or font weights outside these standards.</p>
+
+    <div class="comp-section reveal">
+      <div class="comp-label">Buttons</div>
+      <div class="comp-canvas">
         <div class="btn-row">
-          <button class="ds-btn-primary">
-            <span style="font-family:'Material Symbols Rounded';font-size:18px">arrow_forward</span>
-            Primary CTA
-          </button>
-          <button class="ds-btn-secondary">Secondary</button>
-          <button class="ds-btn-ghost">Ghost</button>
-          <button class="ds-btn-ui">UI Button</button>
-          <button class="ds-btn-ui" style="background:var(--blue-light);color:var(--blue);border-color:var(--blue-light)">Active State</button>
-          <button class="ds-btn-ui" style="opacity:.4;cursor:not-allowed">Disabled</button>
+          <button class="btn-p"><span style="font-family:'Material Symbols Rounded';font-size:16px">arrow_forward</span>Primary CTA</button>
+          <button class="btn-s">Secondary</button>
+          <button class="btn-g">Ghost / Outline</button>
+          <button class="btn-ui">UI Button</button>
+          <button class="btn-ui" style="background:var(--blue-lt);color:var(--blue);border-color:var(--blue-lt)">Active</button>
+          <button class="btn-ui btn-dis">Disabled</button>
         </div>
-        <div style="margin-top:var(--space-2); padding:var(--space-2) var(--space-3); background:var(--pink-light); border-radius:8px; font-size:12px; color:var(--mid)">
-          ⚠ Primary CTA: #D42F5B pill only · Secondary: pink outline · UI buttons: 8px radius for product/internal use only — no pill buttons in product UI.
-        </div>
-      </div>
-
-      <!-- Cards -->
-      <div class="comp-group reveal">
-        <div class="component-label">Cards</div>
-        <div class="grid-3">
-          <div class="ds-card">
-            <div class="card-icon"><span>insights</span></div>
-            <h4>Intent Data</h4>
-            <p>Identify buyers actively researching your solutions and act before the competition.</p>
-          </div>
-          <div class="ds-card">
-            <div class="card-icon"><span>people</span></div>
-            <h4>Audience Targeting</h4>
-            <p>Reach decision-makers with verified contact data and firmographic precision.</p>
-          </div>
-          <div class="ds-card" style="background:var(--light)">
-            <div class="card-icon" style="background:var(--white)"><span>trending_up</span></div>
-            <h4>Pipeline Acceleration</h4>
-            <p>Move deals faster with always-on demand generation that fills every stage.</p>
-          </div>
-        </div>
-        <div style="margin-top:var(--space-2); padding:var(--space-2) var(--space-3); background:var(--light); border-radius:8px; font-size:12px; color:var(--mid)">
-          Cards: white or light grey background · 10px border radius · 24px padding · shadow: 0 2px 40px rgba(0,0,0,.10)
-        </div>
-      </div>
-
-      <!-- Stats -->
-      <div class="comp-group reveal">
-        <div class="component-label">Stats Strip</div>
-        <div class="grid-4">
-          <div class="ds-stat"><div class="num">94<span>%</span></div><div class="stat-label">Data accuracy guarantee</div></div>
-          <div class="ds-stat"><div class="num">150<span>M+</span></div><div class="stat-label">Verified B2B contacts</div></div>
-          <div class="ds-stat"><div class="num">3x</div><div class="stat-label">Pipeline velocity increase</div></div>
-          <div class="ds-stat" style="background:var(--blue)"><div class="num">48<span>hr</span></div><div class="stat-label">Avg. campaign launch</div></div>
-        </div>
-      </div>
-
-      <!-- Badges -->
-      <div class="comp-group reveal">
-        <div class="component-label">Badges &amp; Labels</div>
-        <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;padding:var(--space-3);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)">
-          <span class="ds-badge badge-blue">Intent Data</span>
-          <span class="ds-badge badge-navy">Enterprise</span>
-          <span class="ds-badge badge-pink">CTA Only</span>
-          <span class="ds-badge badge-green">Approved</span>
-          <span class="ds-badge" style="background:#FEF2F2;color:#B91C1C">STOP</span>
-          <span class="ds-badge" style="background:#FFFBEB;color:#92400E">⚠ Warning</span>
-        </div>
-      </div>
-
-      <!-- Form inputs -->
-      <div class="comp-group reveal">
-        <div class="component-label">Form Elements</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);padding:var(--space-4);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)">
-          <div>
-            <label class="ds-label">First Name</label>
-            <input class="ds-input" type="text" placeholder="Jane">
-          </div>
-          <div>
-            <label class="ds-label">Work Email</label>
-            <input class="ds-input" type="email" placeholder="jane@company.com">
-          </div>
-          <div style="grid-column:span 2">
-            <label class="ds-label">Company</label>
-            <input class="ds-input" type="text" placeholder="Acme Corp">
-          </div>
-          <div style="grid-column:span 2;display:flex;gap:var(--space-2)">
-            <button class="ds-btn-primary" style="flex:1">
-              <span style="font-family:'Material Symbols Rounded';font-size:18px">send</span>
-              Request Demo
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Table -->
-      <div class="comp-group reveal">
-        <div class="component-label">Data Table</div>
-        <table class="ds-table">
-          <thead>
-            <tr><th>Channel</th><th>Leads / Month</th><th>CPL</th><th>Status</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Content Syndication</td><td>1,200</td><td>$42</td><td><span class="ds-badge badge-green">Active</span></td></tr>
-            <tr><td>Intent-Driven Campaigns</td><td>840</td><td>$68</td><td><span class="ds-badge badge-blue">In Review</span></td></tr>
-            <tr><td>ABM Display</td><td>320</td><td>$115</td><td><span class="ds-badge badge-green">Active</span></td></tr>
-            <tr><td>Email Nurture</td><td>2,100</td><td>$28</td><td><span class="ds-badge badge-navy">Paused</span></td></tr>
-          </tbody>
-        </table>
-        <div style="margin-top:var(--space-2);font-size:12px;color:var(--mid)">Table: Navy header · Alternating white / Baby Blue rows · Light grey borders (#E5E7EB)</div>
+        <p style="font-size:12px;color:var(--mid);margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">Primary: #D42F5B pill · Secondary: pink outline · UI: 8px radius (product/internal only — never pill in product UI)</p>
       </div>
     </div>
-  </section>
 
-  <!-- ICONS -->
-  <section class="section section-alt" id="icons">
-    <div class="container">
-      <div class="section-label">04 — Iconography</div>
-      <h2 class="section-title">Google Material Symbols Rounded</h2>
-      <p class="section-body">This is the only approved icon library. No Font Awesome, Heroicons, Feather, Lucide, or any other system. Style: Rounded only.</p>
-
-      <div class="icon-grid reveal">
-        <div class="icon-item"><span class="icon">insights</span><div class="icon-name">insights</div></div>
-        <div class="icon-item"><span class="icon">people</span><div class="icon-name">people</div></div>
-        <div class="icon-item"><span class="icon">trending_up</span><div class="icon-name">trending_up</div></div>
-        <div class="icon-item"><span class="icon">verified</span><div class="icon-name">verified</div></div>
-        <div class="icon-item"><span class="icon">bar_chart</span><div class="icon-name">bar_chart</div></div>
-        <div class="icon-item"><span class="icon">target</span><div class="icon-name">target</div></div>
-        <div class="icon-item"><span class="icon">bolt</span><div class="icon-name">bolt</div></div>
-        <div class="icon-item"><span class="icon">search</span><div class="icon-name">search</div></div>
-        <div class="icon-item"><span class="icon">mail</span><div class="icon-name">mail</div></div>
-        <div class="icon-item"><span class="icon">star</span><div class="icon-name">star</div></div>
-        <div class="icon-item"><span class="icon">check_circle</span><div class="icon-name">check_circle</div></div>
-        <div class="icon-item"><span class="icon">arrow_forward</span><div class="icon-name">arrow_forward</div></div>
-        <div class="icon-item"><span class="icon">data_object</span><div class="icon-name">data_object</div></div>
-        <div class="icon-item"><span class="icon">campaign</span><div class="icon-name">campaign</div></div>
-        <div class="icon-item"><span class="icon">hub</span><div class="icon-name">hub</div></div>
-        <div class="icon-item"><span class="icon">speed</span><div class="icon-name">speed</div></div>
-        <div class="icon-item"><span class="icon">lock</span><div class="icon-name">lock</div></div>
-        <div class="icon-item"><span class="icon">globe</span><div class="icon-name">globe</div></div>
-        <div class="icon-item"><span class="icon">filter_list</span><div class="icon-name">filter_list</div></div>
-        <div class="icon-item"><span class="icon">download</span><div class="icon-name">download</div></div>
+    <div class="comp-section reveal">
+      <div class="comp-label">Cards</div>
+      <div class="card-grid">
+        <div class="ds-card"><div class="card-ico"><span>insights</span></div><h4>Intent Data</h4><p>Identify buyers actively researching your solutions before the competition.</p></div>
+        <div class="ds-card"><div class="card-ico"><span>people</span></div><h4>Audience Targeting</h4><p>Reach decision-makers with verified contact data and firmographic precision.</p></div>
+        <div class="ds-card" style="background:var(--lt)"><div class="card-ico" style="background:#fff"><span>trending_up</span></div><h4>Pipeline Growth</h4><p>Move deals faster with always-on demand generation at every stage.</p></div>
       </div>
+      <p style="font-size:12px;color:var(--mid);margin-top:10px">Cards: white or light grey · 10px radius · 24px padding · shadow: 0 2px 40px rgba(0,0,0,.10)</p>
+    </div>
 
-      <div style="margin-top:var(--space-5)" class="reveal">
-        <div class="section-label" style="margin-bottom:var(--space-3)">Icon Sizes</div>
-        <div style="padding:var(--space-4);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)">
-          <div class="icon-sizes">
-            <div class="sz"><span class="icon" style="font-size:16px">insights</span><label>16px · UI</label></div>
-            <div class="sz"><span class="icon" style="font-size:20px">insights</span><label>20px · Inline</label></div>
-            <div class="sz"><span class="icon" style="font-size:24px">insights</span><label>24px · Default</label></div>
-            <div class="sz"><span class="icon" style="font-size:32px">insights</span><label>32px · Feature</label></div>
-            <div class="sz"><span class="icon" style="font-size:48px">insights</span><label>48px · Hero</label></div>
-          </div>
-          <p style="font-size:12px;color:var(--mid);margin-top:var(--space-3)">Color: Navy #061947 default · Electric Blue #0266F7 on hover · Never pink, never grey, never off-palette.</p>
+    <div class="comp-section reveal">
+      <div class="comp-label">Stats Blocks</div>
+      <div class="stats-row">
+        <div class="stat-block"><div class="stat-num">94<sup>%</sup></div><div class="stat-lbl">Data accuracy guarantee</div></div>
+        <div class="stat-block"><div class="stat-num">150M<sup>+</sup></div><div class="stat-lbl">Verified B2B contacts</div></div>
+        <div class="stat-block blue"><div class="stat-num">3x</div><div class="stat-lbl">Pipeline velocity increase</div></div>
+        <div class="stat-block"><div class="stat-num">48<sup>hr</sup></div><div class="stat-lbl">Average campaign launch</div></div>
+      </div>
+    </div>
+
+    <div class="comp-section reveal">
+      <div class="comp-label">Badges & Labels</div>
+      <div class="comp-canvas">
+        <div class="badge-row">
+          <span class="badge b-blue">Intent Data</span>
+          <span class="badge b-navy">Enterprise</span>
+          <span class="badge b-pink">CTA Only</span>
+          <span class="badge b-green"><span style="font-family:'Material Symbols Rounded';font-size:13px">check</span>Approved</span>
+          <span class="badge b-red">🚫 STOP</span>
+          <span class="badge b-amber">⚠ Warning</span>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- MOTION -->
-  <section class="section" id="motion">
-    <div class="container">
-      <div class="section-label">05 — Motion &amp; Animation</div>
-      <h2 class="section-title">Motion Principles</h2>
-      <p class="section-body">Motion should be purposeful and subtle. Every animation has a reason — reveal, guide attention, or confirm an action. Nothing spins, bounces, or flashes.</p>
-
-      <div class="grid-2 reveal">
-        <div class="motion-demo">
-          <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:var(--space-2)">Approved Patterns</div>
-          <div class="motion-item">
-            <div class="motion-swatch" id="m1" style="animation:ds-fade-up .5s ease both;"></div>
-            <div class="motion-label">
-              <div class="name">Fade Up</div>
-              <div class="spec">opacity 0→1 + translateY 20px→0 · 500ms ease</div>
-            </div>
-            <button class="play-btn" onclick="replay('m1','ds-fade-up .5s ease both')"><span>play_arrow</span> Play</button>
-          </div>
-          <div class="motion-item">
-            <div class="motion-swatch" id="m2" style="animation:ds-scale-in .4s ease both;background:var(--blue)"></div>
-            <div class="motion-label">
-              <div class="name">Scale In</div>
-              <div class="spec">scale .9→1 + opacity · 400ms ease</div>
-            </div>
-            <button class="play-btn" onclick="replay('m2','ds-scale-in .4s ease both')"><span>play_arrow</span> Play</button>
-          </div>
-          <div class="motion-item">
-            <div class="motion-swatch" id="m3" style="animation:ds-slide-in .45s ease both;background:var(--pink)"></div>
-            <div class="motion-label">
-              <div class="name">Slide In</div>
-              <div class="spec">translateX -20px→0 + opacity · 450ms ease</div>
-            </div>
-            <button class="play-btn" onclick="replay('m3','ds-slide-in .45s ease both')"><span>play_arrow</span> Play</button>
-          </div>
-        </div>
-        <div style="padding:var(--space-4);background:var(--light);border-radius:var(--radius)">
-          <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:var(--space-3)">Motion Rules</div>
-          <table style="width:100%;border-collapse:collapse;font-size:13px">
-            <tr style="border-bottom:1px solid #E5E7EB">
-              <td style="padding:10px 0;font-weight:600;color:var(--dark);width:120px">Duration</td>
-              <td style="padding:10px 0;color:var(--mid)">100–600ms. Fast for micro, 400–600ms for reveals.</td>
-            </tr>
-            <tr style="border-bottom:1px solid #E5E7EB">
-              <td style="padding:10px 0;font-weight:600;color:var(--dark)">Easing</td>
-              <td style="padding:10px 0;color:var(--mid)">ease or cubic-bezier(.4,0,.2,1). Never linear for UI.</td>
-            </tr>
-            <tr style="border-bottom:1px solid #E5E7EB">
-              <td style="padding:10px 0;font-weight:600;color:var(--dark)">Hover</td>
-              <td style="padding:10px 0;color:var(--mid)">translateY(-2px to -4px) + box-shadow. 200ms ease.</td>
-            </tr>
-            <tr style="border-bottom:1px solid #E5E7EB">
-              <td style="padding:10px 0;font-weight:600;color:var(--dark)">Scroll</td>
-              <td style="padding:10px 0;color:var(--mid)">Fade-up on enter only. No continuous scroll animations.</td>
-            </tr>
-            <tr>
-              <td style="padding:10px 0;font-weight:600;color:var(--dark)">Never</td>
-              <td style="padding:10px 0;color:#B91C1C">Spin, bounce, flash, rotate, infinite loops (except loading states).</td>
-            </tr>
-          </table>
-          <div style="margin-top:var(--space-3);padding:var(--space-2);background:var(--white);border-radius:8px;border-left:3px solid var(--blue)">
-            <p style="font-size:12px;color:var(--mid)"><strong>Respect prefers-reduced-motion.</strong> All non-essential animations must be disabled when the user has reduced motion enabled in their OS.</p>
-          </div>
+    <div class="comp-section reveal">
+      <div class="comp-label">Form Inputs</div>
+      <div class="comp-canvas">
+        <div class="ds-input-wrap">
+          <div class="field"><label>First Name</label><input class="ds-input" type="text" placeholder="Jane"></div>
+          <div class="field"><label>Work Email</label><input class="ds-input" type="email" placeholder="jane@company.com"></div>
+          <div class="field"><label>Company</label><input class="ds-input" type="text" placeholder="Acme Corp"></div>
+          <div class="field" style="display:flex;align-items:flex-end"><button class="btn-p" style="width:100%"><span style="font-family:'Material Symbols Rounded';font-size:16px">send</span>Request Demo</button></div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- GRID -->
-  <section class="section section-alt" id="grid">
-    <div class="container">
-      <div class="section-label">06 — Grid System</div>
-      <h2 class="section-title">8px Base Unit</h2>
-      <p class="section-body">All spacing, sizing, and layout decisions derive from an 8px base unit. Nothing is placed arbitrarily. Every distance is a multiple of 8 (or 4 for micro-adjustments).</p>
-
-      <div class="reveal">
-        <div class="grid-demo" style="margin-bottom:var(--space-4)">
-          <p style="color:rgba(255,255,255,.5);font-size:11px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.8px">12-Column Web Grid (1200px max-width)</p>
-          <div class="grid-demo-cols">
-            <div class="grid-col span-3"></div><div class="grid-col span-3"></div><div class="grid-col span-3"></div><div class="grid-col span-3"></div>
-          </div>
-          <div class="grid-demo-cols" style="margin-top:8px">
-            <div class="grid-col span-4"></div><div class="grid-col span-4"></div><div class="grid-col span-4"></div>
-          </div>
-          <div class="grid-demo-cols" style="margin-top:8px">
-            <div class="grid-col span-6"></div><div class="grid-col span-6 accent"></div>
-          </div>
-          <div class="grid-demo-cols" style="margin-top:8px">
-            <div class="grid-col span-12"></div>
-          </div>
-          <p style="color:rgba(255,255,255,.4);font-size:11px;margin-top:12px">12 columns · 24px gutters · 64px horizontal margins · 8-col shown highlighted</p>
-        </div>
-
-        <div class="grid-2">
-          <div>
-            <div class="section-label" style="margin-bottom:var(--space-2)">Spacing Tokens</div>
-            <div style="background:var(--white);border-radius:var(--radius);padding:var(--space-3);box-shadow:var(--shadow)">
-              <div class="spacing-row"><div class="spacing-swatch" style="width:8px"></div><div class="spacing-meta"><div class="var">--space-1</div><div class="val">8px · micro gap</div></div></div>
-              <div class="spacing-row"><div class="spacing-swatch" style="width:16px"></div><div class="spacing-meta"><div class="var">--space-2</div><div class="val">16px · tight</div></div></div>
-              <div class="spacing-row"><div class="spacing-swatch" style="width:24px"></div><div class="spacing-meta"><div class="var">--space-3</div><div class="val">24px · card padding</div></div></div>
-              <div class="spacing-row"><div class="spacing-swatch" style="width:32px"></div><div class="spacing-meta"><div class="var">--space-4</div><div class="val">32px · component gap</div></div></div>
-              <div class="spacing-row"><div class="spacing-swatch" style="width:40px"></div><div class="spacing-meta"><div class="var">--space-5</div><div class="val">40px · section inner</div></div></div>
-              <div class="spacing-row"><div class="spacing-swatch" style="width:48px"></div><div class="spacing-meta"><div class="var">--space-6</div><div class="val">48px · content group</div></div></div>
-              <div class="spacing-row"><div class="spacing-swatch" style="width:64px"></div><div class="spacing-meta"><div class="var">--space-8</div><div class="val">64px · page margin</div></div></div>
-              <div class="spacing-row" style="border:none"><div class="spacing-swatch" style="width:96px"></div><div class="spacing-meta"><div class="var">--space-10</div><div class="val">96px · section padding</div></div></div>
-            </div>
-          </div>
-          <div>
-            <div class="section-label" style="margin-bottom:var(--space-2)">Slide Grid</div>
-            <div style="background:var(--white);border-radius:var(--radius);padding:var(--space-3);box-shadow:var(--shadow)">
-              <table style="width:100%;font-size:13px;border-collapse:collapse">
-                <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:600;color:var(--dark)">Canvas</td><td style="padding:8px 0;color:var(--mid)">960 × 540px (16:9)</td></tr>
-                <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:600;color:var(--dark)">Left/Right margin</td><td style="padding:8px 0;color:var(--mid)">64px</td></tr>
-                <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:600;color:var(--dark)">Top margin</td><td style="padding:8px 0;color:var(--mid)">40px</td></tr>
-                <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:600;color:var(--dark)">Footer bar</td><td style="padding:8px 0;color:var(--mid)">36px · Navy #061947</td></tr>
-                <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:600;color:var(--dark)">Columns</td><td style="padding:8px 0;color:var(--mid)">8 · 16px gutters</td></tr>
-                <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:600;color:var(--dark)">Background</td><td style="padding:8px 0;color:var(--mid)">White #FFFFFF — all slides, no exceptions</td></tr>
-                <tr><td style="padding:8px 0;font-weight:600;color:var(--dark)">Text alignment</td><td style="padding:8px 0;color:var(--mid)">Left only — no centered text on any slide</td></tr>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="comp-section reveal">
+      <div class="comp-label">Data Table</div>
+      <table class="ds-table">
+        <thead><tr><th>Channel</th><th>Leads/Month</th><th>CPL</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Content Syndication</td><td>1,200</td><td>$42</td><td><span class="badge b-green">Active</span></td></tr>
+          <tr><td>Intent-Driven Campaigns</td><td>840</td><td>$68</td><td><span class="badge b-blue">In Review</span></td></tr>
+          <tr><td>ABM Display</td><td>320</td><td>$115</td><td><span class="badge b-green">Active</span></td></tr>
+          <tr><td>Email Nurture</td><td>2,100</td><td>$28</td><td><span class="badge b-navy">Paused</span></td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--mid);margin-top:10px">Navy header · Alternating white / Baby Blue (#CDEDFD) rows · Light grey borders #E5E7EB</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- VOICE & TONE -->
-  <section class="section" id="voice">
-    <div class="container">
-      <div class="section-label">07 — Voice &amp; Tone</div>
-      <h2 class="section-title">How We Sound</h2>
-      <p class="section-body">DemandScience speaks in a clear, direct, human voice. We simplify B2B complexity without losing precision. We never use jargon when plain language works.</p>
+<!-- ICONS -->
+<section class="section" id="icons">
+  <div class="container">
+    <div class="sec-tag"><span>interests</span>04 · Icons</div>
+    <h2 class="sec-title">Google Material Symbols Rounded</h2>
+    <p class="sec-body">The only approved icon library. No Font Awesome, Heroicons, Feather, Lucide, or any other system. Style: Rounded only — never Outlined, Sharp, or Two-tone.</p>
 
-      <div class="quote-block reveal" style="margin-bottom:var(--space-6)">
-        <p>"Empowering B2B Marketers to take back control of their growth."</p>
-      </div>
-
-      <div class="grid-2 reveal" style="margin-bottom:var(--space-5)">
-        <div>
-          <div class="section-label" style="margin-bottom:var(--space-2)">Elevator Pitch — Short</div>
-          <div style="padding:var(--space-3);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);border-left:4px solid var(--blue)">
-            <p style="font-size:15px;color:var(--dark);line-height:1.7">DemandScience helps B2B companies grow faster by connecting them with the right buyers at the right time. We provide demand generation solutions that are data-driven, scalable, and built for revenue impact.</p>
-          </div>
-        </div>
-        <div>
-          <div class="section-label" style="margin-bottom:var(--space-2)">Copy Rules</div>
-          <div style="padding:var(--space-3);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)">
-            <table style="width:100%;font-size:13px;border-collapse:collapse">
-              <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:700;color:var(--dark)">Headlines</td><td style="padding:8px 0;color:var(--mid)">Verb-led, outcome-first, ≤10 words</td></tr>
-              <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:700;color:var(--dark)">Body</td><td style="padding:8px 0;color:var(--mid)">Short sentences. One idea per paragraph.</td></tr>
-              <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:700;color:var(--dark)">CTAs</td><td style="padding:8px 0;color:var(--mid)">Action verbs: "Get", "See", "Start", "Request"</td></tr>
-              <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:700;color:var(--dark)">Jargon</td><td style="padding:8px 0;color:var(--mid)">Define on first use. Prefer plain language.</td></tr>
-              <tr><td style="padding:8px 0;font-weight:700;color:var(--dark)">Emphasis</td><td style="padding:8px 0;color:var(--mid)">Bold only. Never italic for emphasis.</td></tr>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <div class="reveal">
-        <div class="section-label" style="margin-bottom:var(--space-3)">We Are / We Are Not</div>
-        <table class="we-table" style="background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)">
-          <thead><tr><th>We Are</th><th>We Are Not</th></tr></thead>
-          <tbody>
-            <tr><td>Clear and direct</td><td>Vague or wordy</td></tr>
-            <tr><td>Data-confident</td><td>Data-obsessed to the point of cold</td></tr>
-            <tr><td>Human and approachable</td><td>Casual or unprofessional</td></tr>
-            <tr><td>Ambitious</td><td>Arrogant</td></tr>
-            <tr><td>Expert</td><td>Jargon-heavy</td></tr>
-            <tr><td>Focused on outcomes</td><td>Focused on features</td></tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="icon-grid reveal">
+      <div class="icon-cell"><span class="i">insights</span><div class="in">insights</div></div>
+      <div class="icon-cell"><span class="i">people</span><div class="in">people</div></div>
+      <div class="icon-cell"><span class="i">trending_up</span><div class="in">trending_up</div></div>
+      <div class="icon-cell"><span class="i">verified</span><div class="in">verified</div></div>
+      <div class="icon-cell"><span class="i">bar_chart</span><div class="in">bar_chart</div></div>
+      <div class="icon-cell"><span class="i">bolt</span><div class="in">bolt</div></div>
+      <div class="icon-cell"><span class="i">hub</span><div class="in">hub</div></div>
+      <div class="icon-cell"><span class="i">search</span><div class="in">search</div></div>
+      <div class="icon-cell"><span class="i">mail</span><div class="in">mail</div></div>
+      <div class="icon-cell"><span class="i">campaign</span><div class="in">campaign</div></div>
+      <div class="icon-cell"><span class="i">check_circle</span><div class="in">check_circle</div></div>
+      <div class="icon-cell"><span class="i">arrow_forward</span><div class="in">arrow_forward</div></div>
+      <div class="icon-cell"><span class="i">data_object</span><div class="in">data_object</div></div>
+      <div class="icon-cell"><span class="i">speed</span><div class="in">speed</div></div>
+      <div class="icon-cell"><span class="i">lock</span><div class="in">lock</div></div>
+      <div class="icon-cell"><span class="i">filter_list</span><div class="in">filter_list</div></div>
+      <div class="icon-cell"><span class="i">download</span><div class="in">download</div></div>
+      <div class="icon-cell"><span class="i">palette</span><div class="in">palette</div></div>
+      <div class="icon-cell"><span class="i">star</span><div class="in">star</div></div>
+      <div class="icon-cell"><span class="i">target</span><div class="in">target</div></div>
     </div>
-  </section>
 
-  <!-- DO & DON'T -->
-  <section class="section section-alt" id="dodont">
-    <div class="container">
-      <div class="section-label">08 — Do &amp; Don't</div>
-      <h2 class="section-title">Brand Do's &amp; Don'ts</h2>
-      <p class="section-body">These rules exist because past violations damaged brand credibility. When in doubt, left-align it and add more whitespace.</p>
-
-      <div class="do-dont reveal">
-        <div class="do-card">
-          <h4><span>check_circle</span> Do</h4>
-          <ul>
-            <li>Use white backgrounds on all slides</li>
-            <li>Left-align all slide text</li>
-            <li>Use Poppins Bold for all headings</li>
-            <li>Use CTA Red (#D42F5B) only on buttons</li>
-            <li>Use Google Material Symbols Rounded icons</li>
-            <li>Add generous whitespace — if it feels tight, add more</li>
-            <li>Use authentic, candid photography (no posed portraits)</li>
-            <li>Follow the approved chart color order: Navy → Blue → Pink → Grey</li>
-            <li>Keep charts on white backgrounds with minimal gridlines</li>
-            <li>Get Design approval before creating any external asset</li>
-          </ul>
-        </div>
-        <div class="dont-card">
-          <h4><span>cancel</span> Don't</h4>
-          <ul>
-            <li>Use gradient or navy as slide backgrounds</li>
-            <li>Center body text on slides</li>
-            <li>Use Montserrat, Lato, Open Sans, or any other font</li>
-            <li>Use CTA Red decoratively or as a background</li>
-            <li>Use Font Awesome, Heroicons, or Feather icons</li>
-            <li>Cram content — one focal point per slide/screen</li>
-            <li>Use stock photography with subjects looking at camera</li>
-            <li>Use default Excel/Sheets colors in charts</li>
-            <li>Create public-facing assets without an approved template</li>
-            <li>Describe any external request as "quick" or "informal"</li>
-          </ul>
-        </div>
+    <div class="reveal" style="margin-top:24px">
+      <div class="comp-label">Approved Sizes</div>
+      <div class="icon-sizes">
+        <div class="sz-item"><span class="i" style="font-size:16px">insights</span><div class="sz-l">16px · UI</div></div>
+        <div class="sz-item"><span class="i" style="font-size:20px">insights</span><div class="sz-l">20px · Inline</div></div>
+        <div class="sz-item"><span class="i" style="font-size:24px">insights</span><div class="sz-l">24px · Default</div></div>
+        <div class="sz-item"><span class="i" style="font-size:32px">insights</span><div class="sz-l">32px · Feature</div></div>
+        <div class="sz-item"><span class="i" style="font-size:48px">insights</span><div class="sz-l">48px · Hero</div></div>
       </div>
+      <p style="font-size:12px;color:var(--mid);margin-top:14px">Color: Navy #061947 default · Electric Blue #0266F7 on hover/active · Never pink, grey, or off-palette.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- DIVIDER -->
-  <div class="divider-band">
-    <div class="container">
+<!-- MOTION -->
+<section class="section section-alt" id="motion">
+  <div class="container">
+    <div class="sec-tag"><span>animation</span>05 · Motion</div>
+    <h2 class="sec-title">Motion Principles</h2>
+    <p class="sec-body">Motion is purposeful, not decorative. Every animation has a reason — reveal content, guide attention, or confirm an action. Nothing spins, bounces, or flashes.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="reveal">
       <div>
-        <h2>Brand Review Required?</h2>
-        <p>Any external asset, new logo treatment, co-brand, or off-system design must be reviewed by the Design team before publishing.</p>
+        <div class="comp-label">Approved Patterns</div>
+        <div class="motion-demo">
+          <div class="motion-row">
+            <div class="motion-swatch" id="m1"></div>
+            <div class="motion-info"><div class="mn">Fade Up</div><div class="ms">opacity 0→1 + translateY(20px→0) · 500ms ease</div></div>
+            <button class="play-btn" onclick="replay('m1','fadeUp .5s ease both')"><span>play_arrow</span>Play</button>
+          </div>
+          <div class="motion-row">
+            <div class="motion-swatch" id="m2" style="background:var(--blue)"></div>
+            <div class="motion-info"><div class="mn">Scale In</div><div class="ms">scale(.88→1) + opacity · 400ms ease</div></div>
+            <button class="play-btn" onclick="replay('m2','scaleIn .4s ease both')"><span>play_arrow</span>Play</button>
+          </div>
+          <div class="motion-row">
+            <div class="motion-swatch" id="m3" style="background:var(--pink)"></div>
+            <div class="motion-info"><div class="mn">Slide In</div><div class="ms">translateX(-20px→0) + opacity · 450ms ease</div></div>
+            <button class="play-btn" onclick="replay('m3','slideIn .45s ease both')"><span>play_arrow</span>Play</button>
+          </div>
+        </div>
       </div>
-      <div style="display:flex;gap:var(--space-2);flex-wrap:wrap">
-        <a href="mailto:Marketing@demandscience.com" class="btn-primary">
-          <span style="font-family:'Material Symbols Rounded';font-size:18px">mail</span>
-          Email Design Team
-        </a>
-        <a href="#governance" class="btn-outline">View Governance Rules</a>
+      <div>
+        <div class="comp-label">Rules</div>
+        <div class="comp-canvas" style="height:100%">
+          <table style="width:100%;font-size:13px;border-collapse:collapse">
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 0;font-weight:600;width:100px">Duration</td><td style="padding:10px 0;color:var(--mid)">100–600ms. Fast for micro, 400–600ms for reveals.</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 0;font-weight:600">Easing</td><td style="padding:10px 0;color:var(--mid)">ease or cubic-bezier(.4,0,.2,1). Never linear for UI.</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 0;font-weight:600">Hover</td><td style="padding:10px 0;color:var(--mid)">translateY(−2 to −4px) + shadow. 200ms ease.</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 0;font-weight:600">Scroll</td><td style="padding:10px 0;color:var(--mid)">Fade-up on enter only. No continuous loops.</td></tr>
+            <tr style="border-bottom:1px solid var(--border)"><td style="padding:10px 0;font-weight:600;color:#B91C1C">Never</td><td style="padding:10px 0;color:#B91C1C">Spin, bounce, flash, rotate, infinite decorative loops.</td></tr>
+            <tr><td style="padding:10px 0;font-weight:600">A11y</td><td style="padding:10px 0;color:var(--mid)">Disable non-essential animation on prefers-reduced-motion.</td></tr>
+          </table>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- GOVERNANCE -->
-  <section class="section" id="governance">
-    <div class="container">
-      <div class="section-label">09 — Brand Governance</div>
-      <h2 class="section-title">Enforcement System</h2>
-      <p class="section-body">Brand governance exists to protect DemandScience's market presence and ensure every customer touchpoint reflects the same quality standard. There are no exceptions to STOP rules.</p>
+<!-- GRID -->
+<section class="section" id="grid">
+  <div class="container">
+    <div class="sec-tag"><span>grid_on</span>06 · Grid System</div>
+    <h2 class="sec-title">8px Base Unit</h2>
+    <p class="sec-body">All spacing, sizing, and layout derives from an 8px base. Nothing is placed arbitrarily. Every gap is a multiple of 8 (or 4 for micro-adjustments).</p>
 
-      <div class="grid-3 reveal" style="margin-bottom:var(--space-5)">
-        <div class="tier-card tier-stop">
-          <h4>🚫 STOP — Halt All Work</h4>
-          <ul>
-            <li>Icon library other than Material Symbols Rounded</li>
-            <li>Font other than Poppins or Inter</li>
-            <li>Off-palette color requested or used</li>
-            <li>New logo treatment or variant</li>
-            <li>Public asset without approved template</li>
-            <li>Co-brand or partner lockup</li>
-            <li>Request described as "quick external"</li>
-            <li>Charts with default Excel/Sheets colors</li>
-          </ul>
-        </div>
-        <div class="tier-card tier-warn">
-          <h4>⚠ WARNING — Flag &amp; Fix</h4>
-          <ul>
-            <li>Old hex values used (#05195F, #0066FC)</li>
-            <li>Italic used for emphasis (use bold)</li>
-            <li>Justified paragraph text</li>
-            <li>Heavy card shadow (&gt; spec)</li>
-            <li>Sharp-cornered cards (missing 10px radius)</li>
-            <li>Navy/blue CTA button (not pink)</li>
-            <li>Missing alt text on images</li>
-            <li>Gradient on non-approved sections</li>
-          </ul>
-        </div>
-        <div class="tier-card tier-ok">
-          <h4>✅ Approved — No Review</h4>
-          <ul>
-            <li>Internal presentations (approved template)</li>
-            <li>Client decks (approved template, no new layouts)</li>
-            <li>One-pagers using approved doc template</li>
-            <li>Charts with approved color order on white</li>
-            <li>Icons from Material Symbols Rounded</li>
-            <li>Email using approved template</li>
-            <li>Web pages using component library</li>
-            <li>Internal Slack/comms graphics</li>
-          </ul>
-        </div>
+    <div class="reveal">
+      <div class="grid-visual">
+        <p style="color:rgba(255,255,255,.4);font-size:10px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">12-Column Web Grid — 1200px max-width · 64px margins · 24px gutters</p>
+        <div class="grid-cols cols-12" style="margin-bottom:6px"><div class="gc s3 hi"></div><div class="gc s3 hi"></div><div class="gc s3 hi"></div><div class="gc s3 hi"></div></div>
+        <div class="grid-cols cols-12" style="margin-bottom:6px"><div class="gc s4 hi"></div><div class="gc s4 hi"></div><div class="gc s4 ac"></div></div>
+        <div class="grid-cols cols-12" style="margin-bottom:6px"><div class="gc s6 hi"></div><div class="gc s6"></div></div>
+        <div class="grid-cols cols-12"><div class="gc s12 hi"></div></div>
+        <div class="gv-label">Highlighted = active column spans · Pink = accent/CTA column</div>
       </div>
 
-      <div class="reveal" style="margin-bottom:var(--space-5)">
-        <div class="section-label" style="margin-bottom:var(--space-3)">STOP Message Format</div>
-        <div class="stop-box">
-          <div class="stop-border">╔══════════════════════════════════════════════════════════════╗</div>
-          <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="stop-title">🚫  DESIGN GOVERNANCE — STOP</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ║</div>
-          <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
-          <div>║ &nbsp;This request cannot be completed without &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ║</div>
-          <div>║ &nbsp;Design team review and approval. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
-          <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
-          <div>║ &nbsp;<span class="stop-label">VIOLATION:</span> &nbsp; <span class="stop-value">[what rule was triggered]</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ║</div>
-          <div>║ &nbsp;<span class="stop-label">REQUESTED:</span> &nbsp; <span class="stop-value">[what was asked for]</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
-          <div>║ &nbsp;<span class="stop-label">RULE:</span> &nbsp; &nbsp; &nbsp; &nbsp; <span class="stop-value">[the specific standard being violated]</span> &nbsp; ║</div>
-          <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
-          <div>║ &nbsp;TO PROCEED: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
-          <div>║ &nbsp;<span class="stop-action">→ Email: &nbsp;Marketing@demandscience.com</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
-          <div>║ &nbsp;<span class="stop-action">→ Slack: &nbsp;#design-team</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
-          <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
-          <div>║ &nbsp;Do not publish or share any materials until Design &nbsp; &nbsp; &nbsp; ║</div>
-          <div>║ &nbsp;has reviewed and given written approval. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
-          <div class="stop-border">╚══════════════════════════════════════════════════════════════╝</div>
-        </div>
-      </div>
-
-      <div class="grid-2 reveal">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
         <div>
-          <div class="section-label" style="margin-bottom:var(--space-2)">Design Contact</div>
-          <div style="padding:var(--space-4);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)">
-            <div style="display:flex;align-items:center;gap:12px;margin-bottom:var(--space-2)">
-              <span style="font-family:'Material Symbols Rounded';font-size:32px;color:var(--navy)">mail</span>
-              <div>
-                <div style="font-weight:700;color:var(--dark);font-size:14px">Email</div>
-                <a href="mailto:Marketing@demandscience.com" style="color:var(--blue);font-size:14px">Marketing@demandscience.com</a>
-              </div>
-            </div>
-            <div style="display:flex;align-items:center;gap:12px">
-              <span style="font-family:'Material Symbols Rounded';font-size:32px;color:var(--navy)">forum</span>
-              <div>
-                <div style="font-weight:700;color:var(--dark);font-size:14px">Slack</div>
-                <div style="color:var(--blue);font-size:14px">#design-team</div>
-              </div>
-            </div>
+          <div class="comp-label">Spacing Tokens</div>
+          <div class="space-tokens">
+            <div class="sp-row"><div class="sp-bar" style="width:8px"></div><div class="sp-info"><div class="sv">--space-1</div><div class="sd">8px · micro gap</div></div></div>
+            <div class="sp-row"><div class="sp-bar" style="width:16px"></div><div class="sp-info"><div class="sv">--space-2</div><div class="sd">16px · tight</div></div></div>
+            <div class="sp-row"><div class="sp-bar" style="width:24px"></div><div class="sp-info"><div class="sv">--space-3</div><div class="sd">24px · card padding</div></div></div>
+            <div class="sp-row"><div class="sp-bar" style="width:32px"></div><div class="sp-info"><div class="sv">--space-4</div><div class="sd">32px · component gap</div></div></div>
+            <div class="sp-row"><div class="sp-bar" style="width:40px"></div><div class="sp-info"><div class="sv">--space-5</div><div class="sd">40px · section inner</div></div></div>
+            <div class="sp-row"><div class="sp-bar" style="width:48px"></div><div class="sp-info"><div class="sv">--space-6</div><div class="sd">48px · content group</div></div></div>
+            <div class="sp-row"><div class="sp-bar" style="width:64px"></div><div class="sp-info"><div class="sv">--space-8</div><div class="sd">64px · page margin</div></div></div>
+            <div class="sp-row"><div class="sp-bar" style="width:96px"></div><div class="sp-info"><div class="sv">--space-10</div><div class="sd">96px · section padding</div></div></div>
           </div>
         </div>
         <div>
-          <div class="section-label" style="margin-bottom:var(--space-2)">Governance Files</div>
-          <div style="padding:var(--space-4);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)">
-            <div style="display:flex;flex-direction:column;gap:10px">
-              <div style="display:flex;align-items:center;gap:8px;font-size:13px">
-                <span style="font-family:'Material Symbols Rounded';font-size:18px;color:var(--blue)">description</span>
-                <span style="color:var(--dark)">governance/brand-enforcement.md</span>
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;font-size:13px">
-                <span style="font-family:'Material Symbols Rounded';font-size:18px;color:var(--blue)">description</span>
-                <span style="color:var(--dark)">governance/design-review-process.md</span>
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;font-size:13px">
-                <span style="font-family:'Material Symbols Rounded';font-size:18px;color:var(--blue)">description</span>
-                <span style="color:var(--dark)">governance/approved-use-cases.md</span>
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;font-size:13px">
-                <span style="font-family:'Material Symbols Rounded';font-size:18px;color:var(--blue)">description</span>
-                <span style="color:var(--dark)">ds-brand-police.md — mandatory validator</span>
-              </div>
-            </div>
-          </div>
+          <div class="comp-label">Slide Grid Spec</div>
+          <table class="ds-table">
+            <thead><tr><th>Property</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td>Canvas</td><td>960 × 540px (16:9)</td></tr>
+              <tr><td>L/R Margin</td><td>64px</td></tr>
+              <tr><td>Top Margin</td><td>40px</td></tr>
+              <tr><td>Footer bar</td><td>36px · Navy #061947</td></tr>
+              <tr><td>Columns</td><td>8 · 16px gutters</td></tr>
+              <tr><td>Background</td><td>White #FFFFFF — ALL slides</td></tr>
+              <tr><td>Text align</td><td>Left ONLY — all slides</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-brand">DemandScience Brand Standards</div>
-        <div style="margin-top:4px">v2.3 · Last updated 2026-03-25 · Source of truth: demandscience-design/</div>
+<!-- VOICE -->
+<section class="section section-alt" id="voice">
+  <div class="container">
+    <div class="sec-tag"><span>record_voice_over</span>07 · Voice & Tone</div>
+    <h2 class="sec-title">How We Sound</h2>
+    <p class="sec-body">DemandScience speaks in a clear, direct, human voice. We simplify B2B complexity without losing precision. We never use jargon when plain language works better.</p>
+
+    <div class="mission-block reveal">
+      <p>"Empowering B2B Marketers to take back control of their growth."</p>
+    </div>
+
+    <div class="voice-grid reveal">
+      <div class="voice-card">
+        <h4>Elevator Pitch</h4>
+        <ul>
+          <li style="border:none;padding-bottom:0;font-size:14px;line-height:1.7">DemandScience helps B2B companies grow faster by connecting them with the right buyers at the right time. We provide demand generation solutions that are data-driven, scalable, and built for revenue impact — giving marketers verified buyer signals, invisible multi-channel execution, and continuous AI + human optimization.</li>
+        </ul>
       </div>
-      <div class="footer-links">
-        <a href="#colors">Colors</a>
-        <a href="#typography">Type</a>
-        <a href="#components">Components</a>
-        <a href="#governance">Governance</a>
-        <a href="mailto:Marketing@demandscience.com">Contact Design</a>
+      <div class="voice-card">
+        <h4>Copy Rules</h4>
+        <ul>
+          <li><strong>Headlines:</strong> Verb-led, outcome-first, ≤10 words</li>
+          <li><strong>Body:</strong> Short sentences. One idea per paragraph.</li>
+          <li><strong>CTAs:</strong> Action verbs — "Get", "See", "Start", "Request"</li>
+          <li><strong>Jargon:</strong> Define on first use. Prefer plain language.</li>
+          <li><strong>Emphasis:</strong> Bold only. Never italic for emphasis.</li>
+          <li><strong>Numbers:</strong> Use numerals (3x, 247M+, 94%). Spell out "one" to "nine" in prose.</li>
+        </ul>
       </div>
     </div>
-  </footer>
 
-  <!-- TOAST -->
-  <div id="toast"><span>check_circle</span><span id="toast-msg">Copied to clipboard</span></div>
+    <div class="we-grid reveal">
+      <div class="we-col yes">
+        <h4>We Are</h4>
+        <ul>
+          <li>Clear and direct</li>
+          <li>Data-confident</li>
+          <li>Human and approachable</li>
+          <li>Ambitious</li>
+          <li>Expert without jargon</li>
+          <li>Outcome-focused</li>
+        </ul>
+      </div>
+      <div class="we-col no">
+        <h4>We Are Not</h4>
+        <ul>
+          <li>Vague or wordy</li>
+          <li>Data-obsessed to the point of cold</li>
+          <li>Casual or unprofessional</li>
+          <li>Arrogant</li>
+          <li>Acronym-heavy</li>
+          <li>Feature-focused</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <script>
-    // ── NAV SCROLL ─────────────────────────────────────
-    const nav = document.getElementById('main-nav');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 20);
-      updateJumpNav();
-    }, { passive: true });
+<!-- DO & DON'T -->
+<section class="section" id="dodont">
+  <div class="container">
+    <div class="sec-tag"><span>rule</span>08 · Do & Don't</div>
+    <h2 class="sec-title">Brand Rules in Practice</h2>
+    <p class="sec-body">When in doubt: left-align it, add more whitespace, and use less color. These rules exist because past violations damaged brand credibility.</p>
 
-    // ── JUMP NAV ACTIVE STATE ───────────────────────────
-    const sections = ['colors','typography','components','icons','motion','grid','voice','dodont','governance'];
-    const jumpLinks = document.querySelectorAll('.jump-link');
-    function updateJumpNav() {
-      let current = '';
-      sections.forEach(id => {
-        const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 160) current = id;
-      });
-      jumpLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
-      });
-    }
+    <div class="dodont-grid reveal">
+      <div class="do-card">
+        <h4><span>check_circle</span>Do</h4>
+        <ul>
+          <li>White backgrounds on all slides — no exceptions</li>
+          <li>Left-align all slide text — always</li>
+          <li>Poppins Bold for all headings</li>
+          <li>CTA Red (#D42F5B) on buttons only</li>
+          <li>Google Material Symbols Rounded icons only</li>
+          <li>Add more whitespace — if it feels tight, add more</li>
+          <li>Authentic, candid photography (no posed portraits)</li>
+          <li>Chart colors: Navy → Blue → Pink → Grey</li>
+          <li>White chart backgrounds with minimal gridlines</li>
+          <li>Design approval before any external asset</li>
+        </ul>
+      </div>
+      <div class="dont-card">
+        <h4><span>cancel</span>Don't</h4>
+        <ul>
+          <li>Gradient or navy slide backgrounds</li>
+          <li>Center body text — anywhere on slides</li>
+          <li>Montserrat, Lato, Open Sans, or any other font</li>
+          <li>CTA Red decoratively or as a background</li>
+          <li>Font Awesome, Heroicons, Feather, or Lucide</li>
+          <li>Multiple focal points per slide or screen</li>
+          <li>Stock photos with subjects looking at camera</li>
+          <li>Default Excel/Sheets colors in charts</li>
+          <li>Public assets without an approved template</li>
+          <li>Describe external requests as "quick" or "informal"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // ── COPY HEX ────────────────────────────────────────
-    function copyHex(hex, name) {
-      navigator.clipboard.writeText(hex).then(() => {
-        showToast('Copied ' + name + ': ' + hex);
-      }).catch(() => {
-        showToast('Copied: ' + hex);
-      });
-    }
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      document.getElementById('toast-msg').textContent = msg;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2800);
-    }
+<!-- BAND -->
+<div class="band">
+  <div class="band-inner">
+    <div>
+      <h2>Need Brand Review?</h2>
+      <p>External assets, new logo treatments, co-brands, and off-system designs must be reviewed before publishing. Contact the Design team.</p>
+    </div>
+    <div class="band-btns">
+      <a href="mailto:Marketing@demandscience.com" class="btn-hero-primary"><span style="font-family:'Material Symbols Rounded';font-size:17px">mail</span>Email Design</a>
+      <a href="#governance" class="btn-hero-outline">View Rules</a>
+    </div>
+  </div>
+</div>
 
-    // ── MOTION REPLAY ───────────────────────────────────
-    function replay(id, anim) {
-      const el = document.getElementById(id);
-      el.style.animation = 'none';
-      el.offsetHeight; // reflow
-      el.style.animation = anim;
-    }
+<!-- GOVERNANCE -->
+<section class="section" id="governance">
+  <div class="container">
+    <div class="sec-tag"><span>gavel</span>09 · Governance</div>
+    <h2 class="sec-title">Brand Enforcement System</h2>
+    <p class="sec-body">Two-tier enforcement protects DemandScience's market presence. STOP conditions are absolute — no exceptions, no workarounds, no "just this once."</p>
 
-    // ── SCROLL REVEAL ───────────────────────────────────
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    revealEls.forEach(el => observer.observe(el));
+    <div class="gov-tiers reveal">
+      <div class="tier tier-stop">
+        <h4>🚫 STOP — Halt All Work</h4>
+        <ul>
+          <li>Non-approved icon library</li>
+          <li>Font other than Poppins or Inter</li>
+          <li>Off-palette hex color</li>
+          <li>CTA Red used decoratively</li>
+          <li>Charts with default tool colors</li>
+          <li>Charts on colored backgrounds</li>
+          <li>New logo treatment or variant</li>
+          <li>Public asset without approved template</li>
+          <li>Co-brand or partner lockup</li>
+          <li>Ambiguous external-use request</li>
+          <li>"Quick external" request</li>
+        </ul>
+      </div>
+      <div class="tier tier-warn">
+        <h4>⚠ Warning — Flag & Fix</h4>
+        <ul>
+          <li>Old hex values in use</li>
+          <li>Italic used for emphasis</li>
+          <li>Justified paragraph text</li>
+          <li>Heavy card shadow</li>
+          <li>Sharp-cornered cards</li>
+          <li>Navy/blue CTA button</li>
+          <li>Missing image alt text</li>
+          <li>Gradient on non-approved sections</li>
+          <li>Inconsistent card padding</li>
+          <li>Right-aligned body text</li>
+        </ul>
+      </div>
+      <div class="tier tier-ok">
+        <h4>✅ No Review Needed</h4>
+        <ul>
+          <li>Internal presentations (approved template)</li>
+          <li>Client decks (approved template)</li>
+          <li>One-pagers (approved doc template)</li>
+          <li>Charts with approved color order</li>
+          <li>Material Symbols Rounded icons</li>
+          <li>Email using approved template</li>
+          <li>Web pages using component library</li>
+          <li>Internal Slack/comms graphics</li>
+          <li>Social posts using template</li>
+        </ul>
+      </div>
+    </div>
 
-    // ── REDUCED MOTION ──────────────────────────────────
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (prefersReduced.matches) {
-      document.querySelectorAll('.reveal').forEach(el => {
-        el.style.opacity = '1';
-        el.style.transform = 'none';
-        el.style.transition = 'none';
-      });
-    }
-  </script>
+    <div class="reveal" style="margin-bottom:28px">
+      <div class="comp-label">STOP Message Format — Issue Exactly As Written</div>
+      <div class="stop-terminal">
+        <div class="st-bdr">╔══════════════════════════════════════════════════════════════╗</div>
+        <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="st-title">🚫  DESIGN GOVERNANCE — STOP</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ║</div>
+        <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+        <div>║ &nbsp; This request cannot be completed without &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ║</div>
+        <div>║ &nbsp; Design team review and approval. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+        <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+        <div>║ &nbsp; <span class="st-key">VIOLATION:</span> &nbsp; <span class="st-val">[what rule was triggered]</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ║</div>
+        <div>║ &nbsp; <span class="st-key">REQUESTED:</span> &nbsp; <span class="st-val">[what was asked for]</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+        <div>║ &nbsp; <span class="st-key">RULE:</span> &nbsp; &nbsp; &nbsp; &nbsp; <span class="st-val">[the specific standard being violated]</span> &nbsp;║</div>
+        <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+        <div>║ &nbsp; TO PROCEED: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+        <div>║ &nbsp; <span class="st-act">→ Email: Marketing@demandscience.com</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ║</div>
+        <div>║ &nbsp; <span class="st-act">→ Slack: #design-team</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+        <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+        <div>║ &nbsp; Do not publish or share materials until Design &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+        <div>║ &nbsp; has reviewed and given written approval. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+        <div class="st-bdr">╚══════════════════════════════════════════════════════════════╝</div>
+      </div>
+    </div>
+
+    <div class="contact-strip reveal" id="contact">
+      <div class="contact-pill"><span class="icon">mail</span><div><div class="ct">Email</div><a href="mailto:Marketing@demandscience.com" class="cv">Marketing@demandscience.com</a></div></div>
+      <div class="contact-pill"><span class="icon">forum</span><div><div class="ct">Slack</div><div class="cv">#design-team</div></div></div>
+      <div class="contact-pill"><span class="icon">description</span><div><div class="ct">Governance files</div><div class="cv" style="font-size:12px;color:var(--mid)">governance/brand-enforcement.md<br>governance/design-review-process.md</div></div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">DemandScience Brand System</div>
+      <div class="footer-meta">v2.3 · 2026-03-25 · Source: demandscience-design/ · GitHub: cclark28/demandscience-design</div>
+    </div>
+    <div class="footer-links">
+      <a href="#colors">Colors</a>
+      <a href="#typography">Type</a>
+      <a href="#components">Components</a>
+      <a href="#governance">Governance</a>
+      <a href="mailto:Marketing@demandscience.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div id="toast"><span>check_circle</span><span id="tmsg">Copied!</span></div>
+
+<script>
+// Nav scroll
+const nav=document.getElementById('topnav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>20),{passive:true});
+
+// Sidebar active
+const ids=['system','colors','typography','components','icons','motion','grid','voice','dodont','governance'];
+const sbLinks=document.querySelectorAll('.sb-link');
+function updateSb(){
+  let cur='';
+  ids.forEach(id=>{const el=document.getElementById(id);if(el&&scrollY>=el.offsetTop-120)cur=id;});
+  sbLinks.forEach(l=>{
+    const href=l.getAttribute('href');
+    l.classList.toggle('active',href==='#'+cur);
+  });
+}
+window.addEventListener('scroll',updateSb,{passive:true});
+updateSb();
+
+// Copy
+function copyVal(v,n){
+  navigator.clipboard.writeText(v).then(()=>toast('Copied '+n+': '+v)).catch(()=>toast('Copied: '+v));
+}
+function toast(m){
+  const t=document.getElementById('toast');
+  document.getElementById('tmsg').textContent=m;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+// Motion replay
+function replay(id,anim){
+  const el=document.getElementById(id);
+  el.style.animation='none';
+  el.offsetHeight;
+  el.style.animation=anim;
+}
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});
+},{threshold:0.06});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Reduced motion
+if(matchMedia('(prefers-reduced-motion:reduce)').matches){
+  document.querySelectorAll('.reveal').forEach(el=>{el.style.opacity=1;el.style.transform='none';el.style.transition='none';});
+}
+</script>
 </body>
 </html>
