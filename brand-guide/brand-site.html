@@ -236,14 +236,12 @@ button{font-family:inherit;cursor:pointer}
   padding:28px;border-radius:var(--r);
   border:1px solid var(--border);
   background:var(--white);
-  transition:border-color .2s,transform .2s,box-shadow .2s;
   position:relative;overflow:hidden;
 }
 .sys-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:3px;
   background:var(--grad);
 }
-.sys-card:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:var(--shadow)}
 .sys-num{
   width:36px;height:36px;border-radius:8px;
   background:var(--navy);
@@ -262,8 +260,7 @@ button{font-family:inherit;cursor:pointer}
 
 /* ── COLORS ──────────────────────────────────── */
 .color-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
-.swatch{border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .2s,box-shadow .2s}
-.swatch:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.14)}
+.swatch{border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;}
 .sw-color{height:100px}
 .sw-meta{padding:12px 14px;background:#fff;border-top:1px solid var(--border)}
 .sw-name{font-size:12px;font-weight:700;color:var(--dark)}
@@ -321,36 +318,27 @@ button{font-family:inherit;cursor:pointer}
   background:var(--pink);color:#fff;padding:11px 24px;border-radius:100px;
   font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;border:none;
   display:inline-flex;align-items:center;gap:6px;
-  transition:background .2s,transform .2s,box-shadow .2s;
+  /* transitions managed by motion states block below */
 }
-.btn-p:hover{background:#c0284f;transform:translateY(-2px);box-shadow:0 6px 16px rgba(212,47,91,.4)}
 .btn-s{
   background:transparent;color:var(--pink);padding:9px 22px;border-radius:100px;
   border:2px solid var(--pink);font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;
-  transition:background .2s,transform .2s;
 }
-.btn-s:hover{background:var(--pink-lt);transform:translateY(-2px)}
 .btn-g{
   background:transparent;color:var(--navy);padding:9px 22px;border-radius:100px;
   border:2px solid var(--navy);font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;
-  transition:background .2s,transform .2s;
 }
-.btn-g:hover{background:var(--lt);transform:translateY(-2px)}
 .btn-ui{
   background:var(--lt);color:var(--dark);padding:7px 14px;border-radius:8px;
   border:1px solid var(--border);font-size:12.5px;font-weight:500;
-  transition:background .15s;
 }
-.btn-ui:hover{background:var(--border)}
 .btn-dis{opacity:.38;cursor:not-allowed}
 /* Cards */
 .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .ds-card{
   padding:22px;border-radius:var(--r);background:#fff;
   box-shadow:var(--shadow);border:1px solid var(--border);
-  transition:transform .2s,box-shadow .2s;
 }
-.ds-card:hover{transform:translateY(-4px);box-shadow:0 8px 40px rgba(0,0,0,.13)}
 .card-ico{
   width:44px;height:44px;border-radius:8px;
   background:var(--blue-lt);
@@ -397,11 +385,9 @@ button{font-family:inherit;cursor:pointer}
   padding:14px 8px;border-radius:var(--r);
   background:#fff;border:1px solid var(--border);
   display:flex;flex-direction:column;align-items:center;gap:8px;
-  cursor:pointer;transition:background .15s,border-color .15s,transform .2s;
+  cursor:pointer;
 }
-.icon-cell:hover{background:var(--blue-lt);border-color:var(--blue);transform:translateY(-2px)}
 .icon-cell span.i{font-family:'Material Symbols Rounded';font-size:26px;color:var(--navy)}
-.icon-cell:hover span.i{color:var(--blue)}
 .icon-cell .in{font-size:9.5px;color:var(--mid);text-align:center;line-height:1.3}
 /* Sizes */
 .icon-sizes{display:flex;align-items:flex-end;gap:28px;padding:24px;background:var(--lt);border-radius:var(--r)}
@@ -590,6 +576,410 @@ button{font-family:inherit;cursor:pointer}
   .band{padding:40px 28px}
   .hero-stats{flex-direction:column}
   .hero-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
+}
+
+/* ════════════════════════════════════════════════════
+   MOTION STATES
+   Every interactive element has: hover · active · focus
+   Curves: M3 standard / emphasized / decelerate / accelerate
+   ════════════════════════════════════════════════════ */
+
+/* Keyframes */
+@keyframes focusRingIn{
+  from{outline-color:transparent;outline-offset:6px}
+  to{outline-color:rgba(2,102,247,.45);outline-offset:3px}
+}
+@keyframes pressRipple{
+  from{opacity:.18;transform:scale(0)}
+  to{opacity:0;transform:scale(2.4)}
+}
+@keyframes iconNudge{
+  0%,100%{transform:translateX(0)}
+  50%{transform:translateX(4px)}
+}
+@keyframes badgePop{
+  from{opacity:0;transform:scale(.7)}
+  to{opacity:1;transform:scale(1)}
+}
+
+/* ── ICON base — all Material icons get smooth color+scale ── */
+.card-ico span,
+.icon-cell span.i,
+.dd-icon span,
+.sb-link span.icon,
+.contact-pill span.icon {
+  display:inline-block;
+  transition:
+    color 150ms var(--ease-std),
+    transform 200ms var(--ease-emph-dec);
+}
+
+/* ── PRIMARY BUTTON ─────────────────────────────── */
+.btn-p {
+  position:relative; overflow:hidden;
+  transition:
+    background 150ms var(--ease-std),
+    transform  200ms var(--ease-std),
+    box-shadow 200ms var(--ease-std);
+}
+/* Ripple layer */
+.btn-p::after {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(circle at 50% 120%, rgba(255,255,255,.22) 0%, transparent 70%);
+  opacity:0; transform:scale(0); border-radius:inherit;
+  transition:opacity 500ms var(--ease-std-acc), transform 500ms var(--ease-std-acc);
+  pointer-events:none;
+}
+.btn-p:active::after {
+  opacity:1; transform:scale(1);
+  transition-duration:0ms;
+}
+.btn-p:hover {
+  background:#c0284f;
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(212,47,91,.42);
+}
+.btn-p:active {
+  transform:translateY(0) scale(.96);
+  box-shadow:0 2px 8px rgba(212,47,91,.28);
+  transition:
+    transform  100ms var(--ease-emph-acc),
+    box-shadow 100ms var(--ease-emph-acc);
+}
+.btn-p:focus-visible {
+  outline:3px solid rgba(212,47,91,.45);
+  outline-offset:3px;
+  animation:focusRingIn 200ms var(--ease-emph-dec) both;
+}
+/* Arrow icon nudges right on hover */
+.btn-p span {
+  display:inline-block;
+  transition:transform 200ms var(--ease-emph-dec);
+}
+.btn-p:hover span { transform:translateX(3px) }
+.btn-p:active span { transform:translateX(0); transition-duration:80ms }
+
+/* ── SECONDARY BUTTON ───────────────────────────── */
+.btn-s {
+  position:relative; overflow:hidden;
+  transition:
+    background 200ms var(--ease-std),
+    color      200ms var(--ease-std),
+    transform  200ms var(--ease-std),
+    box-shadow 200ms var(--ease-std);
+}
+.btn-s:hover {
+  background:var(--pink-lt);
+  transform:translateY(-2px);
+  box-shadow:0 4px 14px rgba(212,47,91,.18);
+}
+.btn-s:active {
+  transform:translateY(0) scale(.96);
+  box-shadow:none;
+  transition:transform 100ms var(--ease-emph-acc), box-shadow 100ms var(--ease-emph-acc);
+}
+.btn-s:focus-visible {
+  outline:3px solid rgba(212,47,91,.35);
+  outline-offset:3px;
+  animation:focusRingIn 200ms var(--ease-emph-dec) both;
+}
+
+/* ── GHOST BUTTON ───────────────────────────────── */
+.btn-g {
+  transition:
+    background 200ms var(--ease-std),
+    transform  200ms var(--ease-std),
+    box-shadow 200ms var(--ease-std);
+}
+.btn-g:hover {
+  background:var(--lt);
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(6,25,71,.1);
+}
+.btn-g:active {
+  transform:translateY(0) scale(.96);
+  box-shadow:none;
+  transition:transform 100ms var(--ease-emph-acc);
+}
+.btn-g:focus-visible {
+  outline:3px solid rgba(6,25,71,.3);
+  outline-offset:3px;
+  animation:focusRingIn 200ms var(--ease-emph-dec) both;
+}
+
+/* ── UI BUTTON ──────────────────────────────────── */
+.btn-ui {
+  transition:
+    background    150ms var(--ease-std),
+    border-color  150ms var(--ease-std),
+    transform     150ms var(--ease-std),
+    box-shadow    150ms var(--ease-std);
+}
+.btn-ui:hover {
+  background:var(--border);
+  border-color:#d1d5db;
+  box-shadow:0 1px 4px rgba(0,0,0,.08);
+}
+.btn-ui:active {
+  transform:scale(.96);
+  background:#e5e7eb;
+  transition:transform 80ms var(--ease-emph-acc);
+}
+.btn-ui:focus-visible {
+  outline:3px solid rgba(2,102,247,.3);
+  outline-offset:2px;
+}
+
+/* ── HERO BUTTONS ───────────────────────────────── */
+.btn-hero-primary {
+  transition:
+    transform  200ms var(--ease-std),
+    box-shadow 200ms var(--ease-std);
+}
+.btn-hero-primary:active {
+  transform:scale(.96);
+  box-shadow:none;
+  transition:transform 100ms var(--ease-emph-acc), box-shadow 100ms var(--ease-emph-acc);
+}
+.btn-hero-primary:focus-visible {
+  outline:3px solid rgba(255,255,255,.6);
+  outline-offset:3px;
+  animation:focusRingIn 200ms var(--ease-emph-dec) both;
+}
+.btn-hero-primary span {
+  display:inline-block;
+  transition:transform 200ms var(--ease-emph-dec);
+}
+.btn-hero-primary:hover span { transform:translateX(3px) }
+.btn-hero-primary:active span { transform:translateX(0); transition-duration:80ms }
+
+.btn-hero-outline {
+  transition:
+    background     200ms var(--ease-std),
+    border-color   200ms var(--ease-std),
+    transform      200ms var(--ease-std);
+}
+.btn-hero-outline:active {
+  transform:scale(.96);
+  transition:transform 100ms var(--ease-emph-acc);
+}
+.btn-hero-outline:focus-visible {
+  outline:3px solid rgba(255,255,255,.5);
+  outline-offset:3px;
+  animation:focusRingIn 200ms var(--ease-emph-dec) both;
+}
+
+/* ── NAV CTA ────────────────────────────────────── */
+.nav-cta {
+  transition:
+    background 150ms var(--ease-std),
+    transform  200ms var(--ease-std),
+    box-shadow 200ms var(--ease-std);
+}
+.nav-cta:active {
+  transform:scale(.96);
+  box-shadow:none;
+  transition:transform 100ms var(--ease-emph-acc);
+}
+.nav-cta:focus-visible {
+  outline:3px solid rgba(212,47,91,.5);
+  outline-offset:3px;
+}
+
+/* ── PLAY BUTTON ────────────────────────────────── */
+.play-btn {
+  transition:
+    background   150ms var(--ease-std),
+    border-color 150ms var(--ease-std),
+    transform    150ms var(--ease-std);
+}
+.play-btn:active {
+  transform:scale(.94);
+  transition:transform 80ms var(--ease-emph-acc);
+}
+.play-btn span {
+  display:inline-block;
+  transition:transform 200ms var(--ease-emph-dec);
+}
+.play-btn:hover span { transform:scale(1.15) }
+
+/* ── CARDS ──────────────────────────────────────── */
+.ds-card {
+  transition:
+    transform  200ms var(--ease-std),
+    box-shadow 200ms var(--ease-std),
+    border-color 200ms var(--ease-std);
+}
+.ds-card:hover {
+  transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(0,0,0,.12);
+  border-color:rgba(2,102,247,.2);
+}
+/* Card icon brightens + scales on card hover */
+.ds-card:hover .card-ico {
+  background:rgba(2,102,247,.18);
+  transition:background 200ms var(--ease-std);
+}
+.ds-card:hover .card-ico span {
+  transform:scale(1.15);
+  color:var(--blue);
+}
+
+/* System cards */
+.sys-card {
+  transition:
+    border-color 200ms var(--ease-std),
+    transform    200ms var(--ease-std),
+    box-shadow   200ms var(--ease-std);
+}
+.sys-card:hover { border-color:var(--blue); transform:translateY(-3px); box-shadow:0 10px 32px rgba(0,0,0,.1); }
+.sys-card:hover .sys-num {
+  background:var(--blue);
+  transition:background 200ms var(--ease-std);
+}
+
+/* ── STAT BLOCKS ────────────────────────────────── */
+.stat-block {
+  cursor:default;
+  transition:transform 200ms var(--ease-std), box-shadow 200ms var(--ease-std);
+}
+.stat-block:hover {
+  transform:translateY(-3px);
+  box-shadow:0 8px 28px rgba(0,0,0,.22);
+}
+
+/* ── COLOR SWATCHES ─────────────────────────────── */
+.swatch {
+  transition:
+    transform  200ms var(--ease-std),
+    box-shadow 200ms var(--ease-std);
+}
+.swatch:hover { transform:translateY(-5px); box-shadow:0 12px 36px rgba(0,0,0,.16); }
+.swatch:active { transform:translateY(-2px) scale(.98); transition-duration:100ms; }
+
+/* ── ICON CELLS ─────────────────────────────────── */
+.icon-cell {
+  transition:
+    background    150ms var(--ease-std),
+    border-color  150ms var(--ease-std),
+    transform     200ms var(--ease-std);
+}
+.icon-cell:hover { background:var(--blue-lt); border-color:var(--blue); transform:translateY(-3px); }
+.icon-cell:active { transform:scale(.92); transition-duration:80ms; }
+.icon-cell span.i {
+  transition:
+    color     150ms var(--ease-std),
+    transform 200ms var(--ease-emph-dec);
+}
+.icon-cell:hover span.i { color:var(--blue); transform:scale(1.18); }
+
+/* ── FORM INPUTS ────────────────────────────────── */
+.ds-input {
+  transition:
+    border-color 150ms var(--ease-std-dec),
+    box-shadow   200ms var(--ease-emph-dec);
+}
+.ds-input:hover:not(:focus) {
+  border-color:#94a3b8;
+}
+.ds-input:focus {
+  border-color:var(--blue);
+  box-shadow:0 0 0 0px rgba(2,102,247,.12);
+  animation:inputFocusRing 250ms var(--ease-emph-dec) forwards;
+}
+@keyframes inputFocusRing{
+  from{box-shadow:0 0 0 0px rgba(2,102,247,.2)}
+  to{box-shadow:0 0 0 3px rgba(2,102,247,.14)}
+}
+
+/* ── SIDEBAR LINKS ──────────────────────────────── */
+.sb-link {
+  transition:
+    color        150ms var(--ease-std),
+    background   150ms var(--ease-std),
+    border-color 200ms var(--ease-emph-dec),
+    transform    150ms var(--ease-std);
+  border-left:2px solid transparent;
+}
+.sb-link:hover { transform:translateX(2px); }
+.sb-link.active { border-left-color:var(--blue); }
+.sb-link span.icon { transition:color 150ms var(--ease-std), transform 200ms var(--ease-emph-dec); }
+.sb-link:hover span.icon { color:var(--navy); transform:scale(1.1); }
+.sb-link.active span.icon { color:var(--blue); }
+
+/* ── DROPDOWN ITEMS ─────────────────────────────── */
+.dd-item {
+  transition:background 120ms var(--ease-std);
+}
+.dd-item:hover .dd-icon {
+  background:var(--blue-lt);
+  transition:background 150ms var(--ease-std);
+}
+.dd-item:hover .dd-icon span {
+  transform:scale(1.12);
+  color:var(--blue);
+}
+/* Dropdown itself — M3 enter */
+.dropdown {
+  transition:
+    opacity   200ms var(--ease-emph-dec),
+    transform 200ms var(--ease-emph-dec),
+    visibility 200ms;
+}
+
+/* ── JUMP NAV LINKS ──────────────────────────────── */
+.jump-link {
+  transition:
+    background 150ms var(--ease-std),
+    color      150ms var(--ease-std),
+    transform  150ms var(--ease-std);
+}
+.jump-link:hover { transform:translateY(-1px); }
+.jump-link:active { transform:scale(.95); transition-duration:80ms; }
+
+/* ── CONTACT PILLS ──────────────────────────────── */
+.contact-pill {
+  transition:transform 200ms var(--ease-std), box-shadow 200ms var(--ease-std);
+}
+.contact-pill:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,.1); }
+.contact-pill:hover span.icon { transform:scale(1.12); color:var(--blue); }
+
+/* ── FOOTER LINKS — underline slide ─────────────── */
+.footer-links a {
+  position:relative;
+  transition:color 200ms var(--ease-std);
+}
+.footer-links a::after {
+  content:''; position:absolute;
+  bottom:-2px; left:0;
+  width:0; height:1px;
+  background:#fff;
+  transition:width 250ms var(--ease-emph-dec);
+}
+.footer-links a:hover::after { width:100%; }
+
+/* ── HERO STATS — subtle hover ───────────────────── */
+.hero-stat {
+  transition:background 200ms var(--ease-std);
+  cursor:default;
+}
+.hero-stat:hover { background:rgba(255,255,255,.06); }
+
+/* ── BAND BUTTONS ───────────────────────────────── */
+.band .btn-hero-primary:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.25); }
+.band .btn-hero-outline:hover { background:rgba(255,255,255,.18); border-color:rgba(255,255,255,.6); transform:translateY(-2px); }
+
+/* ── TABLE ROWS — hover state ───────────────────── */
+.ds-table tbody tr {
+  transition:background 120ms var(--ease-std);
+}
+.ds-table tbody tr:hover td {
+  background:rgba(2,102,247,.08) !important;
+}
+
+/* ── BADGE ENTER ANIMATION ───────────────────────── */
+.badge {
+  animation:badgePop 200ms var(--ease-emph-dec) both;
 }
 </style>
 </head>
