@@ -24,9 +24,11 @@
   --ds-gradient-135:     linear-gradient(135deg,   #061947, #0266f7);      /* Diagonal — hero & cards */
   --ds-gradient-45:      linear-gradient(45deg,    #061947, #0266f7);      /* Reverse diagonal */
   --ds-gradient-radial:  radial-gradient(circle at 30% 50%, #0266f7 0%, #061947 100%); /* Radial — overlays */
+  /* Multi-stop — 4 stops matching brand depth: Navy → Navy Light hold → Electric Blue bloom */
+  --ds-gradient-multi:   linear-gradient(135deg, #061947 0%, #0a2a8f 20%, #0a2a8f 75%, #0266f7 100%);
   /* Use for: hero areas, title slides, section dividers, closing slides only */
   /* Motion variant — animated gradient uses gradientShift keyframe (see below) */
-  --ds-gradient-animated: linear-gradient(135deg, #061947 0%, #0266f7 50%, #0a2a8f 100%);
+  --ds-gradient-animated: linear-gradient(135deg, #061947 0%, #0a2a8f 20%, #0a2a8f 75%, #0266f7 100%);
 
   /* --- Typography --- */
   --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
@@ -87,6 +89,8 @@
 
 /* ==========================================================
    COLOR CHANGE LOG
+   v2.6 — 2026-03-25 — Added --ds-gradient-multi (4-stop: Navy 0% → Navy Light 20%/75% → Electric Blue 100%);
+     Updated --ds-gradient-animated to use the same 4-stop structure.
    v2.5 — 2026-03-25 — Removed CTA Red (#D42F5B) and Pink Light (#FDF2F4);
      Added --ds-gradient-135, --ds-gradient-45, --ds-gradient-radial,
      --ds-gradient-animated, and @keyframes gradientShift.

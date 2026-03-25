@@ -16,6 +16,16 @@ Claude reads this file to understand what changed and why.
 
 ---
 
+## [v2.6] — 2026-03-25
+**Changed:** Multi-stop gradient added to color system
+**Why:** Incoming gradient (#0F399C → #121970 → #181776 → #3C13A5) failed brand police — all stops off-palette. Replaced with compliant 4-stop using approved colors only.
+**Gradient:** `--ds-gradient-multi: linear-gradient(135deg, #061947 0%, #0a2a8f 20%, #0a2a8f 75%, #0266f7 100%)`
+**Structure:** Navy deep at 0% → Navy Light holds 20–75% → Electric Blue blooms at 100%
+**Also updated:** `--ds-gradient-animated` uses same 4-stop structure · Hero gradient updated to match
+**Files affected:** assets/colors.css, brand-guide/brand-site.html, CHANGELOG.md
+
+---
+
 ## [v2.5] — 2026-03-25
 **Changed:** CTA Red and Pink Light removed from system · Gradient variants added · Hero animated gradient + entrance animations · Logo corrected to DS-Logo-White.svg · Footer redesigned · Poppins H1–H5 weight standardized to SemiBold (600)
 **Color removals:**
