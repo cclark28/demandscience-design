@@ -16,6 +16,20 @@ Claude reads this file to understand what changed and why.
 
 ---
 
+## [v2.4] — 2026-03-25
+**Changed:** Brand site fully redesigned · Capabilities deck ingested
+**New brand-site.html features:**
+  - Sticky sidebar navigation (Dropbox brand site-inspired structure)
+  - DS System 4-pillar section: Gather / Resonate / Orchestrate / Win (from capabilities deck)
+  - Live stats from deck: 207K+ intent topics, 247M+ contacts, 51B+ behaviors, <3% ad fraud
+  - Scroll reveal animations, copy-to-clipboard swatches, motion playback demos
+  - Full governance terminal block, contact strip, responsive layout
+**Ingested:** `26-DemandScience-Global-Capabilities-Deck.pptx` — 127 slides; product messaging, stats, and system framing added to brand site and voice content
+**Pushed live:** https://github.com/cclark28/demandscience-design
+**Files affected:** brand-guide/brand-site.html, CHANGELOG.md
+
+---
+
 ## [v2.3] — 2026-03-25
 **Changed:** Brand governance and enforcement system added
 **New files:**
