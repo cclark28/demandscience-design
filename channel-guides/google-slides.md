@@ -47,7 +47,7 @@ Every slide includes a footer bar:
 
 | Level        | Font    | Size    | Weight   | Color                   | Alignment |
 |--------------|---------|---------|----------|-------------------------|-----------|
-| H1 / Title   | Poppins | 32pt    | Bold     | Navy `#061947`          | Left      |
+| H1 / Title   | Poppins | 32pt    | SemiBold | Navy `#061947`          | Left      |
 | H2 / Heading | Poppins | 24pt    | SemiBold | Navy `#061947`          | Left      |
 | H3 / Subhead | Poppins | 18pt    | SemiBold | Electric Blue `#0266F7` | Left      |
 | Body         | Inter   | 12–14pt | Regular  | Dark Grey `#1E293B`     | Left      |
@@ -68,7 +68,7 @@ Every slide includes a footer bar:
 
 ### Standard Content Slide
 - White background
-- H1 title: top-left, Poppins Bold 32pt, Navy
+- H1 title: top-left, Poppins SemiBold 32pt, Navy
 - Body: left-aligned, Inter 12–14pt, Dark Grey
 - Navy footer bar at bottom
 
@@ -121,7 +121,7 @@ Every slide includes a footer bar:
 | Navy `#061947` | H1 titles, key headings, footer bar background |
 | Electric Blue `#0266F7` | Subheadings, callout emphasis, icon color, key numbers |
 | Baby Blue `#CDEDFD` | Subtle shape accents, card backgrounds, tag shapes |
-| CTA Red `#D42F5B` | CTA button shapes and labels only — nowhere else |
+| Electric Blue `#0266F7` | CTA button shapes, links, and active emphasis — nowhere else |
 | Dark Grey `#1E293B` | All body copy |
 | Medium Grey `#64748B` | Captions, secondary labels |
 | White `#FFFFFF` | Slide background (always), text on footer bar |
@@ -142,11 +142,11 @@ Every slide includes a footer bar:
 
 - [ ] All slide backgrounds are white `#FFFFFF`
 - [ ] All text is left-aligned — no centered text on any slide
-- [ ] H1 is Poppins Bold 32pt, Navy
+- [ ] H1 is Poppins SemiBold 600 32pt, Navy
 - [ ] Body is Inter 12–14pt, Dark Grey
 - [ ] Gradient appears only in the footer bar — not the slide background
 - [ ] Navy footer bar on every slide with "Confidential", logo, page number
-- [ ] CTA Red used only on button/CTA shapes, not decoratively
+- [ ] CTA buttons use Electric Blue (#0266F7) only
 - [ ] Icons are Google Material Symbols Rounded, Navy or Electric Blue
 
 ---

@@ -1,7 +1,7 @@
 ---
 name: ds-brand-design
 description: Unified DemandScience design system for slides, docs, web, infographics, and internal/public assets.
-version: 2.0
+version: 2.5
 last-updated: 2026-03-25
 source: Updated from 25-DS-BrandGuide-General.pdf
 ---
@@ -51,8 +51,7 @@ Use this as the **source of truth** for visual decisions. Format‑specific skil
 | Name          | Hex       | PDF Name       | CSS Variable       | Usage                                              |
 |---------------|-----------|----------------|--------------------|----------------------------------------------------|
 | Navy          | `#061947` | Navy Blue      | `--ds-navy`        | Primary headings, key UI, dark text on white       |
-| Electric Blue | `#0266F7` | Electric Blue  | `--ds-blue`        | Links, emphasis text, key numbers, interactive     |
-| CTA Red       | `#D42F5B` | Red (CTA)      | `--ds-pink`        | CTA buttons **only** — not decorative, not for long text |
+| Electric Blue | `#0266F7` | Electric Blue  | `--ds-blue`        | Links, CTAs, emphasis text, key numbers, interactive |
 
 **Extended**
 
@@ -60,7 +59,6 @@ Use this as the **source of truth** for visual decisions. Format‑specific skil
 |-------------|-----------|-------------|---------------------|---------------------------------------------------|
 | Baby Blue   | `#CDEDFD` | Baby Blue   | `--ds-blue-light`   | Subtle accent backgrounds, chips, tags, alt table rows |
 | Navy Light  | `#0A2A8F` | —           | `--ds-navy-light`   | Hover states on navy, dark gradients              |
-| Pink Light  | `#FDF2F4` | —           | `--ds-pink-light`   | CTA-related backgrounds only                      |
 | Red Orange  | `#F40356` | —           | `--ds-red-orange`   | Destructive actions and critical alerts           |
 
 **Neutrals (cool greys)**
@@ -74,9 +72,16 @@ Use this as the **source of truth** for visual decisions. Format‑specific skil
 
 **Gradient**
 
-- `linear-gradient(to right, #061947, #0266F7)` — `--ds-gradient`
+| Token | Value | Use |
+|-------|-------|-----|
+| `--ds-gradient`         | `linear-gradient(to right, #061947, #0266F7)` | Default horizontal |
+| `--ds-gradient-135`     | `linear-gradient(135deg, #061947, #0266F7)` | Diagonal — hero & cards |
+| `--ds-gradient-45`      | `linear-gradient(45deg, #061947, #0266F7)` | Reverse diagonal |
+| `--ds-gradient-radial`  | `radial-gradient(circle at 30% 50%, #0266F7, #061947)` | Overlay / radial focal |
+| `--ds-gradient-animated`| `linear-gradient(135deg, #061947, #0266F7, #0A2A8F)` + `@keyframes gradientShift` | Hero animated background |
+
 - Use for: hero areas, title slides, section dividers, closing slides, and high‑impact bands.
-- **Not** a default background.
+- **Not** a default background. Never on slide backgrounds or data cards.
 
 > **Color usage summary:**
 > - **White = default background**
@@ -94,8 +99,6 @@ Use this as the **source of truth** for visual decisions. Format‑specific skil
   --ds-navy-light: #0a2a8f;   /* Hover/dark gradient variant */
   --ds-blue:       #0266f7;   /* Electric Blue */
   --ds-blue-light: #cdedfd;   /* Baby Blue */
-  --ds-pink:       #d42f5b;   /* CTA Red (PDF name: Red) */
-  --ds-pink-light: #fdf2f4;   /* CTA-related backgrounds */
   --ds-red-orange: #f40356;   /* Destructive / alerts */
 
   /* Neutrals */
@@ -105,7 +108,9 @@ Use this as the **source of truth** for visual decisions. Format‑specific skil
   --ds-white:       #ffffff;
 
   /* Gradient */
-  --ds-gradient: linear-gradient(to right, #061947, #0266f7);
+  --ds-gradient:         linear-gradient(to right, #061947, #0266f7);
+  --ds-gradient-135:     linear-gradient(135deg,   #061947, #0266f7);
+  --ds-gradient-animated: linear-gradient(135deg,  #061947, #0266f7, #0a2a8f);
 
   /* Typography */
   --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
@@ -140,8 +145,8 @@ Use this as the **source of truth** for visual decisions. Format‑specific skil
 
 | Level       | Size / Line-height | Family  | Weight |
 |-------------|-------------------|---------|--------|
-| H1          | 50px / 60px       | Poppins | 700    |
-| H2          | 38px / 45px       | Poppins | 700    |
+| H1          | 50px / 60px       | Poppins | 600    |
+| H2          | 38px / 45px       | Poppins | 600    |
 | H3          | 30px / 36px       | Poppins | 600    |
 | H4          | 24px / 30px       | Poppins | 600    |
 | H5          | 18px / 24px       | Poppins | 600    |
@@ -153,7 +158,7 @@ Use this as the **source of truth** for visual decisions. Format‑specific skil
 
 | Level          | Size   | Weight   |
 |----------------|--------|----------|
-| Page title     | 30px   | Bold     |
+| Page title     | 30px   | Semibold |
 | Card title     | 24px   | Semibold |
 | Dialog title   | 18px   | Semibold |
 | Section heading | 16px  | Medium   |
@@ -238,12 +243,12 @@ Use this as the **source of truth** for visual decisions. Format‑specific skil
 
 | Variant   | Background    | Text  | Border            | Radius |
 |-----------|---------------|-------|-------------------|--------|
-| Primary   | `#D42F5B`     | White | None              | 100px  |
-| Secondary | Transparent   | Red   | 2px `#D42F5B`     | 100px  |
+| Primary   | `#0266F7`     | White | None              | 100px  |
+| Secondary | Transparent   | Blue  | 2px `#0266F7`     | 100px  |
 
 ```css
 .ds-btn-primary {
-  background: var(--ds-pink);   /* #D42F5B — official CTA Red */
+  background: var(--ds-blue);   /* #0266F7 — Electric Blue */
   color: var(--ds-white);
   border: none;
   border-radius: 100px;
@@ -255,8 +260,8 @@ Use this as the **source of truth** for visual decisions. Format‑specific skil
 
 .ds-btn-secondary {
   background: transparent;
-  color: var(--ds-pink);
-  border: 2px solid var(--ds-pink);
+  color: var(--ds-blue);
+  border: 2px solid var(--ds-blue);
   border-radius: 100px;
   padding: 12px 34px;
   font-family: var(--font-sans);
@@ -287,9 +292,8 @@ Use this as the **source of truth** for visual decisions. Format‑specific skil
 
 1. Navy `#061947`
 2. Electric Blue `#0266F7`
-3. CTA Red `#D42F5B`
-4. Medium Grey `#64748B`
-5. Dark Grey `#1E293B`
+3. Medium Grey `#64748B`
+4. Dark Grey `#1E293B`
 
 **Rules:**
 - Charts live on white backgrounds with generous margins.
@@ -453,7 +457,7 @@ Multiple elements animate in sequence at 40–60ms intervals. Maximum 6 items st
 - Gradient and navy are used only in contained elements: footer bars, shape accents, CTA buttons — never as a full slide background.
 - **All text is left-aligned on all slides — no centered text anywhere.**
 - Type scale for slides:
-  - H1 / Title: Poppins Bold, **32pt**, Navy `#061947`
+  - H1 / Title: Poppins SemiBold, **32pt**, Navy `#061947`
   - H2 / Heading: Poppins SemiBold, 24pt, Navy
   - H3 / Subhead: Poppins SemiBold, 18pt, Electric Blue `#0266F7`
   - Body: Inter Regular, **12–14pt**, Dark Grey `#1E293B`
@@ -465,7 +469,7 @@ Multiple elements animate in sequence at 40–60ms intervals. Maximum 6 items st
 - 1" margins, primarily white pages.
 - Left‑aligned text throughout; no justified paragraphs.
 - Cool grey card backgrounds for callouts and sidebars.
-- CTA buttons in pink when there's a clear action.
+- CTA buttons in Electric Blue (#0266F7) when there's a clear action.
 
 ### 10.3 Web & Landing Pages
 
@@ -495,7 +499,7 @@ Whenever Claude generates, reviews, or iterates on any DemandScience asset — s
 | Colors         | Every color used must exist in the approved palette. Flag any hex not in the system. |
 | Typography     | Poppins for headings, Inter for body only. Sizes must follow the defined scale.  |
 | Alignment      | Body and headings left-aligned by default. Flag any centered text that shouldn't be. |
-| CTA Red usage  | CTA Red `#D42F5B` on CTA buttons/labels only. Flag any decorative or non-CTA use. |
+| CTA color      | Electric Blue `#0266F7` on CTA buttons, links, and interactive states only. Flag any off-palette CTA use. |
 | Icons          | Google Material Symbols Rounded only. Flag any other icon library or style.      |
 | Spacing        | Generous whitespace. Flag tight, cramped, or inconsistent spacing.               |
 | Cards          | 10px radius, white or light grey fill, correct shadow. Flag deviations.         |
@@ -512,7 +516,7 @@ When a violation is found, call it out clearly before or alongside the output:
 ```
 
 Examples:
-- `⚠ Design System Issue: Pink used as a section background — Pink is reserved for CTA buttons only. Use Light Grey #F8F9FB instead.`
+- `⚠ Design System Issue: Off-palette color used as a section background — Use Light Grey #F8F9FB instead.`
 - `⚠ Design System Issue: Font "Montserrat" found — Only Poppins (headings) and Inter (body) are approved. Replace with Poppins.`
 - `⚠ Design System Issue: Icon from Heroicons — All icons must be Google Material Symbols Rounded. Replace with the equivalent Rounded icon.`
 
@@ -559,7 +563,7 @@ Before shipping any asset — slide, doc, web page, infographic, or internal fil
 - [ ] Body copy and most headings are left‑aligned
 - [ ] Colors only from the approved palette; cool greys for cards and structure
 - [ ] Poppins for headings, Inter for body; sizes follow shared scales
-- [ ] Pink used **only** for CTA buttons and key action states
+- [ ] Electric Blue (#0266F7) used for CTA buttons, links, and interactive states
 - [ ] All icons are **Google Material Symbols Rounded** — no other icon libraries
 - [ ] Cards and images have consistent 10px rounded corners and generous spacing
 - [ ] Charts/tables use shared styles and color order

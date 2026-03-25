@@ -8,12 +8,9 @@
   /* --- Brand Primary (PDF official names) --- */
   --ds-navy:       #061947;   /* Navy Blue — primary headings, key UI, dark text on white */
   --ds-blue:       #0266f7;   /* Electric Blue — links, emphasis, key numbers, interactive */
-  --ds-pink:       #d42f5b;   /* Red (CTA) — CTA buttons ONLY, not decorative */
-
   /* --- Brand Extended --- */
   --ds-blue-light: #cdedfd;   /* Baby Blue — subtle backgrounds, chips, tags, alt table rows */
   --ds-navy-light: #0a2a8f;   /* Hover states on navy, dark gradients */
-  --ds-pink-light: #fdf2f4;   /* CTA-related backgrounds only */
   --ds-red-orange: #f40356;   /* Destructive actions and critical alerts */
 
   /* --- Neutrals (cool greys) --- */
@@ -23,9 +20,13 @@
   --ds-white:       #ffffff;  /* Default page background everywhere */
 
   /* --- Gradient --- */
-  --ds-gradient: linear-gradient(to right, #061947, #0266f7);
-  /* Navy Blue → Electric Blue */
+  --ds-gradient:         linear-gradient(to right, #061947, #0266f7);      /* Default: horizontal */
+  --ds-gradient-135:     linear-gradient(135deg,   #061947, #0266f7);      /* Diagonal — hero & cards */
+  --ds-gradient-45:      linear-gradient(45deg,    #061947, #0266f7);      /* Reverse diagonal */
+  --ds-gradient-radial:  radial-gradient(circle at 30% 50%, #0266f7 0%, #061947 100%); /* Radial — overlays */
   /* Use for: hero areas, title slides, section dividers, closing slides only */
+  /* Motion variant — animated gradient uses gradientShift keyframe (see below) */
+  --ds-gradient-animated: linear-gradient(135deg, #061947 0%, #0266f7 50%, #0a2a8f 100%);
 
   /* --- Typography --- */
   --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
@@ -59,6 +60,21 @@
   --dur-xlong-3: 900ms;  --dur-xlong-4: 1000ms;
 }
 
+/* --- Animated Gradient — motion variant ---
+   Background-size must be ≥200% for the shift to be visible.
+   Usage:
+     background: var(--ds-gradient-animated);
+     background-size: 200% 200%;
+     animation: gradientShift 12s var(--ease-linear) infinite;
+   Honour prefers-reduced-motion — wrap in the media query below or use the
+   .reduced-motion guard in JavaScript.
+   ========================================================== */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50% }
+  50%  { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
 /* --- Reduced Motion — always include in every project --- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -71,10 +87,12 @@
 
 /* ==========================================================
    COLOR CHANGE LOG
+   v2.5 — 2026-03-25 — Removed CTA Red (#D42F5B) and Pink Light (#FDF2F4);
+     Added --ds-gradient-135, --ds-gradient-45, --ds-gradient-radial,
+     --ds-gradient-animated, and @keyframes gradientShift.
    v2.0 — 2026-03-25 — Updated to official PDF values:
      Navy:        #05195F → #061947
      Blue:        #0066FC → #0266F7  (Electric Blue)
      Blue Light:  #E8F2FF → #CDEDFD  (Baby Blue)
-     CTA:         #D52C5A → #D42F5B  (PDF name: Red)
      Gradient:    #05195F,#0065FF → #061947,#0266F7
    ========================================================== */

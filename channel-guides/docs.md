@@ -40,7 +40,7 @@ Reference `ds-brand-design.md` for all base rules. This file covers document and
 
 **Document header (first page):**
 - DS logo — top left
-- Document title — Poppins Bold, large
+- Document title — Poppins SemiBold, large
 - Subtitle / date — Inter, medium grey
 
 **Running header (subsequent pages):**

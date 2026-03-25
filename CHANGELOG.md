@@ -16,6 +16,29 @@ Claude reads this file to understand what changed and why.
 
 ---
 
+## [v2.5] — 2026-03-25
+**Changed:** CTA Red and Pink Light removed from system · Gradient variants added · Hero animated gradient + entrance animations · Logo corrected to DS-Logo-White.svg · Footer redesigned · Poppins H1–H5 weight standardized to SemiBold (600)
+**Color removals:**
+  - `--ds-pink: #D42F5B` (CTA Red) — removed from all CSS, docs, components, and checks
+  - `--ds-pink-light: #FDF2F4` — removed from all CSS, docs, and components
+  - CTA color is now Electric Blue `#0266F7` across all channels
+**Gradient additions:**
+  - `--ds-gradient-135`, `--ds-gradient-45`, `--ds-gradient-radial`, `--ds-gradient-animated`
+  - `@keyframes gradientShift` added to `colors.css`
+**Brand site changes:**
+  - Hero: slow animated gradient (12s loop) + staggered entrance animations (badge → h1 → p → buttons → stats)
+  - Logo: replaced DS icon + text with `DS-Logo-White.svg` in nav and footer
+  - Footer: comprehensive redesign — logo, office locations (Burlington MA · London · Singapore), Get in Touch, nav links, back-to-top, copyright
+  - All heading weights: 800/700 → SemiBold 600 throughout
+  - All button/badge/CTA colors: pink → Electric Blue
+  - Brand System version badge updated to v2.5
+**Typography:**
+  - Poppins H1 and H2: `font-weight: 700` → `font-weight: 600` in `type-scale.css`, brand site, and all channel guides
+  - `ds-ui-page-title`: `700` → `600`
+**Files affected:** assets/colors.css, assets/type-scale.css, brand-guide/brand-site.html, ds-brand-design.md, ds-brand-police.md, channel-guides/google-slides.md, channel-guides/web.md, channel-guides/docs.md, CHANGELOG.md
+
+---
+
 ## [v2.4] — 2026-03-25
 **Changed:** Brand site fully redesigned · Capabilities deck ingested
 **New brand-site.html features:**

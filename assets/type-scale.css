@@ -21,7 +21,7 @@
   font-family: var(--font-sans);
   font-size: 50px;
   line-height: 60px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--ds-navy);
   text-align: left;
 }
@@ -30,7 +30,7 @@
   font-family: var(--font-sans);
   font-size: 38px;
   line-height: 45px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--ds-navy);
   text-align: left;
 }
@@ -88,7 +88,7 @@
 
 /* --- UI / Application Scale --- */
 
-.ds-ui-page-title  { font-family: var(--font-sans); font-size: 30px; font-weight: 700; }
+.ds-ui-page-title  { font-family: var(--font-sans); font-size: 30px; font-weight: 600; }
 .ds-ui-card-title  { font-family: var(--font-sans); font-size: 24px; font-weight: 600; }
 .ds-ui-dialog      { font-family: var(--font-sans); font-size: 18px; font-weight: 600; }
 .ds-ui-section     { font-family: var(--font-body); font-size: 16px; font-weight: 500; }

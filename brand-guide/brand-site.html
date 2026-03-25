@@ -13,14 +13,20 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --navy:#061947;--navy2:#0A2A8F;--blue:#0266F7;--blue-lt:#CDEDFD;
-  --pink:#D42F5B;--pink-lt:#FDF2F4;--redorg:#F40356;
+  --redorg:#F40356;
   --dark:#1E293B;--mid:#64748B;--lt:#F8F9FB;--white:#FFFFFF;
   --border:#E5E7EB;
   --grad:linear-gradient(135deg,#061947 0%,#0266F7 100%);
+  --grad-anim:linear-gradient(135deg,#061947 0%,#0266F7 50%,#0A2A8F 100%);
   --shadow:0 2px 40px rgba(0,0,0,.10);
   --r:10px;
   --nav-h:68px;
   --sidebar-w:240px;
+}
+@keyframes gradientShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 html{scroll-behavior:smooth;font-size:16px}
 body{font-family:'Inter',sans-serif;color:var(--dark);background:var(--white);line-height:1.65;overflow-x:hidden}
@@ -99,12 +105,12 @@ button{font-family:inherit;cursor:pointer}
 /* CTA */
 .nav-cta{
   margin-left:auto;flex-shrink:0;
-  background:var(--pink);color:#fff;
+  background:var(--blue);color:#fff;
   padding:9px 22px;border-radius:100px;
   font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;
   transition:background .2s,transform .15s,box-shadow .2s;
 }
-.nav-cta:hover{background:#c0284f;transform:translateY(-1px);box-shadow:0 4px 16px rgba(212,47,91,.4)}
+.nav-cta:hover{background:#0258d4;transform:translateY(-1px);box-shadow:0 4px 16px rgba(2,102,247,.4)}
 
 /* ── LAYOUT ──────────────────────────────────── */
 .layout{display:flex;margin-top:var(--nav-h)}
@@ -153,14 +159,27 @@ button{font-family:inherit;cursor:pointer}
   margin-bottom:16px;
 }
 .sec-tag span{font-family:'Material Symbols Rounded';font-size:14px}
-.sec-title{font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:700;margin-bottom:12px}
+.sec-title{font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:600;margin-bottom:12px}
 .sec-body{font-size:16px;color:var(--mid);max-width:600px;margin-bottom:40px}
 
 /* ── HERO ──────────────────────────────────── */
+@keyframes heroEnter{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .hero{
-  background:var(--grad);
+  background:var(--grad-anim);
+  background-size:200% 200%;
+  animation:gradientShift 12s linear infinite;
   padding:80px 64px 96px;
   position:relative;overflow:hidden;
+}
+@media(prefers-reduced-motion:reduce){.hero{animation:none;background:var(--grad);}}
+/* Staggered entrance — badge, h1, p, btns, stats */
+.hero-badge{animation:heroEnter 600ms cubic-bezier(0.05,0.7,0.1,1.0) 100ms both}
+.hero h1  {animation:heroEnter 700ms cubic-bezier(0.05,0.7,0.1,1.0) 200ms both}
+.hero p   {animation:heroEnter 700ms cubic-bezier(0.05,0.7,0.1,1.0) 350ms both}
+.hero-btns{animation:heroEnter 700ms cubic-bezier(0.05,0.7,0.1,1.0) 450ms both}
+.hero-stats{animation:heroEnter 700ms cubic-bezier(0.05,0.7,0.1,1.0) 600ms both}
+@media(prefers-reduced-motion:reduce){
+  .hero-badge,.hero h1,.hero p,.hero-btns,.hero-stats{animation:none;opacity:1;transform:none}
 }
 .hero::after{
   content:'';position:absolute;inset:0;
@@ -186,7 +205,7 @@ button{font-family:inherit;cursor:pointer}
 }
 .hero-badge span{font-family:'Material Symbols Rounded';font-size:14px;color:var(--blue-lt)}
 .hero h1{
-  font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;
+  font-size:clamp(2.2rem,5vw,3.8rem);font-weight:600;
   color:#fff;line-height:1.1;margin-bottom:20px;
 }
 .hero h1 em{
@@ -200,7 +219,7 @@ button{font-family:inherit;cursor:pointer}
 .btn-hero-primary{
   background:#fff;color:var(--navy);
   padding:13px 28px;border-radius:100px;
-  font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;
+  font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;
   display:inline-flex;align-items:center;gap:8px;
   transition:transform .2s,box-shadow .2s;
 }
@@ -315,14 +334,14 @@ button{font-family:inherit;cursor:pointer}
 /* Buttons */
 .btn-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .btn-p{
-  background:var(--pink);color:#fff;padding:11px 24px;border-radius:100px;
+  background:var(--blue);color:#fff;padding:11px 24px;border-radius:100px;
   font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;border:none;
   display:inline-flex;align-items:center;gap:6px;
   /* transitions managed by motion states block below */
 }
 .btn-s{
-  background:transparent;color:var(--pink);padding:9px 22px;border-radius:100px;
-  border:2px solid var(--pink);font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;
+  background:transparent;color:var(--blue);padding:9px 22px;border-radius:100px;
+  border:2px solid var(--blue);font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;
 }
 .btn-g{
   background:transparent;color:var(--navy);padding:9px 22px;border-radius:100px;
@@ -360,7 +379,7 @@ button{font-family:inherit;cursor:pointer}
 .badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:100px;font-size:11.5px;font-weight:600}
 .b-blue{background:var(--blue-lt);color:var(--blue)}
 .b-navy{background:var(--navy);color:#fff}
-.b-pink{background:var(--pink-lt);color:var(--pink)}
+.b-blue-dark{background:var(--navy);color:#fff}
 .b-green{background:#DCFCE7;color:#166534}
 .b-red{background:#FEF2F2;color:#B91C1C}
 .b-amber{background:#FFFBEB;color:#92400E}
@@ -555,15 +574,53 @@ button{font-family:inherit;cursor:pointer}
 
 /* ── FOOTER ──────────────────────────────────── */
 .footer{
-  background:var(--navy);padding:40px 64px;
+  background:var(--navy);
+  padding:64px 64px 32px;
   margin-left:var(--sidebar-w);
 }
-.footer-inner{max-width:960px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-.footer-brand{font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;color:#fff}
-.footer-meta{font-size:12px;color:rgba(255,255,255,.4);margin-top:3px}
+.footer-top{
+  max-width:960px;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;
+  margin-bottom:48px;
+}
+.footer-logo{margin-bottom:20px}
+.footer-logo img{height:24px;width:auto;display:block}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;max-width:240px;margin-top:12px}
+.footer-col h5{
+  font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;
+  text-transform:uppercase;letter-spacing:1px;
+  color:rgba(255,255,255,.4);margin-bottom:16px;
+}
+.footer-col a,.footer-col p{
+  display:block;font-size:13px;color:rgba(255,255,255,.6);
+  margin-bottom:10px;line-height:1.5;
+  transition:color .15s;
+}
+.footer-col a:hover{color:#fff}
+.footer-col .footer-location{display:flex;gap:8px;align-items:flex-start;margin-bottom:12px}
+.footer-col .footer-location span.ico{
+  font-family:'Material Symbols Rounded';font-size:16px;
+  color:var(--blue);flex-shrink:0;margin-top:1px;
+}
+.footer-col .footer-location .loc-text .city{font-size:13px;font-weight:600;color:rgba(255,255,255,.8)}
+.footer-col .footer-location .loc-text .country{font-size:11.5px;color:rgba(255,255,255,.4)}
+.footer-bottom{
+  max-width:960px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  padding-top:24px;border-top:1px solid rgba(255,255,255,.08);
+}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.35)}
 .footer-links{display:flex;gap:24px}
-.footer-links a{font-size:13px;color:rgba(255,255,255,.5);transition:color .15s}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.4);transition:color .15s}
 .footer-links a:hover{color:#fff}
+.footer-back-top{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:600;color:rgba(255,255,255,.5);
+  padding:8px 14px;border-radius:100px;border:1px solid rgba(255,255,255,.1);
+  transition:color .15s,border-color .15s,background .15s;
+}
+.footer-back-top span{font-family:'Material Symbols Rounded';font-size:16px}
+.footer-back-top:hover{color:#fff;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
 
 @media(max-width:900px){
   :root{--sidebar-w:0px}
@@ -572,7 +629,8 @@ button{font-family:inherit;cursor:pointer}
   .hero{padding:56px 28px 72px}
   .color-grid,.system-grid,.card-grid,.stats-row,.comp-canvas .btn-row,
   .font-specimens,.voice-grid,.dodont-grid,.gov-tiers,.we-grid{grid-template-columns:1fr}
-  .footer{margin-left:0;padding:32px 28px}
+  .footer{margin-left:0;padding:40px 28px 24px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
   .band{padding:40px 28px}
   .hero-stats{flex-direction:column}
   .hero-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
@@ -635,19 +693,19 @@ button{font-family:inherit;cursor:pointer}
   transition-duration:0ms;
 }
 .btn-p:hover {
-  background:#c0284f;
+  background:#0258d4;
   transform:translateY(-2px);
-  box-shadow:0 8px 20px rgba(212,47,91,.42);
+  box-shadow:0 8px 20px rgba(2,102,247,.42);
 }
 .btn-p:active {
   transform:translateY(0) scale(.96);
-  box-shadow:0 2px 8px rgba(212,47,91,.28);
+  box-shadow:0 2px 8px rgba(2,102,247,.28);
   transition:
     transform  100ms var(--ease-emph-acc),
     box-shadow 100ms var(--ease-emph-acc);
 }
 .btn-p:focus-visible {
-  outline:3px solid rgba(212,47,91,.45);
+  outline:3px solid rgba(2,102,247,.45);
   outline-offset:3px;
   animation:focusRingIn 200ms var(--ease-emph-dec) both;
 }
@@ -669,9 +727,9 @@ button{font-family:inherit;cursor:pointer}
     box-shadow 200ms var(--ease-std);
 }
 .btn-s:hover {
-  background:var(--pink-lt);
+  background:var(--blue-lt);
   transform:translateY(-2px);
-  box-shadow:0 4px 14px rgba(212,47,91,.18);
+  box-shadow:0 4px 14px rgba(2,102,247,.18);
 }
 .btn-s:active {
   transform:translateY(0) scale(.96);
@@ -679,7 +737,7 @@ button{font-family:inherit;cursor:pointer}
   transition:transform 100ms var(--ease-emph-acc), box-shadow 100ms var(--ease-emph-acc);
 }
 .btn-s:focus-visible {
-  outline:3px solid rgba(212,47,91,.35);
+  outline:3px solid rgba(2,102,247,.35);
   outline-offset:3px;
   animation:focusRingIn 200ms var(--ease-emph-dec) both;
 }
@@ -782,7 +840,7 @@ button{font-family:inherit;cursor:pointer}
   transition:transform 100ms var(--ease-emph-acc);
 }
 .nav-cta:focus-visible {
-  outline:3px solid rgba(212,47,91,.5);
+  outline:3px solid rgba(2,102,247,.5);
   outline-offset:3px;
 }
 
@@ -988,11 +1046,10 @@ button{font-family:inherit;cursor:pointer}
 <!-- TOP NAV -->
 <nav class="topnav" id="topnav">
   <div class="nav-inner">
-    <div class="nav-logo">
-      <div class="logo-mark">DS</div>
-      <span class="logo-text">Demand<span>Science</span></span>
-    </div>
-    <span class="nav-badge">Brand System v2.3</span>
+    <a href="#top" class="nav-logo" style="text-decoration:none">
+      <img src="../assets/logo/DS-Logo-White.svg" alt="DemandScience" height="26" style="width:auto;display:block;max-width:200px">
+    </a>
+    <span class="nav-badge">Brand System v2.5</span>
 
     <nav class="nav-links">
       <div class="nav-item">
@@ -1156,14 +1213,6 @@ button{font-family:inherit;cursor:pointer}
         <div class="sw-color" style="background:#CDEDFD"></div>
         <div class="sw-meta"><div class="sw-name">Baby Blue</div><div class="sw-hex">#CDEDFD <span class="ci">content_copy</span></div><div class="sw-desc">Card backgrounds · table alternates · badges</div></div>
       </div>
-      <div class="swatch" onclick="copyVal('#D42F5B','CTA Red')">
-        <div class="sw-color" style="background:#D42F5B"></div>
-        <div class="sw-meta"><div class="sw-name">CTA Red</div><div class="sw-hex">#D42F5B <span class="ci">content_copy</span></div><div class="sw-desc">Buttons & CTAs ONLY. Never decorative.</div></div>
-      </div>
-      <div class="swatch" onclick="copyVal('#FDF2F4','Pink Light')">
-        <div class="sw-color" style="background:#FDF2F4;border-bottom:1px solid var(--border)"></div>
-        <div class="sw-meta"><div class="sw-name">Pink Light</div><div class="sw-hex">#FDF2F4 <span class="ci">content_copy</span></div><div class="sw-desc">Secondary button hover · subtle tint</div></div>
-      </div>
       <div class="swatch" onclick="copyVal('#F40356','Red Orange')">
         <div class="sw-color" style="background:#F40356"></div>
         <div class="sw-meta"><div class="sw-name">Red Orange</div><div class="sw-hex">#F40356 <span class="ci">content_copy</span></div><div class="sw-desc">High-energy accent. Use sparingly.</div></div>
@@ -1191,7 +1240,7 @@ button{font-family:inherit;cursor:pointer}
     </div>
 
     <div class="color-rules reveal">
-      <div class="color-rule"><span class="icon">block</span><p><strong>Pink CTAs only.</strong> #D42F5B on buttons exclusively. Never backgrounds, icons, or decoration.</p></div>
+      <div class="color-rule"><span class="icon">electric_bolt</span><p><strong>Electric Blue for CTAs.</strong> #0266F7 on primary buttons, links, and interactive states. Navy for structure.</p></div>
       <div class="color-rule"><span class="icon">gradient</span><p><strong>Gradient is structural.</strong> Hero, dividers, closing bands only. Never on slides or data cards.</p></div>
       <div class="color-rule"><span class="icon">check_circle</span><p><strong>White is the default.</strong> All slides and pages start white. Off-palette backgrounds need Design approval.</p></div>
     </div>
@@ -1208,7 +1257,7 @@ button{font-family:inherit;cursor:pointer}
     <div class="font-specimens reveal">
       <div class="font-spec">
         <div class="fs-label">Poppins</div>
-        <div class="fs-use">Headings · Titles · Display · CTAs — Bold 700 / SemiBold 600</div>
+        <div class="fs-use">Headings · Titles · Display · CTAs — SemiBold 600</div>
         <div class="fs-display">Aa Bb Cc Dd Ee Ff</div>
         <div class="fs-abc">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789 !@#$%</div>
       </div>
@@ -1221,8 +1270,8 @@ button{font-family:inherit;cursor:pointer}
     </div>
 
     <div class="type-scale reveal">
-      <div class="ts-row"><div class="ts-meta"><div class="tl">H1 / Title</div><div class="ts">Poppins 700 · 48px</div></div><h1 style="font-size:48px;font-weight:700;color:var(--navy)">Headline One</h1></div>
-      <div class="ts-row"><div class="ts-meta"><div class="tl">H2</div><div class="ts">Poppins 700 · 36px</div></div><h2 style="font-size:36px;font-weight:700;color:var(--navy)">Headline Two</h2></div>
+      <div class="ts-row"><div class="ts-meta"><div class="tl">H1 / Title</div><div class="ts">Poppins 600 · 48px</div></div><h1 style="font-size:48px;font-weight:600;color:var(--navy)">Headline One</h1></div>
+      <div class="ts-row"><div class="ts-meta"><div class="tl">H2</div><div class="ts">Poppins 600 · 36px</div></div><h2 style="font-size:36px;font-weight:600;color:var(--navy)">Headline Two</h2></div>
       <div class="ts-row"><div class="ts-meta"><div class="tl">H3</div><div class="ts">Poppins 600 · 28px</div></div><h3 style="font-size:28px;font-weight:600;color:var(--navy)">Headline Three</h3></div>
       <div class="ts-row"><div class="ts-meta"><div class="tl">H4</div><div class="ts">Poppins 600 · 22px</div></div><h4 style="font-size:22px;font-weight:600;color:var(--navy)">Headline Four</h4></div>
       <div class="ts-row"><div class="ts-meta"><div class="tl">H5</div><div class="ts">Poppins 600 · 18px</div></div><h5 style="font-size:18px;font-weight:600;color:var(--navy)">Headline Five</h5></div>
@@ -1237,7 +1286,7 @@ button{font-family:inherit;cursor:pointer}
       <table class="ds-table">
         <thead><tr><th>Element</th><th>Size</th><th>Weight</th><th>Color</th><th>Rule</th></tr></thead>
         <tbody>
-          <tr><td>Slide Title / H1</td><td>32pt · 43px</td><td>Poppins Bold 700</td><td>#061947</td><td>Left-aligned. Always.</td></tr>
+          <tr><td>Slide Title / H1</td><td>32pt · 43px</td><td>Poppins SemiBold 600</td><td>#061947</td><td>Left-aligned. Always.</td></tr>
           <tr><td>Slide Heading / H2</td><td>24pt · 32px</td><td>Poppins SemiBold 600</td><td>#061947</td><td>Left-aligned. Always.</td></tr>
           <tr><td>Subheading / H3</td><td>18pt · 24px</td><td>Poppins SemiBold 600</td><td>#061947</td><td>Left-aligned. Always.</td></tr>
           <tr><td>Body Copy</td><td>12–14pt · 16–19px</td><td>Inter Regular 400</td><td>#1E293B</td><td>Left-aligned. Always.</td></tr>
@@ -1266,7 +1315,7 @@ button{font-family:inherit;cursor:pointer}
           <button class="btn-ui" style="background:var(--blue-lt);color:var(--blue);border-color:var(--blue-lt)">Active</button>
           <button class="btn-ui btn-dis">Disabled</button>
         </div>
-        <p style="font-size:12px;color:var(--mid);margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">Primary: #D42F5B pill · Secondary: pink outline · UI: 8px radius (product/internal only — never pill in product UI)</p>
+        <p style="font-size:12px;color:var(--mid);margin-top:14px;padding-top:14px;border-top:1px solid var(--border)">Primary: #0266F7 pill · Secondary: blue outline · UI: 8px radius (product/internal only — never pill in product UI)</p>
       </div>
     </div>
 
@@ -1296,7 +1345,7 @@ button{font-family:inherit;cursor:pointer}
         <div class="badge-row">
           <span class="badge b-blue">Intent Data</span>
           <span class="badge b-navy">Enterprise</span>
-          <span class="badge b-pink">CTA Only</span>
+          <span class="badge b-blue-dark">Brand Blue</span>
           <span class="badge b-green"><span style="font-family:'Material Symbols Rounded';font-size:13px">check</span>Approved</span>
           <span class="badge b-red">🚫 STOP</span>
           <span class="badge b-amber">⚠ Warning</span>
@@ -1405,8 +1454,8 @@ button{font-family:inherit;cursor:pointer}
         <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px">Focused</div>
         <div style="font-size:11.5px;color:var(--mid)">One thing moves at a time. Choreograph so the eye always knows where to look.</div>
       </div>
-      <div style="padding:16px;border-radius:var(--r);background:#fff;border-top:3px solid var(--pink);text-align:left">
-        <div style="font-family:'Material Symbols Rounded';font-size:20px;color:var(--pink);margin-bottom:8px">accessibility</div>
+      <div style="padding:16px;border-radius:var(--r);background:#fff;border-top:3px solid var(--navy);text-align:left">
+        <div style="font-family:'Material Symbols Rounded';font-size:20px;color:var(--navy);margin-bottom:8px">accessibility</div>
         <div style="font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px">Respectful</div>
         <div style="font-size:11.5px;color:var(--mid)">prefers-reduced-motion always honoured. Non-essential animation disabled.</div>
       </div>
@@ -1477,7 +1526,7 @@ button{font-family:inherit;cursor:pointer}
           <tr><td><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--blue-lt);border:2px solid var(--blue);display:inline-block"></span>Short</span></td><td style="font-family:monospace;font-size:12px">--dur-short-1 → 4</td><td>50–200ms</td><td>Hover states, icon changes, focus rings, badge flash</td></tr>
           <tr><td><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--blue);display:inline-block"></span>Medium</span></td><td style="font-family:monospace;font-size:12px">--dur-medium-1 → 4</td><td>250–400ms</td><td>Dropdowns, tooltips, card lifts, tab switches</td></tr>
           <tr><td><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--navy);display:inline-block"></span>Long</span></td><td style="font-family:monospace;font-size:12px">--dur-long-1 → 4</td><td>450–600ms</td><td>Modals, panels, page section reveals, slide transitions</td></tr>
-          <tr><td><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--pink);display:inline-block"></span>Extra Long</span></td><td style="font-family:monospace;font-size:12px">--dur-xlong-1 → 4</td><td>700–1000ms</td><td>Hero entrances, onboarding sequences, full-page transitions</td></tr>
+          <tr><td><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:var(--navy2);display:inline-block"></span>Extra Long</span></td><td style="font-family:monospace;font-size:12px">--dur-xlong-1 → 4</td><td>700–1000ms</td><td>Hero entrances, onboarding sequences, full-page transitions</td></tr>
         </tbody>
       </table>
       <div style="padding:12px 16px;background:var(--lt);font-size:12px;color:var(--mid)">
@@ -1507,7 +1556,7 @@ button{font-family:inherit;cursor:pointer}
             <button class="play-btn" onclick="replay('m2','scaleIn 300ms cubic-bezier(0.05,0.7,0.1,1.0) both')"><span>play_arrow</span>Play</button>
           </div>
           <div class="motion-row">
-            <div class="motion-swatch" id="m3" style="background:var(--pink)"></div>
+            <div class="motion-swatch" id="m3" style="background:var(--navy2)"></div>
             <div class="motion-info">
               <div class="mn">Slide In — Panel Enter</div>
               <div class="ms">350ms · --ease-emphasized-decelerate</div>
@@ -1547,7 +1596,7 @@ button{font-family:inherit;cursor:pointer}
         <div class="grid-cols cols-12" style="margin-bottom:6px"><div class="gc s4 hi"></div><div class="gc s4 hi"></div><div class="gc s4 ac"></div></div>
         <div class="grid-cols cols-12" style="margin-bottom:6px"><div class="gc s6 hi"></div><div class="gc s6"></div></div>
         <div class="grid-cols cols-12"><div class="gc s12 hi"></div></div>
-        <div class="gv-label">Highlighted = active column spans · Pink = accent/CTA column</div>
+        <div class="gv-label">Highlighted = active column spans · Blue = accent/CTA column</div>
       </div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
@@ -1655,12 +1704,12 @@ button{font-family:inherit;cursor:pointer}
         <ul>
           <li>White backgrounds on all slides — no exceptions</li>
           <li>Left-align all slide text — always</li>
-          <li>Poppins Bold for all headings</li>
-          <li>CTA Red (#D42F5B) on buttons only</li>
+          <li>Poppins SemiBold (600) for all headings</li>
+          <li>Electric Blue (#0266F7) for CTA buttons and links</li>
           <li>Google Material Symbols Rounded icons only</li>
           <li>Add more whitespace — if it feels tight, add more</li>
           <li>Authentic, candid photography (no posed portraits)</li>
-          <li>Chart colors: Navy → Blue → Pink → Grey</li>
+          <li>Chart colors: Navy → Blue → Medium Grey → Dark Grey</li>
           <li>White chart backgrounds with minimal gridlines</li>
           <li>Design approval before any external asset</li>
         </ul>
@@ -1789,18 +1838,74 @@ button{font-family:inherit;cursor:pointer}
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="footer-inner">
+  <div class="footer-top">
+
+    <!-- Brand -->
     <div>
-      <div class="footer-brand">DemandScience Brand System</div>
-      <div class="footer-meta">v2.3 · 2026-03-25 · Source: demandscience-design/ · GitHub: cclark28/demandscience-design</div>
+      <div class="footer-logo">
+        <img src="../assets/logo/DS-Logo-White.svg" alt="DemandScience" height="24" style="width:auto">
+      </div>
+      <p class="footer-tagline">Empowering B2B marketers to take back control of their growth. One source of truth for every visual decision.</p>
     </div>
-    <div class="footer-links">
+
+    <!-- Locations -->
+    <div class="footer-col">
+      <h5>Offices</h5>
+      <div class="footer-location">
+        <span class="ico">location_on</span>
+        <div class="loc-text">
+          <div class="city">Burlington, MA</div>
+          <div class="country">Headquarters · USA</div>
+        </div>
+      </div>
+      <div class="footer-location">
+        <span class="ico">location_on</span>
+        <div class="loc-text">
+          <div class="city">London</div>
+          <div class="country">United Kingdom</div>
+        </div>
+      </div>
+      <div class="footer-location">
+        <span class="ico">location_on</span>
+        <div class="loc-text">
+          <div class="city">Singapore</div>
+          <div class="country">Asia Pacific</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Get In Touch -->
+    <div class="footer-col">
+      <h5>Get In Touch</h5>
+      <a href="mailto:Marketing@demandscience.com">Marketing@demandscience.com</a>
+      <a href="https://www.demandscience.com" target="_blank" rel="noopener">demandscience.com</a>
+      <p style="margin-top:8px">Slack: <span style="color:rgba(255,255,255,.8)">#design-team</span></p>
+      <a href="mailto:Marketing@demandscience.com" style="display:inline-flex;align-items:center;gap:6px;margin-top:8px;background:var(--blue);color:#fff;padding:8px 16px;border-radius:100px;font-size:12px;font-weight:600">
+        <span style="font-family:'Material Symbols Rounded';font-size:14px">mail</span>Design Review
+      </a>
+    </div>
+
+    <!-- Brand System links -->
+    <div class="footer-col">
+      <h5>Brand System</h5>
       <a href="#colors">Colors</a>
-      <a href="#typography">Type</a>
+      <a href="#typography">Typography</a>
       <a href="#components">Components</a>
+      <a href="#icons">Icons</a>
+      <a href="#motion">Motion</a>
       <a href="#governance">Governance</a>
-      <a href="mailto:Marketing@demandscience.com">Contact</a>
     </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 DemandScience. Brand System v2.5 · <a href="https://github.com/cclark28/demandscience-design" target="_blank" rel="noopener" style="color:rgba(255,255,255,.4);transition:color .15s">GitHub ↗</a></div>
+    <div class="footer-links">
+      <a href="#system">The System</a>
+      <a href="#voice">Voice & Tone</a>
+      <a href="#governance">Governance</a>
+    </div>
+    <a href="#top" class="footer-back-top"><span>arrow_upward</span>Back to top</a>
   </div>
 </footer>
 
