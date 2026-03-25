@@ -1,7 +1,7 @@
 ---
 name: ds-brand-design
 description: Unified DemandScience design system for slides, docs, web, infographics, and internal/public assets.
-version: 2.5
+version: 2.6
 last-updated: 2026-03-25
 source: Updated from 25-DS-BrandGuide-General.pdf
 ---
@@ -78,7 +78,8 @@ Use this as the **source of truth** for visual decisions. Format‑specific skil
 | `--ds-gradient-135`     | `linear-gradient(135deg, #061947, #0266F7)` | Diagonal — hero & cards |
 | `--ds-gradient-45`      | `linear-gradient(45deg, #061947, #0266F7)` | Reverse diagonal |
 | `--ds-gradient-radial`  | `radial-gradient(circle at 30% 50%, #0266F7, #061947)` | Overlay / radial focal |
-| `--ds-gradient-animated`| `linear-gradient(135deg, #061947, #0266F7, #0A2A8F)` + `@keyframes gradientShift` | Hero animated background |
+| `--ds-gradient-animated`| `linear-gradient(135deg, #061947 0%, #0A2A8F 20%, #0A2A8F 75%, #0266F7 100%)` + `@keyframes gradientShift` | Hero animated background |
+| `--ds-gradient-multi`   | `linear-gradient(135deg, #061947 0%, #0A2A8F 20%, #0A2A8F 75%, #0266F7 100%)` | 4-stop: Navy deep hold → Electric Blue bloom |
 
 - Use for: hero areas, title slides, section dividers, closing slides, and high‑impact bands.
 - **Not** a default background. Never on slide backgrounds or data cards.
@@ -110,7 +111,8 @@ Use this as the **source of truth** for visual decisions. Format‑specific skil
   /* Gradient */
   --ds-gradient:         linear-gradient(to right, #061947, #0266f7);
   --ds-gradient-135:     linear-gradient(135deg,   #061947, #0266f7);
-  --ds-gradient-animated: linear-gradient(135deg,  #061947, #0266f7, #0a2a8f);
+  --ds-gradient-animated: linear-gradient(135deg, #061947 0%, #0a2a8f 20%, #0a2a8f 75%, #0266f7 100%);
+  --ds-gradient-multi:    linear-gradient(135deg, #061947 0%, #0a2a8f 20%, #0a2a8f 75%, #0266f7 100%);
 
   /* Typography */
   --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
@@ -241,14 +243,17 @@ Use this as the **source of truth** for visual decisions. Format‑specific skil
 
 **Marketing (web, decks, PDFs):** pill‑shaped, bold, clear.
 
-| Variant   | Background    | Text  | Border            | Radius |
-|-----------|---------------|-------|-------------------|--------|
-| Primary   | `#0266F7`     | White | None              | 100px  |
-| Secondary | Transparent   | Blue  | 2px `#0266F7`     | 100px  |
+| Variant          | Background         | Text  | Border            | Radius |
+|------------------|--------------------|-------|-------------------|--------|
+| Primary          | `#0266F7`          | White | None              | 100px  |
+| Secondary        | Transparent        | Blue  | 2px `#0266F7`     | 100px  |
+| Hero / Major CTA | `#F40356` Red Orange | White | None            | 100px  |
+
+> **Hero / Major CTA:** Red Orange `#F40356` — used on the primary action in the hero and site navigation. Electric Blue is used for all other primary actions.
 
 ```css
 .ds-btn-primary {
-  background: var(--ds-blue);   /* #0266F7 — Electric Blue */
+  background: var(--ds-red-orange); /* Hero and major CTA — nav, hero section */
   color: var(--ds-white);
   border: none;
   border-radius: 100px;
@@ -330,7 +335,7 @@ This applies to: decks, docs, web, infographics, dashboards, internal tools, and
 | Property      | Rule                                                              |
 |---------------|-------------------------------------------------------------------|
 | Style         | Rounded **only** — never Outlined, Sharp, or Two-tone            |
-| Color         | Navy (`#05195F`) or Blue (`#0066FC`); avoid pink and off-palette |
+| Color         | Navy `#061947` or Electric Blue `#0266F7`; avoid pink and off-palette |
 | Size          | Match surrounding text scale; common: 20px, 24px, 32px, 48px    |
 | Background    | On white: use small cool grey or blue-light circle when anchoring needed |
 | Fill          | Default `FILL=0` (outlined weight); use `FILL=1` only for active/selected states |
@@ -499,7 +504,7 @@ Whenever Claude generates, reviews, or iterates on any DemandScience asset — s
 | Colors         | Every color used must exist in the approved palette. Flag any hex not in the system. |
 | Typography     | Poppins for headings, Inter for body only. Sizes must follow the defined scale.  |
 | Alignment      | Body and headings left-aligned by default. Flag any centered text that shouldn't be. |
-| CTA color      | Electric Blue `#0266F7` on CTA buttons, links, and interactive states only. Flag any off-palette CTA use. |
+| CTA color      | Electric Blue `#0266F7` on standard CTA buttons; Red Orange `#F40356` on hero and major nav CTAs. Flag any off-palette CTA use. |
 | Icons          | Google Material Symbols Rounded only. Flag any other icon library or style.      |
 | Spacing        | Generous whitespace. Flag tight, cramped, or inconsistent spacing.               |
 | Cards          | 10px radius, white or light grey fill, correct shadow. Flag deviations.         |
@@ -563,7 +568,7 @@ Before shipping any asset — slide, doc, web page, infographic, or internal fil
 - [ ] Body copy and most headings are left‑aligned
 - [ ] Colors only from the approved palette; cool greys for cards and structure
 - [ ] Poppins for headings, Inter for body; sizes follow shared scales
-- [ ] Electric Blue (#0266F7) used for CTA buttons, links, and interactive states
+- [ ] Red Orange (#F40356) for hero/major nav CTAs · Electric Blue (#0266F7) for all other CTAs, links, interactive states
 - [ ] All icons are **Google Material Symbols Rounded** — no other icon libraries
 - [ ] Cards and images have consistent 10px rounded corners and generous spacing
 - [ ] Charts/tables use shared styles and color order

@@ -1,7 +1,7 @@
 ---
 name: ds-brand-police
 description: Mandatory design system validator. Run this check against every DemandScience asset before it is delivered, approved, or published.
-version: 2.0
+version: 2.6
 last-updated: 2026-03-25
 ---
 
@@ -59,7 +59,7 @@ Issue a STOP message and halt all work when any of the following are detected in
 | Icon library other than Google Material Symbols Rounded | Icon library lock — no exceptions |
 | Font other than Poppins or Inter | Typography lock — no exceptions |
 | Any hex color not in the approved palette | Color palette lock — no off-palette colors |
-| CTA buttons using colors other than Electric Blue `#0266F7` | CTA color lock — Electric Blue only for CTAs |
+| CTA buttons using colors other than Electric Blue `#0266F7` or Red Orange `#F40356` (hero/nav major CTA only) | CTA color lock — Electric Blue for standard CTAs; Red Orange for hero/major nav CTAs only |
 | Charts using default tool colors (Excel/Sheets palette) | Chart color order is mandatory |
 | Charts or visuals on colored or gradient backgrounds | White backgrounds only for data |
 | New logo treatment, variant, or custom lockup requested | Logo cannot be modified without Design |
@@ -158,7 +158,7 @@ Gradient    linear-gradient(to right, #061947, #0266F7)
 |-------|------|----------------|
 | Library is Material Symbols Rounded | https://fonts.google.com/icons?icon.style=Rounded | Font Awesome, Heroicons, Feather, Lucide, or any other library |
 | Style is Rounded only | Never Outlined, Sharp, or Two-tone variants | Any non-Rounded Material icon |
-| Icon color is Navy or Blue | `#05195F` or `#0066FC` | Pink icons, grey icons, off-palette colors |
+| Icon color is Navy or Blue | `#061947` or `#0266F7` | Pink icons, grey icons, off-palette colors |
 | Icon size is proportional | Matches surrounding text; common: 20, 24, 32, 48px | Oversized decorative icons, undersized unreadable icons |
 | Fill state used correctly | `FILL=0` default; `FILL=1` for active/selected states only | Filled icons used decoratively |
 
@@ -190,7 +190,7 @@ Gradient    linear-gradient(to right, #061947, #0266F7)
 
 | Check | Rule | Fail condition |
 |-------|------|----------------|
-| Primary CTA is Electric Blue pill | Background `#0266F7`, white text, 100px radius, Poppins 600 | Any other color, shape, or font on a primary CTA |
+| Primary CTA is Electric Blue pill | Background `#0266F7`, white text, 100px radius, Poppins 600. Hero/major nav CTA uses Red Orange `#F40356` | Any other color, shape, or font on a primary CTA |
 | Secondary CTA is blue outline | Transparent bg, `#0266F7` border, blue text, 100px radius | Solid secondary buttons, navy grey secondary buttons |
 | No off-palette CTAs in marketing | Electric Blue is the CTA color in decks, docs, web | Navy, grey, or off-palette marketing CTAs |
 | UI buttons are compact | 8px radius, no pill, shadcn-style — for product/internal UI only | Pill buttons in product UI |
@@ -201,8 +201,8 @@ Gradient    linear-gradient(to right, #061947, #0266F7)
 
 | Check | Rule | Fail condition |
 |-------|------|----------------|
-| Header row is navy | Navy background `#05195F`, white bold text | Colored, grey, or white header rows |
-| Body rows alternate correctly | White and Blue Light `#E8F2FF` alternating | Non-alternating rows, off-palette alternating colors |
+| Header row is navy | Navy background `#061947`, white bold text | Colored, grey, or white header rows |
+| Body rows alternate correctly | White and Blue Light `#CDEDFD` alternating | Non-alternating rows, off-palette alternating colors |
 | Totals row is navy | Navy background, white bold text | Plain or unstyled totals rows |
 | Borders are minimal | Light grey `#E5E7EB` only | Heavy black borders, colored borders |
 
@@ -212,7 +212,7 @@ Gradient    linear-gradient(to right, #061947, #0266F7)
 
 | Check | Rule | Fail condition |
 |-------|------|----------------|
-| Color order is correct | Navy → Blue → Medium Grey → Dark Grey | Random colors, brand colors out of order |
+| Color order is correct | Navy `#061947` → Electric Blue `#0266F7` → Medium Grey `#64748B` → Dark Grey `#1E293B` | Random colors, brand colors out of order |
 | Charts are on white | White background with generous margins | Charts on colored or gradient backgrounds |
 | Gridlines are minimal | Few, light gridlines; direct labels preferred | Heavy gridlines, excessive tick marks |
 | Color meaning is consistent | Navy = our data, grey = benchmark (maintain across the deck/doc) | Same color used for different meanings across visuals |
@@ -287,7 +287,7 @@ Gradient    linear-gradient(to right, #061947, #0266F7)
 | Off-palette color (#333, #ccc, etc.) | Map to nearest approved neutral |
 | Heavy card shadow | Replace with `0 2px 40px rgba(0,0,0,0.10)` |
 | Sharp-cornered cards | Add 10px border radius |
-| Navy-only or off-palette CTA button | Replace with Electric Blue `#0266F7` pill |
+| Off-palette CTA button | Replace with Electric Blue `#0266F7` (standard) or Red Orange `#F40356` (hero/major nav CTA) |
 | Justified paragraph text | Set to left-align |
 | White text on white or near-white | Darken background or use `#1E293B` text |
 | Gradient as default background | Replace with white; reserve gradient for hero/dividers/closing |
@@ -301,5 +301,6 @@ Gradient    linear-gradient(to right, #061947, #0266F7)
 
 | Version | Date       | Change                        |
 |---------|------------|-------------------------------|
+| 2.6     | 2026-03-25 | Multi-stop gradient added; Red Orange #F40356 established as hero/major CTA color; chart color order updated (CTA Red removed); stale hex values corrected |
 | 2.0     | 2026-03-25 | Removed CTA Red/Pink Light; updated CTA color to Electric Blue; Poppins weights to SemiBold 600 for H1–H5 |
 | 1.0     | 2026-03-25 | Initial brand police document |

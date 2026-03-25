@@ -22,12 +22,23 @@ demandscience-design/
 ├── assets/
 │   ├── colors.css              ← all CSS color variables
 │   ├── type-scale.css          ← all typography classes
-│   └── icons-reference.md      ← icon library rules and approved icon list
+│   ├── icons-reference.md      ← icon library rules and approved icon list
+│   ├── motion-guide.md         ← animation principles, easing tokens, duration scale
+│   └── grid-system.md          ← layout grid, spacing system, breakpoints
 │
 ├── channel-guides/
 │   ├── google-slides.md        ← rules specific to Google Slides / PPTX
 │   ├── web.md                  ← rules specific to web and landing pages
-│   └── docs.md                 ← rules specific to docs and PDFs
+│   ├── docs.md                 ← rules specific to docs and PDFs
+│   └── seo.md                  ← SEO requirements for web pages
+│
+├── content/
+│   └── voice-and-tone.md       ← brand voice, tone, messaging, elevator pitches
+│
+├── governance/
+│   ├── brand-enforcement.md    ← STOP rules and escalation protocol
+│   ├── design-review-process.md← how design reviews work
+│   └── approved-use-cases.md   ← what can be created without design approval
 │
 └── templates/
     ├── google-slides/          ← drop reference deck screenshots or PDFs here
@@ -129,7 +140,7 @@ What's approved without review: `governance/approved-use-cases.md`
 - **Never add colors outside the approved palette.** If a new color is needed, propose it and update `assets/colors.css` and `ds-brand-design.md` together.
 - **Never use fonts other than Poppins and Inter.** No exceptions.
 - **Never use icons outside Google Material Symbols Rounded.** No other libraries.
-- **Pink is for CTAs only.** If you are reaching for pink for anything else, stop.
+- **Red Orange `#F40356` is for hero and major nav CTAs only. Electric Blue `#0266F7` is for all other CTAs, links, and interactive states.**
 - **When in doubt, left-align it.**
 - **When in doubt, add more whitespace.**
 

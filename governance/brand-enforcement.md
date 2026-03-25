@@ -1,7 +1,7 @@
 ---
 name: Brand Enforcement & Governance
 description: Stop rules, escalation protocol, and design approval requirements. Any request that triggers a STOP must be reviewed by the Design team before work proceeds.
-version: 1.0
+version: 1.1
 last-updated: 2026-03-25
 ---
 
@@ -52,7 +52,6 @@ Work **cannot proceed** under any circumstances without Design team approval whe
 
 ### 2. Color Violations
 - Using any hex value not in the approved palette
-- Using CTA Red `#D42F5B` as a background, decorative element, or non-CTA color
 - Using the gradient as a full slide or page background
 - Using warm greys, beige, brown, or any off-palette neutral
 - Using competitor brand colors in any DemandScience-branded asset
@@ -80,7 +79,7 @@ Work **cannot proceed** under any circumstances without Design team approval whe
 
 ### 6. Off-System Chart & Data Visualization Requests
 - Building charts or data visuals that use colors outside the approved chart order:
-  `Navy #061947 → Electric Blue #0266F7 → CTA Red #D42F5B → Medium Grey #64748B → Dark Grey #1E293B`
+  `Navy #061947 → Electric Blue #0266F7 → Medium Grey #64748B → Dark Grey #1E293B`
 - Charts with colored or gradient backgrounds (white only)
 - Data visuals that use random, default tool colors (Google Sheets default palette, Excel default palette, etc.)
 - Infographics that use non-brand colors or non-brand fonts
@@ -175,4 +174,5 @@ Log the approval or rejection in the asset's changelog or brief.
 
 | Version | Date | Change |
 |---------|------|--------|
+| 1.1 | 2026-03-25 | Removed CTA Red references; updated chart color order; synced with v2.6 |
 | 1.0 | 2026-03-25 | Initial brand enforcement document |

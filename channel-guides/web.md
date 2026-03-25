@@ -28,7 +28,7 @@ For SEO requirements — meta tags, structured data, performance, headings, imag
     - Eyebrow label (optional): Inter 14px medium, Blue
     - H1: Poppins 50px/60px Bold, Navy
     - Body: Inter 18px/28px, Dark Grey
-    - Primary CTA button (Electric Blue pill) + optional secondary (blue outline pill)
+    - Primary CTA button (Red Orange `#F40356` pill) + optional secondary (blue outline pill)
   Right column (45%):
     - Product UI mockup, illustration, or key visual
     - Rounded rectangle mask, 10px radius
@@ -68,14 +68,14 @@ For SEO requirements — meta tags, structured data, performance, headings, imag
 - Background: white with subtle bottom border or soft shadow on scroll
 - Logo: left-aligned
 - Nav links: Inter 15px medium, Dark Grey; hover → Blue
-- Primary CTA in nav: Electric Blue pill button
+- Primary CTA in nav: Red Orange `#F40356` pill button
 - Mobile: hamburger → slide-in drawer
 
 ---
 
 ## Footer
 
-- Background: Navy `#05195F`
+- Background: Navy `#061947`
 - Text: white / medium grey
 - Logo: white version
 - Links: white, underline on hover

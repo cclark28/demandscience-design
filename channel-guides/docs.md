@@ -23,10 +23,10 @@ Reference `ds-brand-design.md` for all base rules. This file covers document and
 
 | Level   | Font    | Size    | Weight   | Color             |
 |---------|---------|---------|----------|-------------------|
-| Title   | Poppins | 28–32pt | Bold     | Navy `#05195F`    |
-| H1      | Poppins | 22–24pt | Bold     | Navy `#05195F`    |
-| H2      | Poppins | 18pt    | Bold     | Blue `#0066FC`    |
-| H3      | Poppins | 14pt    | SemiBold | Navy `#05195F`    |
+| Title   | Poppins | 28–32pt | SemiBold | Navy `#061947`    |
+| H1      | Poppins | 22–24pt | SemiBold | Navy `#061947`    |
+| H2      | Poppins | 18pt    | Bold     | Blue `#0266F7`    |
+| H3      | Poppins | 14pt    | SemiBold | Navy `#061947`    |
 | Body    | Inter   | 11pt    | Regular  | Dark Grey `#1E293B` |
 | Caption | Inter   | 9pt     | Regular  | Medium Grey `#64748B` |
 
@@ -55,7 +55,7 @@ Reference `ds-brand-design.md` for all base rules. This file covers document and
 
 ## Callouts & Sidebars
 
-- Background: Light grey `#F8F9FB` or Blue Light `#E8F2FF`
+- Background: Light grey `#F8F9FB` or Blue Light `#CDEDFD`
 - Border radius: ~6pt
 - Left accent bar: Navy or Blue, 3pt wide
 - Use for: key stats, definitions, pro tips, important notes
@@ -65,7 +65,7 @@ Reference `ds-brand-design.md` for all base rules. This file covers document and
 ## Tables
 
 - Header row: Navy background, white bold text
-- Body rows: alternate white / Blue Light `#E8F2FF`
+- Body rows: alternate white / Blue Light `#CDEDFD`
 - Totals row: Navy background, white bold text
 - Borders: Light grey `#E5E7EB`, minimal
 
@@ -73,8 +73,8 @@ Reference `ds-brand-design.md` for all base rules. This file covers document and
 
 ## CTA Elements
 
-- Pink pill button (`#D52C5A`) when there's a clear reader action (download, request demo, contact)
-- Link text: Blue `#0066FC`, underlined
+- Electric Blue pill button (`#0266F7`) when there's a clear reader action (download, request demo, contact)
+- Link text: Blue `#0266F7`, underlined
 - Place CTAs at: end of document, end of major sections, or dedicated CTA page
 
 ---
