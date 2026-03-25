@@ -1,0 +1,75 @@
+DemandScience — Icon Reference (Google Material Symbols Rounded),,,,
+Import into Google Sheets. All icons must use Rounded style only.,,,
+Last updated: 2026-03-25,,,,
+,,,,
+ICON LIBRARY DETAILS,,,,
+Library,Google Material Symbols,,,
+Required Style,Rounded ONLY (never Outlined / Sharp / Two-tone),,,
+Browse URL,https://fonts.google.com/icons?icon.style=Rounded,,,
+Web Import,"<link rel=""stylesheet"" href=""https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"" />",,,
+Usage (HTML),"<span class=""material-symbols-rounded"">icon_name</span>",,,
+Approved Colors,Navy #061947 · Electric Blue #0266F7 ONLY,,,
+Prohibited,No Font Awesome · No Heroicons · No Feather · No Lucide,,,
+,,,,
+ICON SIZING GUIDE,,,,
+SIZE,USE CONTEXT,CSS,NOTES
+20px,Inline with small text,font-size: 20px,Tight UI contexts
+24px,Standard UI icons,font-size: 24px,Default size for most uses
+32px,Medium emphasis,font-size: 32px,Card icons · Feature icons
+48px,Large / hero icons,font-size: 48px,Illustration-level icons
+,,,,
+APPROVED ICON LIST,,,,
+ICON NAME,CATEGORY,USE CASE,COLOR RECOMMENDATION
+arrow_forward,Navigation,CTAs · Next steps · Links,Electric Blue
+arrow_back,Navigation,Back navigation,Electric Blue
+chevron_right,Navigation,List items · Breadcrumbs,Medium Grey
+expand_more,Navigation,Dropdowns · Accordions,Navy
+open_in_new,Navigation,External links,Electric Blue
+menu,Navigation,Mobile nav hamburger,Navy
+close,Action,Dismiss · Close modals,Dark Grey
+search,Action,Search inputs,Navy
+filter_list,Action,Filtering · Sorting,Navy
+download,Action,File downloads,Electric Blue
+upload,Action,File uploads,Electric Blue
+share,Action,Content sharing,Electric Blue
+edit,Action,Edit mode,Navy
+delete,Action,Remove (use Alert Red for destructive),Alert Red
+analytics,Data & Analytics,Dashboards · Reporting,Navy
+bar_chart,Data & Analytics,Charts · Data viz,Navy
+trending_up,Data & Analytics,Growth · Performance,Electric Blue
+insights,Data & Analytics,Data insights · Intelligence,Electric Blue
+query_stats,Data & Analytics,Statistics · Metrics,Navy
+groups,Business & People,Team · Audience · Community,Navy
+handshake,Business & People,Partnerships · Deals,Navy
+business_center,Business & People,Enterprise · Corporate,Navy
+person,Business & People,Individual user profile,Navy
+badge,Business & People,Identity · Credentials,Navy
+check_circle,Status,Success · Complete · Verified,Electric Blue
+error,Status,Error (use Alert Red),Alert Red
+warning,Status,Warning state,Electric Blue
+info,Status,Informational note,Electric Blue
+notifications,Status,Alerts · Updates,Navy
+bolt,Feature,Fast · Instant · Power,Electric Blue
+shield,Feature,Security · Trust · Protection,Navy
+star,Feature,Top-rated · Featured,Electric Blue
+language,Feature,Global · Web · International,Navy
+rocket_launch,Feature,Launch · Growth · New,Electric Blue
+palette,Design,Colors · Design,Navy
+text_fields,Design,Typography · Text,Navy
+grid_4x4,Design,Grid · Layout,Navy
+image,Media,Photo placeholder · Image,Medium Grey
+slideshow,Media,Presentations · Decks,Navy
+description,Media,Documents · Reports,Navy
+mail,Contact,Email address,Electric Blue
+phone,Contact,Phone number,Navy
+location_on,Contact,Address · Location,Navy
+,,,,
+ICON USAGE RULES,,,,
+Rule,Detail,,
+Rounded only,"Always use Rounded style — the URL must include ?icon.style=Rounded when browsing",,
+Color rules,Navy #061947 or Electric Blue #0266F7 only — no pink / no off-palette icon colors,,
+Fill state,"FILL=0 (default/outlined weight) for most uses · FILL=1 only for active or selected states",,
+Weight,400 default · 300 for small/compact contexts,,
+Touch targets,Minimum 44×44px touch/click target area even if icon is smaller,,
+With labels,Always pair icons with text labels in navigation and key actions,,
+Background anchoring,"On white: use a small Baby Blue (#CDEDFD) or Light Grey (#F8F9FB) circle behind icons when visual anchoring is needed",,

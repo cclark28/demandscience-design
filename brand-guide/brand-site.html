@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DemandScience Brand Standards — Living Design System</title>
+  <meta name="description" content="The official DemandScience brand standards guide. Colors, typography, components, icons, motion, and governance rules for all teams.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <style>
+    /* ── RESET & BASE ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:       #061947;
+      --navy-light: #0A2A8F;
+      --blue:       #0266F7;
+      --blue-light: #CDEDFD;
+      --pink:       #D42F5B;
+      --pink-light: #FDF2F4;
+      --red-orange: #F40356;
+      --dark:       #1E293B;
+      --mid:        #64748B;
+      --light:      #F8F9FB;
+      --white:      #FFFFFF;
+      --gradient:   linear-gradient(to right, #061947, #0266F7);
+      --shadow:     0 2px 40px rgba(0,0,0,.10);
+      --radius:     10px;
+      --space-1: 8px; --space-2: 16px; --space-3: 24px;
+      --space-4: 32px; --space-5: 40px; --space-6: 48px;
+      --space-7: 56px; --space-8: 64px; --space-9: 80px;
+      --space-10: 96px;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1,h2,h3,h4,h5 { font-family: 'Poppins', sans-serif; line-height: 1.2; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ── NAV ───────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: var(--navy);
+      height: 72px;
+      display: flex; align-items: center;
+      padding: 0 var(--space-8);
+      transition: box-shadow .3s;
+    }
+    .nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,.25); }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: flex; align-items: center; gap: var(--space-8);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .nav-logo svg { width: 140px; height: auto; }
+    .nav-links { display: flex; align-items: center; gap: 4px; flex: 1; }
+    .nav-item { position: relative; }
+    .nav-link {
+      display: flex; align-items: center; gap: 4px;
+      padding: 8px 14px; border-radius: 6px;
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,.85);
+      transition: color .2s, background .2s;
+      cursor: pointer;
+    }
+    .nav-link:hover { color: #fff; background: rgba(255,255,255,.08); }
+    .nav-link .chevron {
+      font-size: 18px; transition: transform .25s;
+      font-family: 'Material Symbols Rounded'; font-style: normal;
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+    .nav-item:hover .chevron { transform: rotate(180deg); }
+    .dropdown {
+      position: absolute; top: calc(100% + 8px); left: 0;
+      background: var(--white); border-radius: var(--radius);
+      box-shadow: 0 8px 48px rgba(0,0,0,.18);
+      min-width: 240px; padding: 8px;
+      opacity: 0; visibility: hidden; transform: translateY(-8px);
+      transition: opacity .2s, transform .2s, visibility .2s;
+    }
+    .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-item {
+      display: block; padding: 10px 14px; border-radius: 6px;
+      color: var(--dark); font-size: 14px;
+      transition: background .15s;
+    }
+    .dropdown-item:hover { background: var(--light); }
+    .dropdown-item .label { font-weight: 600; font-size: 13px; color: var(--navy); margin-bottom: 2px; }
+    .dropdown-item .desc { font-size: 12px; color: var(--mid); }
+    .nav-cta {
+      margin-left: auto;
+      background: var(--pink); color: var(--white);
+      padding: 10px 24px; border-radius: 100px;
+      font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover {
+      background: #be2950; transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(212,47,91,.4);
+    }
+    .nav-mobile-toggle {
+      display: none; background: none; border: none;
+      color: #fff; cursor: pointer; padding: 8px;
+      font-family: 'Material Symbols Rounded'; font-size: 28px;
+    }
+
+    /* ── HERO ──────────────────────────────────────────── */
+    .hero {
+      background: var(--gradient);
+      padding: calc(72px + 96px) var(--space-8) 96px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--space-8); align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.12); color: rgba(255,255,255,.9);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 100px; padding: 6px 14px;
+      font-size: 12px; font-weight: 600; letter-spacing: .5px;
+      text-transform: uppercase; margin-bottom: var(--space-3);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700;
+      color: var(--white); margin-bottom: var(--space-3);
+    }
+    .hero p {
+      font-size: 18px; color: rgba(255,255,255,.8);
+      margin-bottom: var(--space-5); max-width: 520px;
+    }
+    .hero-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--pink); color: var(--white);
+      padding: 14px 32px; border-radius: 100px;
+      font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover {
+      background: #be2950; transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212,47,91,.5);
+    }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      padding: 14px 32px; border-radius: 100px;
+      border: 2px solid rgba(255,255,255,.4);
+      font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 600;
+      transition: border-color .2s, background .2s, transform .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,.8); background: rgba(255,255,255,.1);
+      transform: translateY(-2px);
+    }
+    .hero-visual {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .color-block {
+      border-radius: var(--radius); padding: var(--space-3);
+      display: flex; flex-direction: column; gap: 4px;
+      min-height: 80px; justify-content: flex-end;
+      transition: transform .2s;
+    }
+    .color-block:hover { transform: scale(1.03); }
+    .color-block .name { font-size: 11px; font-weight: 600; opacity: .9; }
+    .color-block .hex { font-size: 11px; opacity: .7; font-family: monospace; }
+
+    /* ── SECTIONS ──────────────────────────────────────── */
+    .section { padding: var(--space-10) var(--space-8); }
+    .section-alt { background: var(--light); }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: var(--space-2);
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 700;
+      color: var(--navy); margin-bottom: var(--space-2);
+    }
+    .section-body {
+      font-size: 17px; color: var(--mid); max-width: 600px;
+      margin-bottom: var(--space-7);
+    }
+
+    /* ── JUMP NAV ──────────────────────────────────────── */
+    .jump-nav {
+      position: sticky; top: 72px; z-index: 900;
+      background: var(--white); border-bottom: 1px solid #E5E7EB;
+      padding: 0 var(--space-8);
+    }
+    .jump-nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; gap: 4px; overflow-x: auto;
+      padding: 12px 0; scrollbar-width: none;
+    }
+    .jump-nav-inner::-webkit-scrollbar { display: none; }
+    .jump-link {
+      white-space: nowrap; padding: 6px 16px; border-radius: 100px;
+      font-size: 13px; font-weight: 500; color: var(--mid);
+      transition: background .15s, color .15s;
+    }
+    .jump-link:hover, .jump-link.active {
+      background: var(--navy); color: var(--white);
+    }
+
+    /* ── GRID ──────────────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); }
+    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-3); }
+
+    /* ── COLOR SWATCHES ────────────────────────────────── */
+    .swatch-card {
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow); cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .swatch-card:hover { transform: translateY(-4px); box-shadow: 0 8px 40px rgba(0,0,0,.15); }
+    .swatch-top { height: 120px; }
+    .swatch-bottom {
+      padding: var(--space-2) var(--space-2);
+      background: var(--white); border-top: 1px solid #E5E7EB;
+    }
+    .swatch-name { font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
+    .swatch-hex {
+      font-size: 12px; color: var(--mid); font-family: 'Courier New', monospace;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .swatch-hex .copy-icon {
+      font-family: 'Material Symbols Rounded'; font-size: 14px;
+      color: var(--blue); opacity: 0; transition: opacity .2s;
+    }
+    .swatch-card:hover .copy-icon { opacity: 1; }
+    .swatch-desc { font-size: 11px; color: var(--mid); margin-top: 4px; }
+    .swatch-gradient {
+      background: var(--gradient);
+    }
+    .color-rule {
+      display: flex; align-items: flex-start; gap: var(--space-2);
+      padding: var(--space-2); background: var(--light);
+      border-radius: var(--radius); margin-top: var(--space-2);
+    }
+    .color-rule .icon {
+      font-family: 'Material Symbols Rounded'; font-size: 20px; color: var(--blue);
+      flex-shrink: 0;
+    }
+    .color-rule p { font-size: 13px; color: var(--dark); }
+
+    /* ── TYPOGRAPHY ────────────────────────────────────── */
+    .type-row {
+      padding: var(--space-4) 0; border-bottom: 1px solid #E5E7EB;
+      display: flex; align-items: baseline; gap: var(--space-5);
+    }
+    .type-meta { width: 140px; flex-shrink: 0; }
+    .type-meta .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--blue); }
+    .type-meta .spec { font-size: 12px; color: var(--mid); margin-top: 2px; }
+    .t-h1 { font-family: 'Poppins'; font-size: 48px; font-weight: 700; color: var(--navy); }
+    .t-h2 { font-family: 'Poppins'; font-size: 36px; font-weight: 700; color: var(--navy); }
+    .t-h3 { font-family: 'Poppins'; font-size: 28px; font-weight: 600; color: var(--navy); }
+    .t-h4 { font-family: 'Poppins'; font-size: 22px; font-weight: 600; color: var(--navy); }
+    .t-h5 { font-family: 'Poppins'; font-size: 18px; font-weight: 600; color: var(--navy); }
+    .t-body-lg { font-family: 'Inter'; font-size: 18px; color: var(--dark); }
+    .t-body { font-family: 'Inter'; font-size: 16px; color: var(--dark); }
+    .t-small { font-family: 'Inter'; font-size: 14px; color: var(--mid); }
+    .t-caption { font-family: 'Inter'; font-size: 12px; color: var(--mid); }
+    .font-pair {
+      padding: var(--space-4); background: var(--white); border-radius: var(--radius);
+      box-shadow: var(--shadow); border-left: 4px solid var(--blue);
+    }
+    .font-pair .font-name { font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 4px; }
+    .font-pair .font-use { font-size: 12px; color: var(--mid); margin-bottom: var(--space-2); }
+    .font-pair .font-sample { font-size: 28px; font-weight: 700; color: var(--navy); }
+    .font-pair .font-sample-inter { font-size: 16px; color: var(--dark); }
+    .font-pair .abcs { font-size: 13px; color: var(--mid); margin-top: var(--space-1); }
+
+    /* ── COMPONENTS ────────────────────────────────────── */
+    .component-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .8px; color: var(--mid); margin-bottom: var(--space-2);
+    }
+    .comp-group { margin-bottom: var(--space-6); }
+    /* Buttons */
+    .btn-row { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; padding: var(--space-4); background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .ds-btn-primary {
+      background: var(--pink); color: var(--white);
+      padding: 12px 28px; border-radius: 100px;
+      font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600;
+      border: none; cursor: pointer;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .ds-btn-primary:hover {
+      background: #be2950; transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212,47,91,.45);
+    }
+    .ds-btn-secondary {
+      background: transparent; color: var(--pink);
+      padding: 10px 26px; border-radius: 100px;
+      border: 2px solid var(--pink);
+      font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .ds-btn-secondary:hover { background: var(--pink-light); transform: translateY(-2px); }
+    .ds-btn-ghost {
+      background: transparent; color: var(--navy);
+      padding: 10px 26px; border-radius: 100px;
+      border: 2px solid var(--navy);
+      font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .ds-btn-ghost:hover { background: var(--light); transform: translateY(-2px); }
+    .ds-btn-ui {
+      background: var(--light); color: var(--dark);
+      padding: 8px 16px; border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+      border: 1px solid #E5E7EB; cursor: pointer;
+      transition: background .15s;
+    }
+    .ds-btn-ui:hover { background: #E5E7EB; }
+    /* Cards */
+    .ds-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: var(--space-3); box-shadow: var(--shadow);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .ds-card:hover { transform: translateY(-4px); box-shadow: 0 8px 40px rgba(0,0,0,.14); }
+    .ds-card .card-icon {
+      width: 48px; height: 48px; background: var(--blue-light);
+      border-radius: var(--radius); display: flex; align-items: center; justify-content: center;
+      margin-bottom: var(--space-2);
+    }
+    .ds-card .card-icon span {
+      font-family: 'Material Symbols Rounded'; font-size: 24px; color: var(--blue);
+    }
+    .ds-card h4 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .ds-card p { font-size: 14px; color: var(--mid); }
+    /* Stat */
+    .ds-stat { text-align: left; padding: var(--space-3); background: var(--navy); border-radius: var(--radius); }
+    .ds-stat .num { font-family: 'Poppins'; font-size: 40px; font-weight: 700; color: var(--white); }
+    .ds-stat .num span { color: var(--blue-light); }
+    .ds-stat .stat-label { font-size: 14px; color: rgba(255,255,255,.7); margin-top: 4px; }
+    /* Table */
+    .ds-table { width: 100%; border-collapse: collapse; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .ds-table th { background: var(--navy); color: var(--white); font-family: 'Poppins'; font-size: 13px; font-weight: 600; padding: 14px 16px; text-align: left; }
+    .ds-table td { padding: 12px 16px; font-size: 14px; color: var(--dark); border-bottom: 1px solid #E5E7EB; }
+    .ds-table tr:nth-child(even) td { background: var(--blue-light); }
+    /* Form */
+    .ds-input {
+      width: 100%; padding: 12px 16px; border-radius: 8px;
+      border: 1.5px solid #E5E7EB; font-family: 'Inter'; font-size: 14px;
+      color: var(--dark); outline: none; transition: border-color .2s, box-shadow .2s;
+    }
+    .ds-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(2,102,247,.15); }
+    .ds-label { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 6px; display: block; }
+    .ds-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 4px 10px; border-radius: 100px;
+      font-size: 12px; font-weight: 600;
+    }
+    .badge-blue { background: var(--blue-light); color: var(--blue); }
+    .badge-pink { background: var(--pink-light); color: var(--pink); }
+    .badge-navy { background: var(--navy); color: var(--white); }
+    .badge-green { background: #DCFCE7; color: #166534; }
+
+    /* ── ICONS ─────────────────────────────────────────── */
+    .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--space-2); }
+    .icon-item {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      padding: var(--space-2); border-radius: var(--radius);
+      background: var(--white); box-shadow: var(--shadow);
+      cursor: pointer; transition: background .15s, transform .2s;
+    }
+    .icon-item:hover { background: var(--blue-light); transform: translateY(-2px); }
+    .icon-item span.icon {
+      font-family: 'Material Symbols Rounded'; font-size: 28px; color: var(--navy);
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .icon-item:hover span.icon { color: var(--blue); }
+    .icon-item .icon-name { font-size: 10px; color: var(--mid); text-align: center; line-height: 1.3; }
+    .icon-sizes { display: flex; align-items: flex-end; gap: var(--space-3); flex-wrap: wrap; }
+    .icon-sizes .sz { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .icon-sizes .sz span.icon {
+      font-family: 'Material Symbols Rounded'; color: var(--navy);
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .icon-sizes .sz label { font-size: 11px; color: var(--mid); }
+
+    /* ── MOTION ────────────────────────────────────────── */
+    .motion-demo {
+      padding: var(--space-4); background: var(--white); border-radius: var(--radius);
+      box-shadow: var(--shadow); display: flex; flex-direction: column; gap: var(--space-3);
+    }
+    .motion-item { display: flex; align-items: center; gap: var(--space-3); }
+    .motion-swatch {
+      width: 56px; height: 56px; border-radius: 10px;
+      background: var(--gradient); flex-shrink: 0;
+    }
+    @keyframes ds-fade-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes ds-scale-in {
+      from { opacity: 0; transform: scale(.9); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes ds-slide-in {
+      from { opacity: 0; transform: translateX(-20px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes ds-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(2,102,247,.4); }
+      50%       { box-shadow: 0 0 0 12px rgba(2,102,247,0); }
+    }
+    .anim-fade-up { animation: ds-fade-up .5s ease both; }
+    .anim-scale-in { animation: ds-scale-in .4s ease both; }
+    .anim-slide-in { animation: ds-slide-in .45s ease both; }
+    .anim-pulse { animation: ds-pulse 2s ease infinite; }
+    .motion-trigger { animation-play-state: paused; }
+    .motion-trigger.playing { animation-play-state: running; }
+    .motion-label { flex: 1; }
+    .motion-label .name { font-weight: 600; font-size: 14px; color: var(--dark); }
+    .motion-label .spec { font-size: 12px; color: var(--mid); font-family: monospace; }
+    .play-btn {
+      background: var(--light); border: 1px solid #E5E7EB;
+      border-radius: 8px; padding: 8px 16px;
+      font-size: 13px; font-weight: 600; color: var(--blue);
+      cursor: pointer; transition: background .15s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .play-btn span { font-family: 'Material Symbols Rounded'; font-size: 18px; }
+    .play-btn:hover { background: var(--blue-light); }
+
+    /* ── GRID SYSTEM ───────────────────────────────────── */
+    .grid-demo { padding: var(--space-4); background: var(--navy); border-radius: var(--radius); }
+    .grid-demo-cols { display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; }
+    .grid-col { height: 32px; background: rgba(255,255,255,.12); border-radius: 4px; border: 1px solid rgba(255,255,255,.2); }
+    .grid-col.span-3 { grid-column: span 3; background: rgba(2,102,247,.4); }
+    .grid-col.span-4 { grid-column: span 4; background: rgba(2,102,247,.4); }
+    .grid-col.span-6 { grid-column: span 6; background: rgba(2,102,247,.4); }
+    .grid-col.span-12 { grid-column: span 12; background: rgba(2,102,247,.4); }
+    .grid-col.accent { background: rgba(212,47,91,.4); }
+    .spacing-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid #E5E7EB; }
+    .spacing-swatch { background: var(--blue-light); border-radius: 4px; height: 24px; }
+    .spacing-meta { font-size: 13px; }
+    .spacing-meta .var { font-family: monospace; color: var(--blue); font-size: 12px; }
+    .spacing-meta .val { color: var(--mid); font-size: 12px; }
+
+    /* ── VOICE & TONE ──────────────────────────────────── */
+    .quote-block {
+      padding: var(--space-5) var(--space-6);
+      background: var(--gradient); border-radius: var(--radius);
+      position: relative; overflow: hidden;
+    }
+    .quote-block::before {
+      content: '"'; position: absolute; top: -20px; left: 20px;
+      font-family: 'Poppins'; font-size: 160px; color: rgba(255,255,255,.08);
+      line-height: 1;
+    }
+    .quote-block p {
+      font-family: 'Poppins'; font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-weight: 600; color: var(--white); position: relative; z-index: 1;
+    }
+    .we-table { width: 100%; border-collapse: collapse; }
+    .we-table th { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; padding: 10px 16px; }
+    .we-table th:first-child { background: var(--navy); color: var(--white); border-radius: var(--radius) 0 0 0; }
+    .we-table th:last-child { background: var(--light); color: var(--mid); border-radius: 0 var(--radius) 0 0; }
+    .we-table td { padding: 10px 16px; font-size: 14px; border-bottom: 1px solid #E5E7EB; }
+    .we-table td:first-child { color: var(--dark); font-weight: 500; }
+    .we-table td:last-child { color: var(--mid); text-decoration: line-through; }
+
+    /* ── GOVERNANCE ────────────────────────────────────── */
+    .stop-box {
+      background: #0F1724; border-radius: var(--radius);
+      padding: var(--space-5); font-family: 'Courier New', monospace;
+      font-size: 13px; color: #E8F2FF; line-height: 1.8;
+      box-shadow: 0 4px 40px rgba(0,0,0,.4);
+    }
+    .stop-box .stop-title { color: #F87171; font-weight: 700; }
+    .stop-box .stop-label { color: #93C5FD; }
+    .stop-box .stop-value { color: #FDE68A; }
+    .stop-box .stop-action { color: #86EFAC; }
+    .stop-box .stop-border { color: #3B4968; }
+    .tier-card {
+      padding: var(--space-4); border-radius: var(--radius);
+      border-left: 5px solid;
+    }
+    .tier-stop { background: #FEF2F2; border-color: #EF4444; }
+    .tier-warn { background: #FFFBEB; border-color: #F59E0B; }
+    .tier-ok   { background: #F0FDF4; border-color: #22C55E; }
+    .tier-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .tier-stop h4 { color: #B91C1C; }
+    .tier-warn h4 { color: #92400E; }
+    .tier-ok   h4 { color: #166534; }
+    .tier-card ul { list-style: disc; padding-left: 18px; }
+    .tier-card li { font-size: 13px; color: var(--dark); margin-bottom: 4px; }
+
+    /* ── DO & DON'T ────────────────────────────────────── */
+    .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+    .do-card { background: #F0FDF4; border: 2px solid #22C55E; border-radius: var(--radius); padding: var(--space-3); }
+    .dont-card { background: #FEF2F2; border: 2px solid #EF4444; border-radius: var(--radius); padding: var(--space-3); }
+    .do-card h4 { color: #166534; font-size: 14px; font-weight: 700; margin-bottom: var(--space-2); display: flex; align-items: center; gap: 6px; }
+    .dont-card h4 { color: #B91C1C; font-size: 14px; font-weight: 700; margin-bottom: var(--space-2); display: flex; align-items: center; gap: 6px; }
+    .do-card h4 span, .dont-card h4 span { font-family: 'Material Symbols Rounded'; font-size: 18px; }
+    .do-card li, .dont-card li { font-size: 13px; color: var(--dark); margin-bottom: 6px; padding-left: 14px; position: relative; }
+    .do-card li::before { content: '✓'; position: absolute; left: 0; color: #22C55E; font-weight: 700; }
+    .dont-card li::before { content: '✗'; position: absolute; left: 0; color: #EF4444; font-weight: 700; }
+
+    /* ── DIVIDER ───────────────────────────────────────── */
+    .divider-band {
+      background: var(--gradient); padding: var(--space-9) var(--space-8);
+      text-align: left;
+    }
+    .divider-band .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4); }
+    .divider-band h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; color: var(--white); }
+    .divider-band p { color: rgba(255,255,255,.75); max-width: 500px; margin-top: 6px; }
+
+    /* ── FOOTER ────────────────────────────────────────── */
+    .site-footer {
+      background: var(--navy); color: rgba(255,255,255,.6);
+      padding: var(--space-6) var(--space-8);
+      font-size: 13px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: var(--space-3);
+    }
+    .footer-brand { font-family: 'Poppins'; font-size: 14px; font-weight: 600; color: rgba(255,255,255,.9); }
+    .footer-links { display: flex; gap: var(--space-4); }
+    .footer-links a { color: rgba(255,255,255,.5); transition: color .15s; }
+    .footer-links a:hover { color: rgba(255,255,255,.9); }
+
+    /* ── TOAST ─────────────────────────────────────────── */
+    #toast {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+      background: var(--navy); color: var(--white);
+      padding: 12px 20px; border-radius: var(--radius);
+      font-size: 14px; font-weight: 500;
+      transform: translateY(60px); opacity: 0;
+      transition: transform .3s, opacity .3s;
+      display: flex; align-items: center; gap: 8px;
+      pointer-events: none;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+    #toast span { font-family: 'Material Symbols Rounded'; font-size: 18px; color: #86EFAC; }
+
+    /* ── SCROLL ANIMATIONS ─────────────────────────────── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-mobile-toggle { display: block; margin-left: auto; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+      .do-dont { grid-template-columns: 1fr; }
+      .section { padding: 60px var(--space-4); }
+      .nav { padding: 0 var(--space-4); }
+      .jump-nav { padding: 0 var(--space-4); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="main-nav">
+    <div class="nav-inner">
+      <!-- White SVG logo -->
+      <div class="nav-logo">
+        <svg viewBox="0 0 200 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="DemandScience">
+          <rect width="36" height="36" rx="6" fill="white" fill-opacity="0.15"/>
+          <text x="6" y="25" font-family="Poppins,sans-serif" font-size="18" font-weight="700" fill="white">DS</text>
+          <text x="46" y="24" font-family="Poppins,sans-serif" font-size="15" font-weight="700" fill="white">Demand</text><text x="118" y="24" font-family="Poppins,sans-serif" font-size="15" font-weight="400" fill="rgba(255,255,255,0.8)">Science</text>
+        </svg>
+      </div>
+
+      <nav class="nav-links" aria-label="Primary">
+        <div class="nav-item">
+          <div class="nav-link">Solutions <span class="chevron">expand_more</span></div>
+          <div class="dropdown">
+            <a href="#colors" class="dropdown-item">
+              <div class="label">Color System</div>
+              <div class="desc">Official brand palette & usage rules</div>
+            </a>
+            <a href="#typography" class="dropdown-item">
+              <div class="label">Typography</div>
+              <div class="desc">Poppins &amp; Inter scale</div>
+            </a>
+            <a href="#components" class="dropdown-item">
+              <div class="label">Components</div>
+              <div class="desc">Buttons, cards, tables &amp; more</div>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <div class="nav-link">What We Enable <span class="chevron">expand_more</span></div>
+          <div class="dropdown">
+            <a href="#icons" class="dropdown-item">
+              <div class="label">Icon Library</div>
+              <div class="desc">Material Symbols Rounded</div>
+            </a>
+            <a href="#motion" class="dropdown-item">
+              <div class="label">Motion &amp; Animation</div>
+              <div class="desc">Timing, easing, micro-interactions</div>
+            </a>
+            <a href="#grid" class="dropdown-item">
+              <div class="label">Grid System</div>
+              <div class="desc">8px base unit, spacing tokens</div>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <div class="nav-link">Why DemandScience <span class="chevron">expand_more</span></div>
+          <div class="dropdown">
+            <a href="#voice" class="dropdown-item">
+              <div class="label">Voice &amp; Tone</div>
+              <div class="desc">Mission, messaging &amp; copy rules</div>
+            </a>
+            <a href="#governance" class="dropdown-item">
+              <div class="label">Brand Governance</div>
+              <div class="desc">STOP rules &amp; enforcement</div>
+            </a>
+          </div>
+        </div>
+        <div class="nav-item"><a href="#governance" class="nav-link">Governance</a></div>
+      </nav>
+
+      <a href="mailto:Marketing@demandscience.com" class="nav-cta">Get Approval</a>
+      <button class="nav-mobile-toggle" aria-label="Menu">menu</button>
+    </div>
+  </nav>
+
+  <!-- JUMP NAV -->
+  <div class="jump-nav">
+    <div class="jump-nav-inner">
+      <a href="#colors"      class="jump-link">Colors</a>
+      <a href="#typography"  class="jump-link">Typography</a>
+      <a href="#components"  class="jump-link">Components</a>
+      <a href="#icons"       class="jump-link">Icons</a>
+      <a href="#motion"      class="jump-link">Motion</a>
+      <a href="#grid"        class="jump-link">Grid</a>
+      <a href="#voice"       class="jump-link">Voice &amp; Tone</a>
+      <a href="#dodont"      class="jump-link">Do &amp; Don't</a>
+      <a href="#governance"  class="jump-link">Governance</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-grid container">
+      <div>
+        <div class="hero-badge">
+          <span style="font-family:'Material Symbols Rounded';font-size:14px;color:var(--blue-light)">verified</span>
+          Living Brand System · v2.3
+        </div>
+        <h1>DemandScience<br>Brand Standards</h1>
+        <p>The single source of truth for every visual and written decision across DemandScience. Colors, type, components, icons, motion, and governance — all in one place.</p>
+        <div class="hero-actions">
+          <a href="#colors" class="btn-primary">
+            <span style="font-family:'Material Symbols Rounded';font-size:18px">palette</span>
+            Explore the System
+          </a>
+          <a href="mailto:Marketing@demandscience.com" class="btn-outline">
+            <span style="font-family:'Material Symbols Rounded';font-size:18px">mail</span>
+            Design Review
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="color-block" style="background:#061947; color:rgba(255,255,255,0.9);grid-column:span 2">
+          <span class="name">Navy Blue</span><span class="hex">#061947</span>
+        </div>
+        <div class="color-block" style="background:#0266F7; color:rgba(255,255,255,0.9)">
+          <span class="name">Electric Blue</span><span class="hex">#0266F7</span>
+        </div>
+        <div class="color-block" style="background:#D42F5B; color:rgba(255,255,255,0.9)">
+          <span class="name">CTA Red</span><span class="hex">#D42F5B</span>
+        </div>
+        <div class="color-block" style="background:#CDEDFD; color:#061947">
+          <span class="name">Baby Blue</span><span class="hex">#CDEDFD</span>
+        </div>
+        <div class="color-block" style="background:#F8F9FB; color:#64748B">
+          <span class="name">Light Grey</span><span class="hex">#F8F9FB</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLORS -->
+  <section class="section" id="colors">
+    <div class="container">
+      <div class="section-label">01 — Color System</div>
+      <h2 class="section-title">The Official Palette</h2>
+      <p class="section-body">Every color below is sourced directly from <em>25-DS-BrandGuide-General.pdf</em>. Do not approximate. Click any swatch to copy the hex value.</p>
+
+      <div class="grid-4 reveal">
+        <div class="swatch-card" onclick="copyHex('#061947','Navy Blue')">
+          <div class="swatch-top" style="background:#061947"></div>
+          <div class="swatch-bottom">
+            <div class="swatch-name">Navy Blue</div>
+            <div class="swatch-hex">#061947 <span class="copy-icon">content_copy</span></div>
+            <div class="swatch-desc">Primary brand color. Headlines, footers, backgrounds.</div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#0A2A8F','Navy Light')">
+          <div class="swatch-top" style="background:#0A2A8F"></div>
+          <div class="swatch-bottom">
+            <div class="swatch-name">Navy Light</div>
+            <div class="swatch-hex">#0A2A8F <span class="copy-icon">content_copy</span></div>
+            <div class="swatch-desc">Hover states, accent backgrounds on navy.</div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#0266F7','Electric Blue')">
+          <div class="swatch-top" style="background:#0266F7"></div>
+          <div class="swatch-bottom">
+            <div class="swatch-name">Electric Blue</div>
+            <div class="swatch-hex">#0266F7 <span class="copy-icon">content_copy</span></div>
+            <div class="swatch-desc">Links, icons, active states, data color 2.</div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#CDEDFD','Baby Blue')">
+          <div class="swatch-top" style="background:#CDEDFD"></div>
+          <div class="swatch-bottom">
+            <div class="swatch-name">Baby Blue</div>
+            <div class="swatch-hex">#CDEDFD <span class="copy-icon">content_copy</span></div>
+            <div class="swatch-desc">Card backgrounds, table alternating rows, badges.</div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#D42F5B','CTA Red')">
+          <div class="swatch-top" style="background:#D42F5B"></div>
+          <div class="swatch-bottom">
+            <div class="swatch-name">CTA Red</div>
+            <div class="swatch-hex">#D42F5B <span class="copy-icon">content_copy</span></div>
+            <div class="swatch-desc">Buttons &amp; CTAs <em>only</em>. Never decorative.</div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#FDF2F4','Pink Light')">
+          <div class="swatch-top" style="background:#FDF2F4"></div>
+          <div class="swatch-bottom">
+            <div class="swatch-name">Pink Light</div>
+            <div class="swatch-hex">#FDF2F4 <span class="copy-icon">content_copy</span></div>
+            <div class="swatch-desc">Hover state for secondary buttons. Subtle tint.</div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#F40356','Red Orange')">
+          <div class="swatch-top" style="background:#F40356"></div>
+          <div class="swatch-bottom">
+            <div class="swatch-name">Red Orange</div>
+            <div class="swatch-hex">#F40356 <span class="copy-icon">content_copy</span></div>
+            <div class="swatch-desc">High-energy accent. Use sparingly.</div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('linear-gradient(to right, #061947, #0266F7)','Gradient')">
+          <div class="swatch-top swatch-gradient"></div>
+          <div class="swatch-bottom">
+            <div class="swatch-name">Brand Gradient</div>
+            <div class="swatch-hex">Navy → Blue <span class="copy-icon">content_copy</span></div>
+            <div class="swatch-desc">Hero, dividers, closing sections only.</div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#1E293B','Dark Grey')">
+          <div class="swatch-top" style="background:#1E293B"></div>
+          <div class="swatch-bottom">
+            <div class="swatch-name">Dark Grey</div>
+            <div class="swatch-hex">#1E293B <span class="copy-icon">content_copy</span></div>
+            <div class="swatch-desc">Body copy, paragraph text.</div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#64748B','Medium Grey')">
+          <div class="swatch-top" style="background:#64748B"></div>
+          <div class="swatch-bottom">
+            <div class="swatch-name">Medium Grey</div>
+            <div class="swatch-hex">#64748B <span class="copy-icon">content_copy</span></div>
+            <div class="swatch-desc">Captions, meta text, helper copy.</div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#F8F9FB','Light Grey')">
+          <div class="swatch-top" style="background:#F8F9FB; border-bottom: 1px solid #E5E7EB"></div>
+          <div class="swatch-bottom">
+            <div class="swatch-name">Light Grey</div>
+            <div class="swatch-hex">#F8F9FB <span class="copy-icon">content_copy</span></div>
+            <div class="swatch-desc">Section backgrounds, card alternates.</div>
+          </div>
+        </div>
+        <div class="swatch-card" onclick="copyHex('#FFFFFF','White')">
+          <div class="swatch-top" style="background:#FFFFFF; border-bottom: 1px solid #E5E7EB"></div>
+          <div class="swatch-bottom">
+            <div class="swatch-name">White</div>
+            <div class="swatch-hex">#FFFFFF <span class="copy-icon">content_copy</span></div>
+            <div class="swatch-desc">Default background for all slides, pages, cards.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-5)">
+        <div class="section-label" style="margin-bottom:var(--space-2)">Color Rules</div>
+        <div class="grid-3 reveal">
+          <div class="color-rule">
+            <span class="icon">block</span>
+            <p><strong>Pink is for CTAs only.</strong> Never use #D42F5B as a background, icon color, or decorative element.</p>
+          </div>
+          <div class="color-rule">
+            <span class="icon">gradient</span>
+            <p><strong>Gradient is structural.</strong> Hero, section dividers, and closing bands only — never on slides or cards.</p>
+          </div>
+          <div class="color-rule">
+            <span class="icon">check_circle</span>
+            <p><strong>White is the default.</strong> All slides, pages, and cards start white. Off-palette backgrounds require Design approval.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="section section-alt" id="typography">
+    <div class="container">
+      <div class="section-label">02 — Typography</div>
+      <h2 class="section-title">Type System</h2>
+      <p class="section-body">Two fonts. No exceptions. Poppins for all headings and display text; Inter for all body copy, UI, and captions.</p>
+
+      <div class="grid-2 reveal" style="margin-bottom:var(--space-6)">
+        <div class="font-pair">
+          <div class="font-name">Poppins</div>
+          <div class="font-use">Headings, Titles, Display, CTAs — Bold 700 / SemiBold 600</div>
+          <div class="font-sample" style="font-family:'Poppins'">Aa Bb Cc Dd Ee</div>
+          <div class="abcs" style="font-family:'Poppins';font-weight:400">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789</div>
+        </div>
+        <div class="font-pair" style="border-left-color:var(--navy)">
+          <div class="font-name" style="color:var(--navy)">Inter</div>
+          <div class="font-use">Body copy, UI labels, captions, tables — Regular 400 / Medium 500</div>
+          <div class="font-sample-inter" style="font-family:'Inter';font-size:22px;font-weight:400;color:var(--dark)">The quick brown fox jumps over the lazy dog.</div>
+          <div class="abcs" style="font-family:'Inter'">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789</div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="type-row">
+          <div class="type-meta"><div class="label">H1 / Title</div><div class="spec">Poppins 700 · 48px / 3rem</div></div>
+          <div class="t-h1">Headline One</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><div class="label">H2</div><div class="spec">Poppins 700 · 36px / 2.25rem</div></div>
+          <div class="t-h2">Headline Two</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><div class="label">H3</div><div class="spec">Poppins 600 · 28px / 1.75rem</div></div>
+          <div class="t-h3">Headline Three</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><div class="label">H4</div><div class="spec">Poppins 600 · 22px / 1.375rem</div></div>
+          <div class="t-h4">Headline Four</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><div class="label">H5</div><div class="spec">Poppins 600 · 18px / 1.125rem</div></div>
+          <div class="t-h5">Headline Five</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><div class="label">Body Large</div><div class="spec">Inter 400 · 18px / 1.125rem</div></div>
+          <div class="t-body-lg">Empowering B2B marketers to reach the right buyers at scale.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><div class="label">Body</div><div class="spec">Inter 400 · 16px / 1rem</div></div>
+          <div class="t-body">DemandScience delivers high-quality leads and demand gen solutions to accelerate pipeline growth.</div>
+        </div>
+        <div class="type-row">
+          <div class="type-meta"><div class="label">Small</div><div class="spec">Inter 400 · 14px / 0.875rem</div></div>
+          <div class="t-small">Supporting copy, form labels, table content, UI text, navigation items.</div>
+        </div>
+        <div class="type-row" style="border-bottom:none">
+          <div class="type-meta"><div class="label">Caption</div><div class="spec">Inter 400 · 12px / 0.75rem</div></div>
+          <div class="t-caption">Image captions, footnotes, legal copy, timestamps, metadata.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:var(--space-5)" class="reveal">
+        <div class="section-label" style="margin-bottom:var(--space-2)">Slide Type Scale</div>
+        <table class="ds-table">
+          <thead>
+            <tr><th>Element</th><th>Size</th><th>Weight</th><th>Color</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Slide Title / H1</td><td>32pt (43px)</td><td>Poppins Bold 700</td><td>#061947 Navy</td></tr>
+            <tr><td>Slide Heading / H2</td><td>24pt (32px)</td><td>Poppins SemiBold 600</td><td>#061947 Navy</td></tr>
+            <tr><td>Slide Subheading / H3</td><td>18pt (24px)</td><td>Poppins SemiBold 600</td><td>#061947 Navy</td></tr>
+            <tr><td>Body Copy</td><td>12–14pt (16–19px)</td><td>Inter Regular 400</td><td>#1E293B Dark</td></tr>
+            <tr><td>Caption / Footer</td><td>9pt (12px)</td><td>Inter Regular 400</td><td>#64748B Mid</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section class="section" id="components">
+    <div class="container">
+      <div class="section-label">03 — Components</div>
+      <h2 class="section-title">Component Library</h2>
+      <p class="section-body">Every component follows the brand token system. Never modify border radii, colors, or font weights outside these standards.</p>
+
+      <!-- Buttons -->
+      <div class="comp-group reveal">
+        <div class="component-label">Buttons</div>
+        <div class="btn-row">
+          <button class="ds-btn-primary">
+            <span style="font-family:'Material Symbols Rounded';font-size:18px">arrow_forward</span>
+            Primary CTA
+          </button>
+          <button class="ds-btn-secondary">Secondary</button>
+          <button class="ds-btn-ghost">Ghost</button>
+          <button class="ds-btn-ui">UI Button</button>
+          <button class="ds-btn-ui" style="background:var(--blue-light);color:var(--blue);border-color:var(--blue-light)">Active State</button>
+          <button class="ds-btn-ui" style="opacity:.4;cursor:not-allowed">Disabled</button>
+        </div>
+        <div style="margin-top:var(--space-2); padding:var(--space-2) var(--space-3); background:var(--pink-light); border-radius:8px; font-size:12px; color:var(--mid)">
+          ⚠ Primary CTA: #D42F5B pill only · Secondary: pink outline · UI buttons: 8px radius for product/internal use only — no pill buttons in product UI.
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div class="comp-group reveal">
+        <div class="component-label">Cards</div>
+        <div class="grid-3">
+          <div class="ds-card">
+            <div class="card-icon"><span>insights</span></div>
+            <h4>Intent Data</h4>
+            <p>Identify buyers actively researching your solutions and act before the competition.</p>
+          </div>
+          <div class="ds-card">
+            <div class="card-icon"><span>people</span></div>
+            <h4>Audience Targeting</h4>
+            <p>Reach decision-makers with verified contact data and firmographic precision.</p>
+          </div>
+          <div class="ds-card" style="background:var(--light)">
+            <div class="card-icon" style="background:var(--white)"><span>trending_up</span></div>
+            <h4>Pipeline Acceleration</h4>
+            <p>Move deals faster with always-on demand generation that fills every stage.</p>
+          </div>
+        </div>
+        <div style="margin-top:var(--space-2); padding:var(--space-2) var(--space-3); background:var(--light); border-radius:8px; font-size:12px; color:var(--mid)">
+          Cards: white or light grey background · 10px border radius · 24px padding · shadow: 0 2px 40px rgba(0,0,0,.10)
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="comp-group reveal">
+        <div class="component-label">Stats Strip</div>
+        <div class="grid-4">
+          <div class="ds-stat"><div class="num">94<span>%</span></div><div class="stat-label">Data accuracy guarantee</div></div>
+          <div class="ds-stat"><div class="num">150<span>M+</span></div><div class="stat-label">Verified B2B contacts</div></div>
+          <div class="ds-stat"><div class="num">3x</div><div class="stat-label">Pipeline velocity increase</div></div>
+          <div class="ds-stat" style="background:var(--blue)"><div class="num">48<span>hr</span></div><div class="stat-label">Avg. campaign launch</div></div>
+        </div>
+      </div>
+
+      <!-- Badges -->
+      <div class="comp-group reveal">
+        <div class="component-label">Badges &amp; Labels</div>
+        <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;padding:var(--space-3);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)">
+          <span class="ds-badge badge-blue">Intent Data</span>
+          <span class="ds-badge badge-navy">Enterprise</span>
+          <span class="ds-badge badge-pink">CTA Only</span>
+          <span class="ds-badge badge-green">Approved</span>
+          <span class="ds-badge" style="background:#FEF2F2;color:#B91C1C">STOP</span>
+          <span class="ds-badge" style="background:#FFFBEB;color:#92400E">⚠ Warning</span>
+        </div>
+      </div>
+
+      <!-- Form inputs -->
+      <div class="comp-group reveal">
+        <div class="component-label">Form Elements</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);padding:var(--space-4);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)">
+          <div>
+            <label class="ds-label">First Name</label>
+            <input class="ds-input" type="text" placeholder="Jane">
+          </div>
+          <div>
+            <label class="ds-label">Work Email</label>
+            <input class="ds-input" type="email" placeholder="jane@company.com">
+          </div>
+          <div style="grid-column:span 2">
+            <label class="ds-label">Company</label>
+            <input class="ds-input" type="text" placeholder="Acme Corp">
+          </div>
+          <div style="grid-column:span 2;display:flex;gap:var(--space-2)">
+            <button class="ds-btn-primary" style="flex:1">
+              <span style="font-family:'Material Symbols Rounded';font-size:18px">send</span>
+              Request Demo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="comp-group reveal">
+        <div class="component-label">Data Table</div>
+        <table class="ds-table">
+          <thead>
+            <tr><th>Channel</th><th>Leads / Month</th><th>CPL</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Content Syndication</td><td>1,200</td><td>$42</td><td><span class="ds-badge badge-green">Active</span></td></tr>
+            <tr><td>Intent-Driven Campaigns</td><td>840</td><td>$68</td><td><span class="ds-badge badge-blue">In Review</span></td></tr>
+            <tr><td>ABM Display</td><td>320</td><td>$115</td><td><span class="ds-badge badge-green">Active</span></td></tr>
+            <tr><td>Email Nurture</td><td>2,100</td><td>$28</td><td><span class="ds-badge badge-navy">Paused</span></td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:var(--space-2);font-size:12px;color:var(--mid)">Table: Navy header · Alternating white / Baby Blue rows · Light grey borders (#E5E7EB)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ICONS -->
+  <section class="section section-alt" id="icons">
+    <div class="container">
+      <div class="section-label">04 — Iconography</div>
+      <h2 class="section-title">Google Material Symbols Rounded</h2>
+      <p class="section-body">This is the only approved icon library. No Font Awesome, Heroicons, Feather, Lucide, or any other system. Style: Rounded only.</p>
+
+      <div class="icon-grid reveal">
+        <div class="icon-item"><span class="icon">insights</span><div class="icon-name">insights</div></div>
+        <div class="icon-item"><span class="icon">people</span><div class="icon-name">people</div></div>
+        <div class="icon-item"><span class="icon">trending_up</span><div class="icon-name">trending_up</div></div>
+        <div class="icon-item"><span class="icon">verified</span><div class="icon-name">verified</div></div>
+        <div class="icon-item"><span class="icon">bar_chart</span><div class="icon-name">bar_chart</div></div>
+        <div class="icon-item"><span class="icon">target</span><div class="icon-name">target</div></div>
+        <div class="icon-item"><span class="icon">bolt</span><div class="icon-name">bolt</div></div>
+        <div class="icon-item"><span class="icon">search</span><div class="icon-name">search</div></div>
+        <div class="icon-item"><span class="icon">mail</span><div class="icon-name">mail</div></div>
+        <div class="icon-item"><span class="icon">star</span><div class="icon-name">star</div></div>
+        <div class="icon-item"><span class="icon">check_circle</span><div class="icon-name">check_circle</div></div>
+        <div class="icon-item"><span class="icon">arrow_forward</span><div class="icon-name">arrow_forward</div></div>
+        <div class="icon-item"><span class="icon">data_object</span><div class="icon-name">data_object</div></div>
+        <div class="icon-item"><span class="icon">campaign</span><div class="icon-name">campaign</div></div>
+        <div class="icon-item"><span class="icon">hub</span><div class="icon-name">hub</div></div>
+        <div class="icon-item"><span class="icon">speed</span><div class="icon-name">speed</div></div>
+        <div class="icon-item"><span class="icon">lock</span><div class="icon-name">lock</div></div>
+        <div class="icon-item"><span class="icon">globe</span><div class="icon-name">globe</div></div>
+        <div class="icon-item"><span class="icon">filter_list</span><div class="icon-name">filter_list</div></div>
+        <div class="icon-item"><span class="icon">download</span><div class="icon-name">download</div></div>
+      </div>
+
+      <div style="margin-top:var(--space-5)" class="reveal">
+        <div class="section-label" style="margin-bottom:var(--space-3)">Icon Sizes</div>
+        <div style="padding:var(--space-4);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)">
+          <div class="icon-sizes">
+            <div class="sz"><span class="icon" style="font-size:16px">insights</span><label>16px · UI</label></div>
+            <div class="sz"><span class="icon" style="font-size:20px">insights</span><label>20px · Inline</label></div>
+            <div class="sz"><span class="icon" style="font-size:24px">insights</span><label>24px · Default</label></div>
+            <div class="sz"><span class="icon" style="font-size:32px">insights</span><label>32px · Feature</label></div>
+            <div class="sz"><span class="icon" style="font-size:48px">insights</span><label>48px · Hero</label></div>
+          </div>
+          <p style="font-size:12px;color:var(--mid);margin-top:var(--space-3)">Color: Navy #061947 default · Electric Blue #0266F7 on hover · Never pink, never grey, never off-palette.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOTION -->
+  <section class="section" id="motion">
+    <div class="container">
+      <div class="section-label">05 — Motion &amp; Animation</div>
+      <h2 class="section-title">Motion Principles</h2>
+      <p class="section-body">Motion should be purposeful and subtle. Every animation has a reason — reveal, guide attention, or confirm an action. Nothing spins, bounces, or flashes.</p>
+
+      <div class="grid-2 reveal">
+        <div class="motion-demo">
+          <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:var(--space-2)">Approved Patterns</div>
+          <div class="motion-item">
+            <div class="motion-swatch" id="m1" style="animation:ds-fade-up .5s ease both;"></div>
+            <div class="motion-label">
+              <div class="name">Fade Up</div>
+              <div class="spec">opacity 0→1 + translateY 20px→0 · 500ms ease</div>
+            </div>
+            <button class="play-btn" onclick="replay('m1','ds-fade-up .5s ease both')"><span>play_arrow</span> Play</button>
+          </div>
+          <div class="motion-item">
+            <div class="motion-swatch" id="m2" style="animation:ds-scale-in .4s ease both;background:var(--blue)"></div>
+            <div class="motion-label">
+              <div class="name">Scale In</div>
+              <div class="spec">scale .9→1 + opacity · 400ms ease</div>
+            </div>
+            <button class="play-btn" onclick="replay('m2','ds-scale-in .4s ease both')"><span>play_arrow</span> Play</button>
+          </div>
+          <div class="motion-item">
+            <div class="motion-swatch" id="m3" style="animation:ds-slide-in .45s ease both;background:var(--pink)"></div>
+            <div class="motion-label">
+              <div class="name">Slide In</div>
+              <div class="spec">translateX -20px→0 + opacity · 450ms ease</div>
+            </div>
+            <button class="play-btn" onclick="replay('m3','ds-slide-in .45s ease both')"><span>play_arrow</span> Play</button>
+          </div>
+        </div>
+        <div style="padding:var(--space-4);background:var(--light);border-radius:var(--radius)">
+          <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:var(--space-3)">Motion Rules</div>
+          <table style="width:100%;border-collapse:collapse;font-size:13px">
+            <tr style="border-bottom:1px solid #E5E7EB">
+              <td style="padding:10px 0;font-weight:600;color:var(--dark);width:120px">Duration</td>
+              <td style="padding:10px 0;color:var(--mid)">100–600ms. Fast for micro, 400–600ms for reveals.</td>
+            </tr>
+            <tr style="border-bottom:1px solid #E5E7EB">
+              <td style="padding:10px 0;font-weight:600;color:var(--dark)">Easing</td>
+              <td style="padding:10px 0;color:var(--mid)">ease or cubic-bezier(.4,0,.2,1). Never linear for UI.</td>
+            </tr>
+            <tr style="border-bottom:1px solid #E5E7EB">
+              <td style="padding:10px 0;font-weight:600;color:var(--dark)">Hover</td>
+              <td style="padding:10px 0;color:var(--mid)">translateY(-2px to -4px) + box-shadow. 200ms ease.</td>
+            </tr>
+            <tr style="border-bottom:1px solid #E5E7EB">
+              <td style="padding:10px 0;font-weight:600;color:var(--dark)">Scroll</td>
+              <td style="padding:10px 0;color:var(--mid)">Fade-up on enter only. No continuous scroll animations.</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 0;font-weight:600;color:var(--dark)">Never</td>
+              <td style="padding:10px 0;color:#B91C1C">Spin, bounce, flash, rotate, infinite loops (except loading states).</td>
+            </tr>
+          </table>
+          <div style="margin-top:var(--space-3);padding:var(--space-2);background:var(--white);border-radius:8px;border-left:3px solid var(--blue)">
+            <p style="font-size:12px;color:var(--mid)"><strong>Respect prefers-reduced-motion.</strong> All non-essential animations must be disabled when the user has reduced motion enabled in their OS.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <section class="section section-alt" id="grid">
+    <div class="container">
+      <div class="section-label">06 — Grid System</div>
+      <h2 class="section-title">8px Base Unit</h2>
+      <p class="section-body">All spacing, sizing, and layout decisions derive from an 8px base unit. Nothing is placed arbitrarily. Every distance is a multiple of 8 (or 4 for micro-adjustments).</p>
+
+      <div class="reveal">
+        <div class="grid-demo" style="margin-bottom:var(--space-4)">
+          <p style="color:rgba(255,255,255,.5);font-size:11px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.8px">12-Column Web Grid (1200px max-width)</p>
+          <div class="grid-demo-cols">
+            <div class="grid-col span-3"></div><div class="grid-col span-3"></div><div class="grid-col span-3"></div><div class="grid-col span-3"></div>
+          </div>
+          <div class="grid-demo-cols" style="margin-top:8px">
+            <div class="grid-col span-4"></div><div class="grid-col span-4"></div><div class="grid-col span-4"></div>
+          </div>
+          <div class="grid-demo-cols" style="margin-top:8px">
+            <div class="grid-col span-6"></div><div class="grid-col span-6 accent"></div>
+          </div>
+          <div class="grid-demo-cols" style="margin-top:8px">
+            <div class="grid-col span-12"></div>
+          </div>
+          <p style="color:rgba(255,255,255,.4);font-size:11px;margin-top:12px">12 columns · 24px gutters · 64px horizontal margins · 8-col shown highlighted</p>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <div class="section-label" style="margin-bottom:var(--space-2)">Spacing Tokens</div>
+            <div style="background:var(--white);border-radius:var(--radius);padding:var(--space-3);box-shadow:var(--shadow)">
+              <div class="spacing-row"><div class="spacing-swatch" style="width:8px"></div><div class="spacing-meta"><div class="var">--space-1</div><div class="val">8px · micro gap</div></div></div>
+              <div class="spacing-row"><div class="spacing-swatch" style="width:16px"></div><div class="spacing-meta"><div class="var">--space-2</div><div class="val">16px · tight</div></div></div>
+              <div class="spacing-row"><div class="spacing-swatch" style="width:24px"></div><div class="spacing-meta"><div class="var">--space-3</div><div class="val">24px · card padding</div></div></div>
+              <div class="spacing-row"><div class="spacing-swatch" style="width:32px"></div><div class="spacing-meta"><div class="var">--space-4</div><div class="val">32px · component gap</div></div></div>
+              <div class="spacing-row"><div class="spacing-swatch" style="width:40px"></div><div class="spacing-meta"><div class="var">--space-5</div><div class="val">40px · section inner</div></div></div>
+              <div class="spacing-row"><div class="spacing-swatch" style="width:48px"></div><div class="spacing-meta"><div class="var">--space-6</div><div class="val">48px · content group</div></div></div>
+              <div class="spacing-row"><div class="spacing-swatch" style="width:64px"></div><div class="spacing-meta"><div class="var">--space-8</div><div class="val">64px · page margin</div></div></div>
+              <div class="spacing-row" style="border:none"><div class="spacing-swatch" style="width:96px"></div><div class="spacing-meta"><div class="var">--space-10</div><div class="val">96px · section padding</div></div></div>
+            </div>
+          </div>
+          <div>
+            <div class="section-label" style="margin-bottom:var(--space-2)">Slide Grid</div>
+            <div style="background:var(--white);border-radius:var(--radius);padding:var(--space-3);box-shadow:var(--shadow)">
+              <table style="width:100%;font-size:13px;border-collapse:collapse">
+                <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:600;color:var(--dark)">Canvas</td><td style="padding:8px 0;color:var(--mid)">960 × 540px (16:9)</td></tr>
+                <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:600;color:var(--dark)">Left/Right margin</td><td style="padding:8px 0;color:var(--mid)">64px</td></tr>
+                <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:600;color:var(--dark)">Top margin</td><td style="padding:8px 0;color:var(--mid)">40px</td></tr>
+                <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:600;color:var(--dark)">Footer bar</td><td style="padding:8px 0;color:var(--mid)">36px · Navy #061947</td></tr>
+                <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:600;color:var(--dark)">Columns</td><td style="padding:8px 0;color:var(--mid)">8 · 16px gutters</td></tr>
+                <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:600;color:var(--dark)">Background</td><td style="padding:8px 0;color:var(--mid)">White #FFFFFF — all slides, no exceptions</td></tr>
+                <tr><td style="padding:8px 0;font-weight:600;color:var(--dark)">Text alignment</td><td style="padding:8px 0;color:var(--mid)">Left only — no centered text on any slide</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOICE & TONE -->
+  <section class="section" id="voice">
+    <div class="container">
+      <div class="section-label">07 — Voice &amp; Tone</div>
+      <h2 class="section-title">How We Sound</h2>
+      <p class="section-body">DemandScience speaks in a clear, direct, human voice. We simplify B2B complexity without losing precision. We never use jargon when plain language works.</p>
+
+      <div class="quote-block reveal" style="margin-bottom:var(--space-6)">
+        <p>"Empowering B2B Marketers to take back control of their growth."</p>
+      </div>
+
+      <div class="grid-2 reveal" style="margin-bottom:var(--space-5)">
+        <div>
+          <div class="section-label" style="margin-bottom:var(--space-2)">Elevator Pitch — Short</div>
+          <div style="padding:var(--space-3);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);border-left:4px solid var(--blue)">
+            <p style="font-size:15px;color:var(--dark);line-height:1.7">DemandScience helps B2B companies grow faster by connecting them with the right buyers at the right time. We provide demand generation solutions that are data-driven, scalable, and built for revenue impact.</p>
+          </div>
+        </div>
+        <div>
+          <div class="section-label" style="margin-bottom:var(--space-2)">Copy Rules</div>
+          <div style="padding:var(--space-3);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)">
+            <table style="width:100%;font-size:13px;border-collapse:collapse">
+              <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:700;color:var(--dark)">Headlines</td><td style="padding:8px 0;color:var(--mid)">Verb-led, outcome-first, ≤10 words</td></tr>
+              <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:700;color:var(--dark)">Body</td><td style="padding:8px 0;color:var(--mid)">Short sentences. One idea per paragraph.</td></tr>
+              <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:700;color:var(--dark)">CTAs</td><td style="padding:8px 0;color:var(--mid)">Action verbs: "Get", "See", "Start", "Request"</td></tr>
+              <tr style="border-bottom:1px solid #E5E7EB"><td style="padding:8px 0;font-weight:700;color:var(--dark)">Jargon</td><td style="padding:8px 0;color:var(--mid)">Define on first use. Prefer plain language.</td></tr>
+              <tr><td style="padding:8px 0;font-weight:700;color:var(--dark)">Emphasis</td><td style="padding:8px 0;color:var(--mid)">Bold only. Never italic for emphasis.</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="section-label" style="margin-bottom:var(--space-3)">We Are / We Are Not</div>
+        <table class="we-table" style="background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)">
+          <thead><tr><th>We Are</th><th>We Are Not</th></tr></thead>
+          <tbody>
+            <tr><td>Clear and direct</td><td>Vague or wordy</td></tr>
+            <tr><td>Data-confident</td><td>Data-obsessed to the point of cold</td></tr>
+            <tr><td>Human and approachable</td><td>Casual or unprofessional</td></tr>
+            <tr><td>Ambitious</td><td>Arrogant</td></tr>
+            <tr><td>Expert</td><td>Jargon-heavy</td></tr>
+            <tr><td>Focused on outcomes</td><td>Focused on features</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- DO & DON'T -->
+  <section class="section section-alt" id="dodont">
+    <div class="container">
+      <div class="section-label">08 — Do &amp; Don't</div>
+      <h2 class="section-title">Brand Do's &amp; Don'ts</h2>
+      <p class="section-body">These rules exist because past violations damaged brand credibility. When in doubt, left-align it and add more whitespace.</p>
+
+      <div class="do-dont reveal">
+        <div class="do-card">
+          <h4><span>check_circle</span> Do</h4>
+          <ul>
+            <li>Use white backgrounds on all slides</li>
+            <li>Left-align all slide text</li>
+            <li>Use Poppins Bold for all headings</li>
+            <li>Use CTA Red (#D42F5B) only on buttons</li>
+            <li>Use Google Material Symbols Rounded icons</li>
+            <li>Add generous whitespace — if it feels tight, add more</li>
+            <li>Use authentic, candid photography (no posed portraits)</li>
+            <li>Follow the approved chart color order: Navy → Blue → Pink → Grey</li>
+            <li>Keep charts on white backgrounds with minimal gridlines</li>
+            <li>Get Design approval before creating any external asset</li>
+          </ul>
+        </div>
+        <div class="dont-card">
+          <h4><span>cancel</span> Don't</h4>
+          <ul>
+            <li>Use gradient or navy as slide backgrounds</li>
+            <li>Center body text on slides</li>
+            <li>Use Montserrat, Lato, Open Sans, or any other font</li>
+            <li>Use CTA Red decoratively or as a background</li>
+            <li>Use Font Awesome, Heroicons, or Feather icons</li>
+            <li>Cram content — one focal point per slide/screen</li>
+            <li>Use stock photography with subjects looking at camera</li>
+            <li>Use default Excel/Sheets colors in charts</li>
+            <li>Create public-facing assets without an approved template</li>
+            <li>Describe any external request as "quick" or "informal"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider-band">
+    <div class="container">
+      <div>
+        <h2>Brand Review Required?</h2>
+        <p>Any external asset, new logo treatment, co-brand, or off-system design must be reviewed by the Design team before publishing.</p>
+      </div>
+      <div style="display:flex;gap:var(--space-2);flex-wrap:wrap">
+        <a href="mailto:Marketing@demandscience.com" class="btn-primary">
+          <span style="font-family:'Material Symbols Rounded';font-size:18px">mail</span>
+          Email Design Team
+        </a>
+        <a href="#governance" class="btn-outline">View Governance Rules</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOVERNANCE -->
+  <section class="section" id="governance">
+    <div class="container">
+      <div class="section-label">09 — Brand Governance</div>
+      <h2 class="section-title">Enforcement System</h2>
+      <p class="section-body">Brand governance exists to protect DemandScience's market presence and ensure every customer touchpoint reflects the same quality standard. There are no exceptions to STOP rules.</p>
+
+      <div class="grid-3 reveal" style="margin-bottom:var(--space-5)">
+        <div class="tier-card tier-stop">
+          <h4>🚫 STOP — Halt All Work</h4>
+          <ul>
+            <li>Icon library other than Material Symbols Rounded</li>
+            <li>Font other than Poppins or Inter</li>
+            <li>Off-palette color requested or used</li>
+            <li>New logo treatment or variant</li>
+            <li>Public asset without approved template</li>
+            <li>Co-brand or partner lockup</li>
+            <li>Request described as "quick external"</li>
+            <li>Charts with default Excel/Sheets colors</li>
+          </ul>
+        </div>
+        <div class="tier-card tier-warn">
+          <h4>⚠ WARNING — Flag &amp; Fix</h4>
+          <ul>
+            <li>Old hex values used (#05195F, #0066FC)</li>
+            <li>Italic used for emphasis (use bold)</li>
+            <li>Justified paragraph text</li>
+            <li>Heavy card shadow (&gt; spec)</li>
+            <li>Sharp-cornered cards (missing 10px radius)</li>
+            <li>Navy/blue CTA button (not pink)</li>
+            <li>Missing alt text on images</li>
+            <li>Gradient on non-approved sections</li>
+          </ul>
+        </div>
+        <div class="tier-card tier-ok">
+          <h4>✅ Approved — No Review</h4>
+          <ul>
+            <li>Internal presentations (approved template)</li>
+            <li>Client decks (approved template, no new layouts)</li>
+            <li>One-pagers using approved doc template</li>
+            <li>Charts with approved color order on white</li>
+            <li>Icons from Material Symbols Rounded</li>
+            <li>Email using approved template</li>
+            <li>Web pages using component library</li>
+            <li>Internal Slack/comms graphics</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-bottom:var(--space-5)">
+        <div class="section-label" style="margin-bottom:var(--space-3)">STOP Message Format</div>
+        <div class="stop-box">
+          <div class="stop-border">╔══════════════════════════════════════════════════════════════╗</div>
+          <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="stop-title">🚫  DESIGN GOVERNANCE — STOP</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ║</div>
+          <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+          <div>║ &nbsp;This request cannot be completed without &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ║</div>
+          <div>║ &nbsp;Design team review and approval. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+          <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+          <div>║ &nbsp;<span class="stop-label">VIOLATION:</span> &nbsp; <span class="stop-value">[what rule was triggered]</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ║</div>
+          <div>║ &nbsp;<span class="stop-label">REQUESTED:</span> &nbsp; <span class="stop-value">[what was asked for]</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+          <div>║ &nbsp;<span class="stop-label">RULE:</span> &nbsp; &nbsp; &nbsp; &nbsp; <span class="stop-value">[the specific standard being violated]</span> &nbsp; ║</div>
+          <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+          <div>║ &nbsp;TO PROCEED: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+          <div>║ &nbsp;<span class="stop-action">→ Email: &nbsp;Marketing@demandscience.com</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+          <div>║ &nbsp;<span class="stop-action">→ Slack: &nbsp;#design-team</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+          <div>║ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+          <div>║ &nbsp;Do not publish or share any materials until Design &nbsp; &nbsp; &nbsp; ║</div>
+          <div>║ &nbsp;has reviewed and given written approval. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;║</div>
+          <div class="stop-border">╚══════════════════════════════════════════════════════════════╝</div>
+        </div>
+      </div>
+
+      <div class="grid-2 reveal">
+        <div>
+          <div class="section-label" style="margin-bottom:var(--space-2)">Design Contact</div>
+          <div style="padding:var(--space-4);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:var(--space-2)">
+              <span style="font-family:'Material Symbols Rounded';font-size:32px;color:var(--navy)">mail</span>
+              <div>
+                <div style="font-weight:700;color:var(--dark);font-size:14px">Email</div>
+                <a href="mailto:Marketing@demandscience.com" style="color:var(--blue);font-size:14px">Marketing@demandscience.com</a>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+              <span style="font-family:'Material Symbols Rounded';font-size:32px;color:var(--navy)">forum</span>
+              <div>
+                <div style="font-weight:700;color:var(--dark);font-size:14px">Slack</div>
+                <div style="color:var(--blue);font-size:14px">#design-team</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="section-label" style="margin-bottom:var(--space-2)">Governance Files</div>
+          <div style="padding:var(--space-4);background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)">
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:center;gap:8px;font-size:13px">
+                <span style="font-family:'Material Symbols Rounded';font-size:18px;color:var(--blue)">description</span>
+                <span style="color:var(--dark)">governance/brand-enforcement.md</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:13px">
+                <span style="font-family:'Material Symbols Rounded';font-size:18px;color:var(--blue)">description</span>
+                <span style="color:var(--dark)">governance/design-review-process.md</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:13px">
+                <span style="font-family:'Material Symbols Rounded';font-size:18px;color:var(--blue)">description</span>
+                <span style="color:var(--dark)">governance/approved-use-cases.md</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:13px">
+                <span style="font-family:'Material Symbols Rounded';font-size:18px;color:var(--blue)">description</span>
+                <span style="color:var(--dark)">ds-brand-police.md — mandatory validator</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">DemandScience Brand Standards</div>
+        <div style="margin-top:4px">v2.3 · Last updated 2026-03-25 · Source of truth: demandscience-design/</div>
+      </div>
+      <div class="footer-links">
+        <a href="#colors">Colors</a>
+        <a href="#typography">Type</a>
+        <a href="#components">Components</a>
+        <a href="#governance">Governance</a>
+        <a href="mailto:Marketing@demandscience.com">Contact Design</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div id="toast"><span>check_circle</span><span id="toast-msg">Copied to clipboard</span></div>
+
+  <script>
+    // ── NAV SCROLL ─────────────────────────────────────
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+      updateJumpNav();
+    }, { passive: true });
+
+    // ── JUMP NAV ACTIVE STATE ───────────────────────────
+    const sections = ['colors','typography','components','icons','motion','grid','voice','dodont','governance'];
+    const jumpLinks = document.querySelectorAll('.jump-link');
+    function updateJumpNav() {
+      let current = '';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 160) current = id;
+      });
+      jumpLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    }
+
+    // ── COPY HEX ────────────────────────────────────────
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast('Copied ' + name + ': ' + hex);
+      }).catch(() => {
+        showToast('Copied: ' + hex);
+      });
+    }
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-msg').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+
+    // ── MOTION REPLAY ───────────────────────────────────
+    function replay(id, anim) {
+      const el = document.getElementById(id);
+      el.style.animation = 'none';
+      el.offsetHeight; // reflow
+      el.style.animation = anim;
+    }
+
+    // ── SCROLL REVEAL ───────────────────────────────────
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ── REDUCED MOTION ──────────────────────────────────
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (prefersReduced.matches) {
+      document.querySelectorAll('.reveal').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.style.transition = 'none';
+      });
+    }
+  </script>
+</body>
+</html>

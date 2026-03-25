@@ -1,0 +1,52 @@
+DemandScience — Typography & Font Reference,,,,,,,
+Import into Google Sheets. Use as a reference for all presentations documents and web assets.,,,,,,,
+Last updated: 2026-03-25 | Source: 25-DS-BrandGuide-General.pdf,,,,,,,
+,,,,,,,
+FONT FAMILIES,,,,,,,
+ROLE,FAMILY,WEIGHTS,FALLBACK,GOOGLE FONTS URL,CSS VARIABLE,NOTES
+Headings & Display,Poppins,"400, 500, 600, 700",Arial,https://fonts.google.com/specimen/Poppins,--font-sans,Used for H1–H5 · Titles · CTAs · Stats callouts
+Body & UI,Inter,"400, 500, 600, 700",Arial,https://fonts.google.com/specimen/Inter,--font-body,Used for all body copy · Labels · Captions · UI text
+Code / Technical,System Mono,400,ui-monospace,n/a,--font-mono,Code snippets only · Not for general use
+,,,,,,,
+GOOGLE FONTS IMPORT HTML,,,,,,,
+Purpose,Code,,,,,
+Web import (paste in HTML head),"<link href=""https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"" rel=""stylesheet"" />",,,,,
+,,,,,,,
+SLIDE TYPE SCALE (Google Slides / PPTX),,,,,,,
+LEVEL,FONT,SIZE (PT),WEIGHT,COLOR,COLOR HEX,ALIGNMENT,USE CASE
+H1 / Slide Title,Poppins,32pt,Bold (700),Navy Blue,#061947,Left,Cover slides · Main slide headings
+H2 / Section Heading,Poppins,24pt,SemiBold (600),Navy Blue,#061947,Left,Sub-section titles within slides
+H3 / Subheading,Poppins,18pt,SemiBold (600),Electric Blue,#0266F7,Left,Card titles · Callout labels
+Body,Inter,12–14pt,Regular (400),Dark Grey,#1E293B,Left,All slide body copy and bullets
+Caption / Footnote,Inter,9pt,Regular (400),Medium Grey,#64748B,Left,Sources · footnotes · supporting details
+Stat Callout,Poppins,40pt+,Bold (700),Navy or Electric Blue,#061947 / #0266F7,Left,Data callout numbers (large format)
+,,,,,,,
+WEB TYPE SCALE (px),,,,,,,
+LEVEL,FONT,SIZE,LINE HEIGHT,WEIGHT,COLOR,ALIGNMENT,USE CASE
+H1,Poppins,50px,60px,700,Navy #061947,Left (center hero only),Marketing hero · Landing page title
+H2,Poppins,38px,45px,700,Navy #061947,Left,Section titles
+H3,Poppins,30px,36px,600,Navy #061947,Left,Sub-section headings
+H4,Poppins,24px,30px,600,Navy #061947,Left,Card titles · Feature names
+H5,Poppins,18px,24px,600,Navy #061947,Left,Smaller headings
+Body,Inter,18px,28px,400,Dark Grey #1E293B,Left,Marketing body copy
+Body Small,Inter,16px,24px,400,Dark Grey #1E293B,Left,Secondary copy · UI body
+Caption,Inter,12px,16px,400,Medium Grey #64748B,Left,Footnotes · Labels
+,,,,,,,
+DOC / PDF TYPE SCALE (pt),,,,,,,
+LEVEL,FONT,SIZE,WEIGHT,COLOR,ALIGNMENT,NOTES
+Title,Poppins,28–32pt,Bold,Navy #061947,Left,Document cover title
+H1,Poppins,22–24pt,Bold,Navy #061947,Left,Major section headings
+H2,Poppins,18pt,Bold,Electric Blue #0266F7,Left,Sub-section headings
+H3,Poppins,14pt,SemiBold,Navy #061947,Left,Minor headings
+Body,Inter,11pt,Regular,Dark Grey #1E293B,Left,All body text
+Caption,Inter,9pt,Regular,Medium Grey #64748B,Left,Footnotes · Sources
+,,,,,,,
+FORMATTING RULES,,,,,,,
+Rule,Detail,,,,,
+Left-aligned always,ALL text is left-aligned in all media. Center ONLY web hero H1 and single stat callouts.,,,,,
+Bold for emphasis,Use bold text to highlight key ideas — never italic for emphasis.,,,,,
+No italic emphasis,Italic is acceptable for quotes only — not for general emphasis,,,,,
+Electric Blue for callouts,Use Electric Blue #0266F7 to emphasize key points in copy,,,,,
+Navy for headlines on light,Always use Navy #061947 for headlines on white or light backgrounds,,,,,
+White text on dark,Use white text only on Navy or gradient backgrounds,,,,,
+Fallback font,If Poppins or Inter cannot load the fallback is Arial — ensure decks still look clean,,,,,

@@ -1,0 +1,32 @@
+DemandScience — Brand Color Reference,,,,,
+Import this file into Google Sheets. Set column widths and apply the hex values to cell backgrounds for a visual swatch sheet.,,,,,
+Last updated: 2026-03-25 | Source: 25-DS-BrandGuide-General.pdf,,,,,
+,,,,,
+CATEGORY,NAME,HEX,RGB,CSS VARIABLE,USAGE / RULES
+,,,,,
+PRIMARY BRAND,,,,,
+Primary,Navy Blue,#061947,"rgb(6, 25, 71)",--ds-navy,Primary headings · Key UI elements · Dark text on white · Footer bar background
+Primary,Electric Blue,#0266F7,"rgb(2, 102, 247)",--ds-blue,Links · Emphasis text · Key numbers · Subheadings · Icon color · Interactive states
+Primary,CTA Red,#D42F5B,"rgb(212, 47, 91)",--ds-pink,CTA BUTTONS ONLY · Never use decoratively · Never for body text or backgrounds
+,,,,,
+EXTENDED PALETTE,,,,,
+Extended,Baby Blue,#CDEDFD,"rgb(205, 237, 253)",--ds-blue-light,Subtle accent backgrounds · Chips · Tags · Alt table rows · Illustration backgrounds
+Extended,Navy Light,#0A2A8F,"rgb(10, 42, 143)",--ds-navy-light,Hover states on navy elements · Dark gradient stops
+Extended,Pink Light,#FDF2F4,"rgb(253, 242, 244)",--ds-pink-light,CTA-related backgrounds only — behind CTA button areas
+Extended,Alert Red,#F40356,"rgb(244, 3, 86)",--ds-red-orange,Destructive actions · Critical system alerts only
+,,,,,
+NEUTRALS (COOL GREYS),,,,,
+Neutral,Dark Grey,#1E293B,"rgb(30, 41, 59)",--ds-dark-grey,Main body text on white · Primary text color for all documents
+Neutral,Medium Grey,#64748B,"rgb(100, 116, 139)",--ds-medium-grey,Secondary text · Helper copy · Muted labels · Captions · Footnotes
+Neutral,Light Grey,#F8F9FB,"rgb(248, 249, 251)",--ds-light-grey,Card backgrounds · Section backgrounds · Alternate rows · Page tinting
+Neutral,White,#FFFFFF,"rgb(255, 255, 255)",--ds-white,Default background for ALL slides · All pages · All web surfaces
+,,,,,
+GRADIENT,,,,,
+Gradient,Brand Gradient,linear-gradient(to right #061947 → #0266F7),Navy Blue to Electric Blue,--ds-gradient,Hero areas · High-impact bands · Footer bars · NEVER full slide backgrounds
+,,,,,
+COLOR RULES,,,,,
+Rule 1,White is always the default background,,,,Never use colored slide backgrounds — white only
+Rule 2,Cool greys are for structure,,,,Cards · Panels · Dividers · Alt table rows — not brand colors
+Rule 3,Brand colors are accents only,,,,Navy for headings · Blue for emphasis · NOT as wallpaper
+Rule 4,CTA Red is for buttons only,,,,Never decorative · Never backgrounds · Never body text
+Rule 5,No off-palette colors,,,,If a color is not in this sheet it is off-brand. Ask marketing.

@@ -1,0 +1,100 @@
+/* ==========================================================
+   DemandScience — Typography Scale
+   Import colors.css first. Requires Poppins + Inter loaded.
+   ========================================================== */
+
+/* Google Fonts import */
+/* <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" /> */
+
+/*
+   OFFICIAL SLIDE SIZES (from 25-DS-BrandGuide-General.pdf):
+   Title (PPTs & Announcements): 38pt
+   Headlines: 24pt
+   Subheadings: 18pt
+   Body Text: 14pt
+   Fallback font if Poppins/Inter unavailable: Arial
+*/
+
+/* --- Marketing / Narrative Scale (web, decks, one-pagers) --- */
+
+.ds-h1 {
+  font-family: var(--font-sans);
+  font-size: 50px;
+  line-height: 60px;
+  font-weight: 700;
+  color: var(--ds-navy);
+  text-align: left;
+}
+
+.ds-h2 {
+  font-family: var(--font-sans);
+  font-size: 38px;
+  line-height: 45px;
+  font-weight: 700;
+  color: var(--ds-navy);
+  text-align: left;
+}
+
+.ds-h3 {
+  font-family: var(--font-sans);
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 600;
+  color: var(--ds-navy);
+  text-align: left;
+}
+
+.ds-h4 {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 600;
+  color: var(--ds-navy);
+  text-align: left;
+}
+
+.ds-h5 {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--ds-navy);
+  text-align: left;
+}
+
+.ds-body {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+  color: var(--ds-dark-grey);
+}
+
+.ds-body-sm {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: var(--ds-dark-grey);
+}
+
+.ds-caption {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: var(--ds-medium-grey);
+}
+
+/* --- UI / Application Scale --- */
+
+.ds-ui-page-title  { font-family: var(--font-sans); font-size: 30px; font-weight: 700; }
+.ds-ui-card-title  { font-family: var(--font-sans); font-size: 24px; font-weight: 600; }
+.ds-ui-dialog      { font-family: var(--font-sans); font-size: 18px; font-weight: 600; }
+.ds-ui-section     { font-family: var(--font-body); font-size: 16px; font-weight: 500; }
+.ds-ui-label       { font-family: var(--font-body); font-size: 14px; font-weight: 500; }
+.ds-ui-body        { font-family: var(--font-body); font-size: 14px; font-weight: 400; }
+
+/* --- Alignment rule --- */
+/* Default: left-align everything.
+   Center ONLY: web hero H1, title slide headline, single stat callouts. */
